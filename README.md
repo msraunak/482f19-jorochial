@@ -9,3 +9,4 @@ This is the repository for team jorochial to develop their Auction application i
 
 # Team Lead: 
 Chiara Maalouf
+
