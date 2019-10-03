@@ -1,1 +1,11 @@
-# 482f19-jorochial
+# 482f19-JOROCHIAL
+This is the repository for team jorochial to develop their Auction application in Fall 2019 Software Engineering course. 
+
+# Team Members:
+1. Joshua Bennett (Jo)
+2. Robby Ackerman (ro)
+3. Chiara Maalouf (chi)
+4. Alyssa Schilke (al)
+
+# Team Lead: 
+Chiara Maalouf
