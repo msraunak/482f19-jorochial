@@ -1,0 +1,112 @@
+//Functions from bootstrap Docs
+@function color($key: "blue") {
+  @return map-get($colors, $key);
+}
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+@function gray($key: "100") {
+  @return map-get($grays, $key);
+}
+$theme-colors: (
+  "primary": #B13223,//#7a6dd1,
+  "secondary": #1E70BA ,//#d894b8 ,
+  "success": #6e8c45,
+  "danger": #f44336,
+  "warning": #eb7c0d,
+  "info": #232b75,
+  "light": #FBFBFC,//#F6F6F8,
+  "dark": #21286E,//#221d41,
+  "dark-secondary":#191e4c,
+  //"grey": #999999,
+  "light-primary": #D49282
+);
+//221d41, 313c99, 7a6dd1, d8A5be, F6F6F8
+
+$border-radius: 0.4rem;
+$border-radius-lg: 0.5rem;
+$border-radius-sm: 0.3rem;
+
+//@import url('https://fonts.googleapis.com/css?family=Fahkwang|Roboto+Mono|Roboto+Slab&display=swap');
+
+//fonts
+$font-family-sans-serif:           'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:       "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+$headings-font-family:             'Fahkwang', sans-serif;
+$headings-color:                   theme-color("dark");
+
+
+//table
+
+$table-color:                 theme-color("dark");
+//font in custom
+
+//anchor tags
+$link-color: theme-color("primary");
+$link-hover-color: theme-color("info");
+$nav-link-disabled-color: rgba(theme-color("dark"), .35);
+$nav-tabs-link-active-color: theme-color("info");
+
+// Make all navbars have light or dark class
+$navbar-dark-color: theme-color("secondary");
+$navbar-dark-hover-color: theme-color("light-primary");
+$navbar-dark-active-color: theme-color("light");
+$navbar-dark-disabled-color: rgba(theme-color("secondary"), .25);
+
+$navbar-light-color: theme-color("dark");
+$navbar-light-hover-color: theme-color("primary");
+$navbar-light-active-color: theme-color("info");
+$navbar-light-disabled-color: rgba(theme-color("dark"), .25);
+
+$navbar-light-brand-color: theme-color("primary");
+$navbar-light-brand-hover-color: theme-color("dark");
+$navbar-dark-brand-color: theme-color("light");
+$navbar-dark-brand-hover-color: theme-color("primary");
+
+ //Progress Bar
+ /*
+$progress-height: 2rem;
+$progress-bg: theme-color("grey");
+$progress-bar-color: theme-color("light");
+$progress-bar-bg: theme-color("dark");
+$progress-font-size: 1rem * 1.25;
+$progress-border-radius: $border-radius-lg;
+*/
+
+//Breadcrumbs
+/*
+$breadcrumb-bg: theme-color("light");
+$breadcrumb-divider-color: theme-color("dark");
+$breadcrumb-active-color: theme-color("primary");
+*/
+//Forms
+$input-border-color: theme-color("secondary"); //css adjusts text color in form
+
+//buttons
+//$btn-link-disabled-color: theme-color("dark");
+
+ //jumbotron
+$jumbotron-color: theme-color("light-primary");
+$jumbotron-bg: theme-color("dark");
+
+@import "../bootstrap/scss/bootstrap"; //custom.css below:
+
+
+//NOTE: ADD SASS or CSS to this section of the doc, esp extra classes/ id styles
+//General style changes should override bootstrap defaults above the @import "bootstrap"; statement
+
+.bg-dark-secondary{
+  background-color:theme-color("dark-secondary");
+}
+.btn-dark-secondary{
+  color: theme-color("light");
+  border-color: theme-color("dark-secondary");
+  background-color:theme-color("dark-secondary");
+}
+.btn-light-primary{
+  color: theme-color("light");
+  background-color:theme-color("light-primary");
+  border-color: theme-color("light-primary");
+
+}
