@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Herve Franceschi"
+        android:textSize="40dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/currentbids"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/name"
+        android:text="Current Bids:"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <ImageView
+        android:layout_below="@+id/currentbids"
+        android:layout_marginTop="200dp"
+        android:id="@+id/item1"
+        style="@style/ItemPic"
+        android:background="@drawable/bike"
+        />
+    <Button
+        android:id="@+id/title1"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_below="@id/currentbids"
+        style="@style/TitlePrice"
+        android:text="Bike $25"
+
+        />
+    <Button
+        android:id="@+id/view1"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_below="@id/title1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:textSize="10dp"
+        android:text="View Listing"
+
+        />
+
+    <ImageView
+        android:layout_below="@+id/item1"
+        android:layout_marginTop="200dp"
+        android:id="@+id/item2"
+        style="@style/ItemPic"
+        android:background="@drawable/airpods"
+        />
+    <Button
+        android:id="@+id/title2"
+        android:layout_toRightOf="@+id/item2"
+        android:layout_below="@id/view1"
+        style="@style/TitlePrice"
+        android:layout_alignTop="@id/item2"
+        android:text="Airpods $710"
+
+        />
+
+    <Button
+        android:id="@+id/view2"
+        android:layout_toRightOf="@+id/item2"
+        android:layout_below="@id/title2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:textSize="10dp"
+        android:text="View Listing"
+
+        />
+
+
+</RelativeLayout>

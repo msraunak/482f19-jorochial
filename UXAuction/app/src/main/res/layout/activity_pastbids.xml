@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Herve Franceschi"
+        android:textSize="40dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/currentbids"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/name"
+        android:text="Past Bids:"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/item1name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentbids"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_alignTop="@+id/item1"
+        android:text="Jacoozi"
+        android:textSize="20dp"
+        android:layout_marginLeft="16dp"/>
+
+
+    <ImageView
+        android:layout_below="@+id/currentbids"
+        android:layout_marginTop="200dp"
+        android:id="@+id/item1"
+        style="@style/ItemPic"
+        android:background="@drawable/jacoozi"
+        />
+    <Button
+        android:id="@+id/title1"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_below="@id/item1name"
+        style="@style/TitlePrice"
+        android:layout_width="200dp"
+
+        android:text="My Bid:    25000"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/title1a"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_below="@id/title1"
+        style="@style/TitlePrice"
+        android:layout_width="200dp"
+
+        android:text="Current Bid:    5500"
+        android:gravity="center"
+        />
+
+
+
+    <Button
+        android:id="@+id/view1"
+
+        android:layout_below="@id/item1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:textSize="10dp"
+        android:text="View Listing"
+
+        />
+
+    <ImageView
+        android:layout_below="@+id/view1"
+        android:layout_marginTop="200dp"
+        android:id="@+id/item2"
+        style="@style/ItemPic"
+        android:background="@drawable/purse"
+        />
+
+
+    <TextView
+        android:id="@+id/item2name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentbids"
+        android:layout_toRightOf="@+id/item2"
+        android:layout_alignTop="@+id/item2"
+        android:text="Purse"
+        android:textSize="20dp"
+        android:layout_marginLeft="16dp"/>
+
+
+    <Button
+        android:id="@+id/title2"
+        android:layout_toRightOf="@+id/item2"
+        android:layout_below="@id/item2name"
+        style="@style/TitlePrice"
+        android:layout_width="200dp"
+        android:text="My Bid:    2100"
+
+
+        />
+
+    <Button
+        android:id="@+id/title2c"
+        android:layout_toRightOf="@+id/item2"
+        android:layout_below="@id/title2"
+        style="@style/TitlePrice"
+        android:layout_width="200dp"
+        android:text="Current Bid:    5000"
+
+
+        />
+
+    <Button
+        android:id="@+id/view2"
+
+        android:layout_below="@id/item2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:textSize="10dp"
+        android:text="View Listing"
+
+        />
+
+
+</RelativeLayout>

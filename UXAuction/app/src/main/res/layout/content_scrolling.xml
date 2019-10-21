@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ScrollingActivity"
+    tools:showIn="@layout/activity_scrolling">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/item1"
+        style="@style/ItemPic"
+        android:background="@drawable/bike"
+    />
+    <Button
+        android:id="@+id/title1"
+        android:layout_below="@+id/item1"
+        style="@style/TitlePrice"
+        android:text="Bike $25"
+        android:onClick="itemClick"
+
+        />
+
+
+
+
+    <ImageView
+        android:id="@+id/item4"
+        style="@style/ItemPic"
+        android:layout_below="@+id/title1"
+        android:background="@drawable/monopoly"
+        />
+
+    <Button
+        android:id="@+id/title4"
+        android:layout_below="@+id/item4"
+        style="@style/TitlePrice"
+        android:text="Monopoly $10"
+
+        />
+
+
+
+
+
+    <ImageView
+        android:id="@+id/item7"
+        style="@style/ItemPic"
+        android:layout_below="@+id/title4"
+        android:background="@drawable/moped"
+        />
+
+    <Button
+        android:id="@+id/title7"
+        android:layout_below="@+id/item7"
+        style="@style/TitlePrice"
+        android:text="Moped $900"
+
+        />
+
+
+
+
+
+
+
+
+</RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
