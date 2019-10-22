@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/signUpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign UP"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp"
+        android:textColor="@color/colorPrimaryDark"
+        
+        />
+
+    <EditText
+        android:id="@+id/usernameField"
+        android:layout_below="@+id/signUpText"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/usernameText"
+        android:layout_centerHorizontal="true"
+        android:hint="  Username"
+
+
+        />
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signUpText"
+        android:layout_marginLeft="95dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/usernameField"
+        android:text="Username:"/>
+
+
+
+    <EditText
+        android:id="@+id/passwrdField"
+        android:layout_below="@+id/usernameField"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/usernameText"
+        android:layout_centerHorizontal="true"
+        android:hint="  Password"
+
+
+        />
+    <TextView
+        android:id="@+id/psswrdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameText"
+        android:layout_marginLeft="95dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/passwrdField"
+        android:text="Password:"/>
+
+
+</RelativeLayout>
