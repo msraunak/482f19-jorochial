@@ -22,6 +22,8 @@ $theme-colors: (
   "light-primary": #D49282
 );
 //221d41, 313c99, 7a6dd1, d8A5be, F6F6F8
+$body-color: theme-color("dark");   
+
 
 $border-radius: 0.4rem;
 $border-radius-lg: 0.5rem;
@@ -35,7 +37,7 @@ $font-family-sans-serif:           'Roboto', -apple-system, BlinkMacSystemFont, 
 $font-family-monospace:       "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 $headings-font-family:             'Fahkwang', sans-serif;
-$headings-color:                   theme-color("dark");
+$headings-color:                   theme-color("secondary");
 
 
 //table
