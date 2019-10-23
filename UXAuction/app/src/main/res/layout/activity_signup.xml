@@ -7,21 +7,21 @@
         android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Sign UP"
         android:layout_centerHorizontal="true"
         android:textSize="50dp"
-        android:textColor="@color/colorPrimaryDark"
-        
-        />
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/usernameField"
         android:layout_below="@+id/signUpText"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/usernameText"
         android:layout_centerHorizontal="true"
-        android:hint="  Username"
+        android:hint="  Email Address"
 
 
         />
@@ -30,10 +30,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signUpText"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="95dp"
         android:textSize="20dp"
         android:gravity="center"
-        android:layout_alignBottom="@+id/usernameField"
+        android:layout_alignTop="@+id/usernameField"
         android:text="Username:"/>
 
 
@@ -41,8 +42,10 @@
     <EditText
         android:id="@+id/passwrdField"
         android:layout_below="@+id/usernameField"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameField"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/usernameText"
         android:layout_centerHorizontal="true"
         android:hint="  Password"
@@ -54,11 +57,81 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernameText"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="95dp"
         android:textSize="20dp"
         android:gravity="center"
+        android:layout_alignRight="@+id/usernameText"
         android:layout_alignBottom="@+id/passwrdField"
         android:text="Password:"/>
+
+
+    <EditText
+        android:id="@+id/fnameField"
+        android:layout_below="@+id/passwrdField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwrdField"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/fnameText"
+        android:layout_centerHorizontal="true"
+        android:hint="   First Name"
+
+
+        />
+    <TextView
+        android:id="@+id/fnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/psswrdText"
+        android:layout_alignRight="@+id/psswrdText"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/fnameField"
+        android:text="First Name:"/>
+    <EditText
+        android:id="@+id/lnameField"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/fnameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/fnameField"
+        android:layout_toRightOf="@+id/lnameText"
+        android:layout_centerHorizontal="true"
+        android:hint="  Last Name"
+
+
+        />
+    <TextView
+        android:id="@+id/lnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/fnameText"
+
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignRight="@+id/fnameText"
+        android:layout_alignBottom="@+id/lnameField"
+        android:text="Last Name:" />
+
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Submit"
+        android:layout_below="@+id/lnameText"
+        android:layout_centerHorizontal="true"/>
+
+
+
+
 
 
 </RelativeLayout>
