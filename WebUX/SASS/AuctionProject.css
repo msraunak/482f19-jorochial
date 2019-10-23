@@ -7818,6 +7818,9 @@ a.text-light-primary:hover, a.text-light-primary:focus {
 .bg-dark-secondary {
   background-color: #191e4c; }
 
+.text-light-primary {
+  color: #D49282 !important; }
+
 .btn-dark-secondary {
   color: #FBFBFC;
   border-color: #191e4c;

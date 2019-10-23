@@ -22,7 +22,7 @@ $theme-colors: (
   "light-primary": #D49282
 );
 //221d41, 313c99, 7a6dd1, d8A5be, F6F6F8
-$body-color: theme-color("dark");   
+$body-color: theme-color("dark");
 
 
 $border-radius: 0.4rem;
@@ -101,6 +101,9 @@ $jumbotron-bg: theme-color("dark");
 
 .bg-dark-secondary{
   background-color:theme-color("dark-secondary");
+}
+.text-light-primary{
+  color: theme-color("light-primary") !important;
 }
 .btn-dark-secondary{
   color: theme-color("light");
