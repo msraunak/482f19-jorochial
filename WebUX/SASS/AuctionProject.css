@@ -69,7 +69,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #21286E;
   text-align: left;
   background-color: #fff; }
 
@@ -317,7 +317,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Fahkwang", sans-serif;
   font-weight: 500;
   line-height: 1.2;
-  color: #21286E; }
+  color: #1E70BA; }
 
 h1, .h1 {
   font-size: 2.5rem; }
@@ -1546,7 +1546,7 @@ select.form-control:focus::-ms-value {
   padding-bottom: 0.375rem;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #212529;
+  color: #21286E;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0; }
@@ -1845,7 +1845,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
+  color: #21286E;
   text-align: center;
   vertical-align: middle;
   user-select: none;
@@ -1860,7 +1860,7 @@ textarea.form-control {
     .btn {
       transition: none; } }
   .btn:hover {
-    color: #212529;
+    color: #21286E;
     text-decoration: none; }
   .btn:focus, .btn.focus {
     outline: 0;
@@ -2360,7 +2360,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #21286E;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -3937,7 +3937,7 @@ input[type="button"].btn-block {
     text-decoration: none;
     background-color: #f8f9fa; }
   .list-group-item-action:active {
-    color: #212529;
+    color: #21286E;
     background-color: #e9ecef; }
 
 .list-group-item {
@@ -4561,7 +4561,7 @@ a.close.disabled {
   padding: 0.5rem 0.75rem;
   margin-bottom: 0;
   font-size: 1rem;
-  color: #21286E;
+  color: #1E70BA;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-top-left-radius: calc(0.5rem - 1px);
@@ -4571,7 +4571,7 @@ a.close.disabled {
 
 .popover-body {
   padding: 0.5rem 0.75rem;
-  color: #212529; }
+  color: #21286E; }
 
 .carousel {
   position: relative; }
@@ -7708,7 +7708,7 @@ a.text-light-primary:hover, a.text-light-primary:focus {
   color: #c06049 !important; }
 
 .text-body {
-  color: #212529 !important; }
+  color: #21286E !important; }
 
 .text-muted {
   color: #6c757d !important; }
@@ -7817,6 +7817,9 @@ a.text-light-primary:hover, a.text-light-primary:focus {
     border-color: #dee2e6; } }
 .bg-dark-secondary {
   background-color: #191e4c; }
+
+.text-light-primary {
+  color: #D49282 !important; }
 
 .btn-dark-secondary {
   color: #FBFBFC;
