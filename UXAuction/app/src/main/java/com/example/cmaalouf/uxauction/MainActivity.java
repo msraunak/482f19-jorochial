@@ -35,4 +35,13 @@ public class MainActivity extends AppCompatActivity {
         //this.startActivity( myIntent );
 
     }
+
+
+    protected void signUp(View view)
+    {
+        Intent myIntent = new Intent( this,
+                SignUpActivity.class );
+        this.startActivity( myIntent );
+
+    }
 }
