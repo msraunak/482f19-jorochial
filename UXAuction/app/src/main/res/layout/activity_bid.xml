@@ -45,6 +45,7 @@
         android:text="Make a Bid:" />
 
     <EditText
+        android:id="@+id/bid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cbid"
@@ -60,29 +61,49 @@
         android:background="@color/green"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:text="Auto Bid?" />
+        android:text="Auto Bid? $5" />
 
-    <ToggleButton
-        android:id="@+id/toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/autobid"
-        android:layout_below="@+id/upbid"/>
+
 
     <EditText
         android:id="@+id/inc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/upbid"
-        android:layout_toRightOf="@+id/toggle"
-        android:hint="Auto Bid Increment"/>
+        android:layout_toRightOf="@+id/autobid"
+        android:hint="Auto Bid Maximum"/>
 
-    <EditText
+    <Button
+        android:id="@+id/submitBid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/inc"
-        android:layout_toRightOf="@+id/toggle"
-        android:hint="Auto Bid Max"/>
+        android:layout_below="@+id/cbid"
+        android:layout_toRightOf="@+id/bid"
+        android:text="Submit Bid"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitBid"
+        android:layout_toRightOf="@+id/inc"
+        android:text="Submit Auto Bid"
+        />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=" Time Left: 10:00:50"
+        android:textSize="15dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/red"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Back"/>
+
+
+
 
 
 </RelativeLayout>
