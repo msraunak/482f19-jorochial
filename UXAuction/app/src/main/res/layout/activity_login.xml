@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,18 +11,19 @@
         android:id="@+id/icon"
         android:background="@drawable/icon"
         android:contentDescription="TODO" />
+
     <TextView
         android:id="@+id/auction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/icon"
-        android:text="AUCTION"
-        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:gravity="center"
-        android:textSize="20dp"
+        android:text="AUCTION"
         android:textColor="@color/colorPrimary"
-        />
+        android:textSize="40dp"
+        app:fontFamily="cursive" />
     <EditText
         android:id="@+id/user"
         android:layout_width="100dp"
@@ -77,7 +79,7 @@
         android:layout_centerHorizontal="true"
         android:text="Forgot Password?  Click Here"
         android:textColor="@color/colorPrimaryDark"
-        android:background="clear"
+        android:background="@color/white"
         android:textAlignment="center"
         android:onClick="forgotPassword"/>
 
