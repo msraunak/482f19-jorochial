@@ -7831,4 +7831,15 @@ a.text-light-primary:hover, a.text-light-primary:focus {
   background-color: #D49282;
   border-color: #D49282; }
 
+  .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: midnightblue;
+   color: white;
+   text-align: center;
+   padding: 20px; 
+}
+
 /*# sourceMappingURL=AuctionProject.css.map */
