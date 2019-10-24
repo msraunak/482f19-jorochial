@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ScrollingActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorPrimary"
+        android:weightSum="1">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar_height">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/Currentbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/search"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:onClick="goToCurrent"
+                        android:text="Current Bids"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/Pastbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/Currentbutton"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:onClick="goToPast"
+                        android:text="Past Bids"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/Loginbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:text="Log Out"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/Loginbutton"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:text="Search Auction"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include
+        layout="@layout/activity_pastbids"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="left|bottom" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="invisible"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="center|end"
+        app:srcCompat="@android:drawable/ic_menu_view" />
+
+</android.support.design.widget.CoordinatorLayout>
