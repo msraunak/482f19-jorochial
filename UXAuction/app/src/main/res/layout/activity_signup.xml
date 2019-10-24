@@ -127,7 +127,8 @@
         android:layout_marginTop="30dp"
         android:text="Submit"
         android:layout_below="@+id/lnameText"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="submit"/>
 
 
 

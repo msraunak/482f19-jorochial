@@ -4,24 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-public class ItemActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bid);
+        setContentView(R.layout.activity_signup);
 
     }
-
-
-    protected void backToSearch(View view)
+    protected void submit(View view)
     {
         Intent myIntent = new Intent( this,
-                ScrollingActivity.class );
+                MainActivity.class );
         this.startActivity( myIntent );
 
     }
-
-
 }
+
