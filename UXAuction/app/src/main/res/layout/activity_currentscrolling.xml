@@ -6,7 +6,7 @@
     android:weightSum="1"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".PastActivity">
+    tools:context=".CurrentActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -44,31 +44,33 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/PCurrentbutton"
+                        android:id="@+id/CCurrentbutton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/Psearch"
+                        android:layout_toRightOf="@+id/Csearch"
                         android:layout_weight="0.25"
                         android:background="@color/white"
                         android:onClick="goToCurrent"
                         android:text="Current Bids"
                         android:textColor="@color/colorPrimary"
-                        android:visibility="visible" />
+                        android:visibility="visible"
+                        android:enabled="true"/>
 
                     <Button
-                        android:id="@+id/PPastbutton"
+                        android:id="@+id/CPastbutton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/PCurrentbutton"
+                        android:layout_toRightOf="@+id/CCurrentbutton"
                         android:layout_weight="0.25"
                         android:background="@color/white"
                         android:onClick="goToPast"
                         android:text="Past Bids"
+                        android:enabled="true"
                         android:textColor="@color/colorPrimary"
                         android:visibility="visible" />
 
                     <Button
-                        android:id="@+id/PLoginbutton"
+                        android:id="@+id/CLoginbutton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
@@ -78,14 +80,13 @@
                         android:visibility="visible" />
 
                     <Button
-                        android:id="@+id/Psearch"
+                        android:id="@+id/Csearch"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/PLoginbutton"
+                        android:layout_toRightOf="@+id/CLoginbutton"
                         android:layout_weight="0.25"
                         android:background="@color/white"
                         android:text="Search Auction"
-                        android:onClick="goToSearch"
                         android:textColor="@color/colorPrimary" />
                 </LinearLayout>
             </RelativeLayout>
@@ -94,9 +95,8 @@
     </android.support.design.widget.AppBarLayout>
 
     <include
-        layout="@layout/activity_pastbids"
-        app:layout_anchor="@+id/app_bar"
-        app:layout_anchorGravity="left|bottom" />
+        layout="@layout/activity_currentbids"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

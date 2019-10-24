@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScrollingActivity"
+    tools:context=".PastActivity"
     tools:showIn="@layout/activity_pastscrolling">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         android:text="Herve Franceschi"
         android:textSize="40dp"
         android:layout_marginTop="@dimen/app_bar_height"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/currentbids"
@@ -29,7 +29,7 @@
         android:layout_below="@+id/name"
         android:text="Past Bids:"
         android:textSize="30dp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/item1name"
@@ -55,9 +55,10 @@
         android:layout_toRightOf="@+id/item1"
         android:layout_below="@id/item1name"
         style="@style/TitlePrice"
+        android:background="@color/colorPrimary"
         android:layout_width="200dp"
-
-        android:text="My Bid:    25000"
+        android:textColor="@color/white"
+        android:text="My Bid:    2500"
 
         />
 
@@ -69,7 +70,8 @@
         android:layout_below="@id/title1"
         style="@style/TitlePrice"
         android:layout_width="200dp"
-
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         android:text="Current Bid:    5500"
         android:gravity="center"
         />
@@ -85,6 +87,7 @@
         android:gravity="center"
         android:layout_marginLeft="16dp"
         android:textSize="10dp"
+        android:onClick="itemClick"
         android:text="View Listing"
 
         />
@@ -116,6 +119,8 @@
         android:layout_below="@id/item2name"
         style="@style/TitlePrice"
         android:layout_width="200dp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
         android:text="My Bid:    2100"
 
 
@@ -127,6 +132,8 @@
         android:layout_below="@id/title2"
         style="@style/TitlePrice"
         android:layout_width="200dp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
         android:text="Current Bid:    5000"
 
 

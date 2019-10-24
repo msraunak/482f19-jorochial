@@ -69,4 +69,20 @@ public class ScrollingActivity extends AppCompatActivity {
                 PastActivity.class );
         this.startActivity( myIntent );
     }
+
+    protected void goToSearch(View view)
+    {
+
+        Intent myIntent = new Intent( this,
+                ScrollingActivity.class );
+        this.startActivity( myIntent );
+    }
+
+    protected void logout(View view)
+    {
+
+        Intent myIntent = new Intent( this,
+                MainActivity.class );
+        this.startActivity( myIntent );
+    }
 }

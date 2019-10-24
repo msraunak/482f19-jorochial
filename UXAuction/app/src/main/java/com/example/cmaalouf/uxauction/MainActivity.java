@@ -25,14 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     protected void forgotPassword(View view)
     {
-        //Intent myIntent = new Intent( this,
-       //         ScrollingActivity.class );
+        Intent myIntent = new Intent( this,
+                PasswordRecoveryActivity.class );
 
-        //Robby to replace Scrolling Activity.class above with the name of the Forgot Password screen and
-        // uncomment above code
 
-        // un comment below
-        //this.startActivity( myIntent );
+        this.startActivity( myIntent );
 
     }
 

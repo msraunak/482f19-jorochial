@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#B13223</color>
+    <color name="colorPrimaryDark">#21286E</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#548948</color>
+    <color name="grey">#F0F0F0</color>
+    <color name="red">#FF0000</color>
+    <color name="brightgreen">#32CD32</color>
+    <color name = "chiara">#303F9F</color>
 </resources>

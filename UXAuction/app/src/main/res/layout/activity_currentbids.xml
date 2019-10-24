@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CurrentActivity"
+    tools:showIn="@layout/activity_currentscrolling">
+
+<RelativeLayout
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
@@ -9,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Herve Franceschi"
+        android:layout_marginTop="@dimen/app_bar_height"
         android:textSize="40dp"
         android:textColor="@color/colorPrimary"/>
 
@@ -33,6 +42,7 @@
         android:layout_toRightOf="@+id/item1"
         android:layout_below="@id/currentbids"
         style="@style/TitlePrice"
+        android:background="@color/brightgreen"
         android:text="Bike $25"
 
         />
@@ -43,6 +53,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
+        android:onClick="itemClick"
         android:layout_marginLeft="16dp"
         android:textSize="10dp"
         android:text="View Listing"
@@ -61,6 +72,7 @@
         android:layout_toRightOf="@+id/item2"
         android:layout_below="@id/view1"
         style="@style/TitlePrice"
+        android:background="@color/brightgreen"
         android:layout_alignTop="@id/item2"
         android:text="Airpods $710"
 
@@ -81,3 +93,4 @@
 
 
 </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
