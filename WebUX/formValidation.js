@@ -18,7 +18,25 @@
     });
   }, false);
 })();
+var checkPasswords = function() {
+	pass1 = document.getElementById("newPassword");
+	pass2 = document.getElementById("newPassword2");
+	if(pass1.value != pass2.value){
+		pass1.setCustomValidity("Passwords must match");
+		pass2.setCustomValidity("Passwords must match");
+		}
+	else{
+    if(pass1 == ""){
+      pass1.setCustomValidity("Enter a Password");
+  		pass2.setCustomValidity("Enter a Password");
+    }
+    else{
+		pass1.setCustomValidity("");
+		pass2.setCustomValidity("");
+    }
+	}
 
+}
 function extractFilename(path) {
   if (path.substr(0, 12) == "C:\\fakepath\\")
     return path.substr(12); // modern browser
