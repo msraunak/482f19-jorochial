@@ -73,7 +73,7 @@
 
 
 
-
+<!--
     <div class="footer">
       <h3> Contact Us </h3>
       <p>Main Campus<br>
@@ -91,7 +91,7 @@
         Columbia, MD 21045<br>
         410-617-7600</p>
     </div>
-
+-->
 
   </body>
 </html>

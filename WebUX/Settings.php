@@ -7,6 +7,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script  type="text/javascript" src="formValidation.js"></script>
+    <style>
+        .content{
+          min-height: 75vh;
+        }
+
+        #myDIV1, #myDIV2, #myDIV3, #myDIV {
+          width: 100%;
+          padding: 50px 0;
+          text-align: center;
+          background-color: lightblue;
+          margin-top: 10px;
+          margin bottom: 10px;
+          display: none;
+          min-height: 50vh;
+        }
+    </style>
     <title>Settings</title>
   </head>
   <body>
@@ -43,10 +59,174 @@
 
 
 
-
+<!-- Main Body of Settings/functionality -->
     <div class="content">
 
+      <h1 class="text-center">Settings</h1>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction1()">Reset Password</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction2()">Add admin</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction3()">Update profile</button>
+
+        </div>
+
+        <div class="col">
+          <div class="divDefault">
+            <p>
+              Press button to begin....
+            </p>
+          </div>
+
+          <div id="myDIV1">
+
+            <h2>Reset Password</h2>
+            <br><br>
+
+            <form class="needs-validation" novalidate>
+              <!--TODO: Add functionality to this form -->
+              <div class="form-group text-dark">
+                <div class="form-row">
+                  <label for="username" class="col-md-4 text-md-right pr-4">Admin Username:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="username" value="yourUsername" readonly>
+                </div>
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="currentPassword">Current Password:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="currentPassword" required>
+                  <div class="invalid-feedback">
+                    Please enter your current password.
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword">New Password:</label>
+                  <input class="form-control" style="max-width:33%;" type="password" name="newPassword" required>
+                </div>
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword2">New Password again:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                  <div class="invalid-feedback">
+                    Your new password must match.
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <br>
+                  <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+              </form>
+                </div>
+            </div>
+          </div>
+
+
+
+          <div id="myDIV2">
+
+            <h3 class="text-center">Add Admin</h3>
+            <br><br>
+
+            <form class="needs-validation" novalidate>
+              <!--TODO: Add functionality to this form -->
+              <div class="form-group text-dark">
+                <div class="form-row mt-2">
+                  <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminUsername">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminUsernameEmail" class="col-md-4 text-md-right pr-4">New Admin Email:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminEmail">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminFirstName" class="col-md-4 text-md-right pr-4">First Name:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminFirstName">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminLastName" class="col-md-4 text-md-right pr-4">Last Name:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminLastName">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newAdminPassword">New Password</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newAdminPassword" required>
+                  <div class="invalid-feedback">
+                    Please enter a password
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword2">Confirm New Password:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                  <div class="invalid-feedback">
+                    Your new password must match.
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <br>
+                  <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+              </form>
+                </div>
+            </div>
+
+
+
+
+
+
+          </div>
+
+          <div id="myDIV3">
+            Enhanced features coming soon...
+          </div>
+
+
+        </div>
+
+      </div>
     </div>
+
+    <script>
+      function myFunction1() {
+        var x = document.getElementById("myDIV1");
+
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+
+      function myFunction2() {
+        var y = document.getElementById("myDIV2");
+
+        if (y.style.display === "block") {
+          y.style.display = "none";
+        } else {
+          y.style.display = "block";
+        }
+      }
+
+      function myFunction3() {
+        var z = document.getElementById("myDIV3");
+
+        if (z.style.display === "block") {
+          z.style.display = "none";
+        } else {
+          z.style.display = "block";
+        }
+      }
+    </script>
 
 
     <div class="footer">
@@ -66,6 +246,5 @@
         Columbia, MD 21045<br>
         410-617-7600</p>
     </div>
-
   </body>
 </html>
