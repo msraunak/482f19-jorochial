@@ -39,7 +39,7 @@
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" href="index.html">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="addItem.html">Add Item</a>
