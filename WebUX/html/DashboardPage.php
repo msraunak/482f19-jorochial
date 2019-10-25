@@ -34,7 +34,7 @@
             <a class="nav-link" href="addItem.html">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Setting.php">Settings</a>
+            <a class="nav-link" href="Settings.php">Settings</a>
           </li>
         </ul>
         <form class="form-inline">
