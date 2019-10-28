@@ -37,13 +37,23 @@
         style="@style/ItemPic"
         android:background="@drawable/bike"
         />
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentbids"
+        android:layout_toRightOf="@+id/item1"
+        android:text="Bike"
+        android:textSize="20dp"
+        android:layout_marginLeft="16dp"/>
     <Button
         android:id="@+id/title1"
         android:layout_toRightOf="@+id/item1"
-        android:layout_below="@id/currentbids"
+        android:layout_below="@id/name1"
         style="@style/TitlePrice"
         android:background="@color/brightgreen"
-        android:text="Bike $25"
+        android:text="My Bid: $25"
 
         />
     <Button
@@ -61,20 +71,33 @@
         />
 
     <ImageView
-        android:layout_below="@+id/item1"
+        android:layout_below="@+id/view1"
         android:layout_marginTop="200dp"
         android:id="@+id/item2"
         style="@style/ItemPic"
         android:background="@drawable/airpods"
         />
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_toRightOf="@+id/item2"
+        android:text="Airpods"
+        android:textSize="20dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"/>
     <Button
         android:id="@+id/title2"
         android:layout_toRightOf="@+id/item2"
-        android:layout_below="@id/view1"
+        android:layout_below="@id/name2"
+        android:layout_marginTop="10dp"
         style="@style/TitlePrice"
         android:background="@color/brightgreen"
-        android:layout_alignTop="@id/item2"
-        android:text="Airpods $710"
+
+        android:text="My Bid: $710"
 
         />
 
