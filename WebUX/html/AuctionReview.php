@@ -85,7 +85,7 @@
 <div class="card mb-3 col" >
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
+      <img src="https://i.etsystatic.com/14428349/r/il/94b17a/1668929559/il_fullxfull.1668929559_1w6g.jpg" class="card-img" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
