@@ -234,20 +234,21 @@
 
     <div class="footer">
       <h3> Contact Us </h3>
-      <p>Main Campus<br>
+      <div class="row"><div class="col">Main Campus<br>
         4501 N. Charles Street<br>
         Baltimore, MD 21210<br>
         410-617-2000 or 1-800-221-9107<br>
-        <br>
+      </div><div class="col">
         Timonium Graduate Center<br>
         2034 Greenspring Drive<br>
         Timonium, MD 21093<br>
         410-617-1903<br>
-        <br>
+      </div><div class="col">
         Columbia Graduate Center<br>
         8890 McGaw Road<br>
         Columbia, MD 21045<br>
-        410-617-7600</p>
+        410-617-7600
+      </div></div>
     </div>
   </body>
 </html>
