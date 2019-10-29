@@ -6,12 +6,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script  type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../js/formValidation.js"></script>
     <title>Dashboard</title>
     <style>
-        .content{
-          min-height:70vh;
-        }
+      .content {
+        min-height: 70vh;
+      }
     </style>
   </head>
   <body>
@@ -48,26 +48,28 @@
       </div>
     </nav>
 
-
-
-
     <div class="content">
-
-      <div class="container">
+      <div class="container-fluid">
         <h3 class="text-center">Your Dashboard: </h3>
 
-        <!-- Large input -->
-        <div class="md-form form-lg">
-          <input type="text" id="inputLGEx" class="form-control form-control-lg" placeholder="search for an existing item at auction">
-          <label for="inputLGEx"></label>
-        </div>
-      </div>
+        <nav class="nav nav-pills nav-justified mb-3">
+          <a class="nav-item nav-link active" href="#AllItems">All Items</a>
+          <a class="nav-item nav-link" href="#">Auctions</a>
+          <a class="nav-item nav-link" href="#">Donors</a>
+          <a class="nav-item nav-link" href="#">Charities</a>
+          <a class="nav-item nav-link" href="#">Results Summary</a>
+        </nav>
 
+        <!-- Large input -->
+        <form class="md-form form-lg">
+          <input type="text" id="inputLGEx" class="form-control form-control-lg" placeholder="Search for an existing item at auction">
+          <label for="inputLGEx"></label>
+        </form>
+      </div>
 
       <h5 class="text-center">See what is currently on bid:</h5>
 
-
-      <div class="card mb-3" >
+      <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
@@ -84,7 +86,7 @@
         </div>
       </div>
 
-      <div class="card mb-3" >
+      <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Murder_on_the_Orient_Express_First_Edition_Cover_1934.jpg" class="card-img" alt="...">
@@ -93,7 +95,7 @@
             <div class="card-body">
               <h5 class="card-title">Agatha Christie Novel</h5>
               <p class="card-text">Written by accalimed novelist Agatha Christie this is a copy of her famous Murder On The Orient Express with annotations
-              from her written in the margins and a signature at the beginning of the novel. </p>
+                from her written in the margins and a signature at the beginning of the novel. </p>
               <p class="card-text"><small class=>Current Bid: $14,000.00</small></p>
               <p class="card-text"><small class="text-muted">Donated by: The Agatha Foundation</small></p>
               <a href="#" class="btn stretched-link"></a>
@@ -111,7 +113,7 @@
             <div class="card-body">
               <h5 class="card-title">1988 Shelby Mustang</h5>
               <p class="card-text">If you love classic cars, then look no further than this fully refurbished and detailed 1968 Shelby Mustang.Sporting all the original features,
-              this is the true classic driving experience. </p>
+                this is the true classic driving experience. </p>
               <p class="card-text"><small class>Current Bid: $140,000.00</small></p>
               <p class="card-text"><small class="text-muted">Donated by: Auto Retailers of America</small></p>
               <a href="#" class="btn stretched-link"></a>
@@ -121,20 +123,17 @@
       </div>
     </div>
 
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
 
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
-
-
-
-      <!--
+    <!--
       $servername = "cs-database.cs.loyola.edu";
       $username = "jdbennett";
       $password = "1670682";
@@ -159,26 +158,29 @@
       $mysqli->close();
       -->
 
-
-
     <div class="footer">
       <h3> Contact Us </h3>
-      <div class="row"><div class="col">Main Campus<br>
-        4501 N. Charles Street<br>
-        Baltimore, MD 21210<br>
-        410-617-2000 or 1-800-221-9107<br>
-      </div><div class="col">
-        Timonium Graduate Center<br>
-        2034 Greenspring Drive<br>
-        Timonium, MD 21093<br>
-        410-617-1903<br>
-      </div><div class="col">
-        Columbia Graduate Center<br>
-        8890 McGaw Road<br>
-        Columbia, MD 21045<br>
-        410-617-7600
-      </div></div>
+      <div class="row">
+        <div class="col">Main Campus<br>
+          4501 N. Charles Street<br>
+          Baltimore, MD 21210<br>
+          410-617-2000 or 1-800-221-9107<br>
+        </div>
+        <div class="col">
+          Timonium Graduate Center<br>
+          2034 Greenspring Drive<br>
+          Timonium, MD 21093<br>
+          410-617-1903<br>
+        </div>
+        <div class="col">
+          Columbia Graduate Center<br>
+          8890 McGaw Road<br>
+          Columbia, MD 21045<br>
+          410-617-7600
+        </div>
+      </div>
     </div>
 
   </body>
+
 </html>
