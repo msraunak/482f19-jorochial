@@ -26,8 +26,8 @@ $body-color: theme-color("dark");
 
 
 $border-radius: 0.3rem;
-$border-radius-lg: 0.5rem;
-$border-radius-sm: 0.3rem;
+$border-radius-lg: 0.4rem;
+$border-radius-sm: 0.2rem;
 
 $component-active-bg: theme-color("secondary");
 //@import url('https://fonts.googleapis.com/css?family=Fahkwang|Roboto+Mono|Roboto+Slab&display=swap');
@@ -46,10 +46,10 @@ $table-color:                 theme-color("dark");
 //font in custom
 
 //anchor tags
-$link-color: theme-color("primary");
+$link-color: theme-color("secondary");
 $link-hover-color: theme-color("info");
 $nav-link-disabled-color: rgba(theme-color("dark"), .35);
-$nav-tabs-link-active-color: theme-color("info");
+$nav-tabs-link-active-color: theme-color("primary");
 
 // Make all navbars have light or dark class
 $navbar-dark-color: theme-color("secondary");
