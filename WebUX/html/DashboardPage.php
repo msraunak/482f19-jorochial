@@ -48,10 +48,7 @@
       </div>
     </nav>
 
-    <div class="content">
-      <div class="container-fluid">
-        <h3 class="text-center">Your Dashboard: </h3>
-
+    <div class="container-fluid">
         <nav class="nav nav-pills nav-justified mb-3">
           <a class="nav-item nav-link active" href="#AllItems">All Items</a>
           <a class="nav-item nav-link" href="#">Auctions</a>
@@ -65,64 +62,100 @@
           <input type="text" id="inputLGEx" class="form-control form-control-lg" placeholder="Search for an existing item at auction">
           <label for="inputLGEx"></label>
         </form>
-      </div>
 
-      <h5 class="text-center">See what is currently on bid:</h5>
-
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Chessboard</h5>
-              <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family....</p>
-              <p class="card-text"><small class>Current Bid: $1,000.00</small></p>
-              <p class="card-text"><small class="text-muted">Donated by: The Royal Family</small></p>
-              <a href="#" class="btn stretched-link"></a>
+      <div class="row justify-content-around">
+        <div class="col-sm-6 card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Chessboard</h5>
+                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family....</p>
+                <div class="row text-primary">
+                  <p class="card-text col-lg-4">Current Bid: $1,000.00</p>
+                  <p class="card-text col-lg-4">Minimum Increment: $100.00</p>
+                  <p class="card=text col-lg-4">Starting Bid: $500.00</p>
+                </div>
+                <p class="card-text"><small class="text-muted">Donated by: The Royal Family</small></p>
+                <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
+                <a href="#" class="btn stretched-link"></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Murder_on_the_Orient_Express_First_Edition_Cover_1934.jpg" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Agatha Christie Novel</h5>
-              <p class="card-text">Written by accalimed novelist Agatha Christie this is a copy of her famous Murder On The Orient Express with annotations
-                from her written in the margins and a signature at the beginning of the novel. </p>
-              <p class="card-text"><small class=>Current Bid: $14,000.00</small></p>
-              <p class="card-text"><small class="text-muted">Donated by: The Agatha Foundation</small></p>
-              <a href="#" class="btn stretched-link"></a>
+        <div class="col-sm-6 card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1237400132l/325451.jpg" class="card-img img-fluid" alt="ItemPicture">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Doctor Dolittle Novel</h5>
+                <p class="card-text">In Doctor Dolittle in the Moon Doctor Dolittle has landed on the Moon. He meets Otho Bludge the Moon Man, a Stone Age artist who was the only human on the Moon when it broke away from the Earth. Hugh John Lofting
+                  was a British author who created the character of Doctor Dolittle - one of the classics of children's literature.</p>
+                <div class="row text-primary">
+                  <p class="card-text col-lg-4">Current Bid: $10.00</p>
+                  <p class="card-text col-lg-4">Minimum Increment: $1.00</p>
+                  <p class="card=text col-lg-4">Starting Bid: $4.00</p>
+                </div>
+                <p class="card-text"><small class="text-muted">Donated by: The Dolittle Association</small></p>
+                <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
+                <a href="#" class="btn stretched-link"></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://i.imgur.com/DsOqW3G.jpg" class="card-img" alt="...">
+        <div class="col-sm-6 card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Murder_on_the_Orient_Express_First_Edition_Cover_1934.jpg" class="card-img img-fluid" alt="ItemPicture">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Agatha Christie Novel</h5>
+                <p class="card-text">Written by accalimed novelist Agatha Christie this is a copy of her famous Murder On The Orient Express with annotations
+                  from her written in the margins and a signature at the beginning of the novel. </p>
+                <div class="row text-primary">
+                  <p class="card-text col-lg-4">Current Bid: $14,000.00</p>
+                  <p class="card-text col-lg-4">Minimum Increment: $14,000.00</p>
+                  <p class="card=text col-lg-4">Starting Bid: $10,000.00</p>
+                </div>
+                <p class="card-text"><small class="text-muted">Donated by: The Agatha Foundation</small></p>
+                <p class="card-text"><small class="text-muted">Auction: The Children's Auction</small></p>
+                <a href="#" class="btn stretched-link"></a>
+              </div>
+            </div>
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">1988 Shelby Mustang</h5>
-              <p class="card-text">If you love classic cars, then look no further than this fully refurbished and detailed 1968 Shelby Mustang.Sporting all the original features,
-                this is the true classic driving experience. </p>
-              <p class="card-text"><small class>Current Bid: $140,000.00</small></p>
-              <p class="card-text"><small class="text-muted">Donated by: Auto Retailers of America</small></p>
-              <a href="#" class="btn stretched-link"></a>
+        </div>
+
+        <div class="col-sm-6 card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="https://i.imgur.com/DsOqW3G.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">1988 Shelby Mustang</h5>
+                <p class="card-text">If you love classic cars, then look no further than this fully refurbished and detailed 1968 Shelby Mustang.Sporting all the original features,
+                  this is the true classic driving experience. </p>
+                <div class="row text-primary">
+                  <p class="card-text col-lg-4">Current Bid: $140,000.00</p>
+                  <p class="card-text col-lg-4">Minimum Increment: $1,000.00</p>
+                  <p class="card=text col-lg-4">Starting Bid: $100,000.00</p>
+                </div>
+                <p class="card-text"><small class="text-muted">Donated by: Auto Retailers of America</small></p>
+                <p class="card-text"><small class="text-muted">Auction: Cars for Kids</small></p>
+                <a href="#" class="btn stretched-link"></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -158,7 +191,7 @@
       $mysqli->close();
       -->
 
-    <div class="footer">
+    <div class="footer container-fluid">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
