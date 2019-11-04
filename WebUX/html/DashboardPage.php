@@ -49,13 +49,13 @@
     </nav>
 
     <div class="container-fluid">
-        <nav class="nav nav-pills nav-justified mb-3">
-          <a class="nav-item nav-link active" href="#AllItems">All Items</a>
-          <a class="nav-item nav-link" href="#">Auctions</a>
-          <a class="nav-item nav-link" href="#">Donors</a>
-          <a class="nav-item nav-link" href="#">Charities</a>
-          <a class="nav-item nav-link" href="#">Results Summary</a>
-        </nav>
+      <nav class="nav nav-pills nav-justified mb-3">
+        <a class="nav-item nav-link active" href="DashboardPage.php">All Items</a>
+        <a class="nav-item nav-link" href="AuctionDashboard.html">Auctions</a>
+        <a class="nav-item nav-link" href="DonorsDashboard.html">Donors</a>
+        <a class="nav-item nav-link" href="CharitiesDashboard.html">Charities</a>
+        <a class="nav-item nav-link" href="#">Results Summary</a>
+      </nav>
 
         <!-- Large input -->
         <form class="md-form form-lg">
