@@ -79,6 +79,7 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
           <div class="row">
             <h5>Donor: <?php echo $item_donor;?></h5>
           </div>
+          <a class="btn btn-primary" href="editItem.html">Edit Item</a>
         </div>
       </div>
     </div>
