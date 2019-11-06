@@ -72,7 +72,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">Chessboard</h5>
-                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family....</p>
+                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family.</p>
                 <div class="row text-primary">
                   <p class="card-text col-lg-4">Current Bid: $1,000.00</p>
                   <p class="card-text col-lg-4">Minimum Increment: $100.00</p>
@@ -80,7 +80,7 @@
                 </div>
                 <p class="card-text"><small class="text-muted">Donated by: The Royal Family</small></p>
                 <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
-                <a href="#" class="btn stretched-link"></a>
+                <a href="viewItem.php" class="btn stretched-link"></a>
               </div>
             </div>
           </div>
@@ -191,7 +191,7 @@
       $mysqli->close();
       -->
 
-    <div class="footer container-fluid">
+    <div class="footer footer-dark container-fluid">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>

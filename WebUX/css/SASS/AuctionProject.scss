@@ -117,3 +117,12 @@ $jumbotron-bg: theme-color("dark");
   border-color: theme-color("light-primary");
 
 }
+.footer-dark{
+  position:fixed;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:1030;
+  background-color:theme-color("dark");
+  color: theme-color("light-primary") !important;
+}

@@ -1,3 +1,15 @@
+<?php
+$item_title = "Chessboard";
+$item_auction = "Rendevous Haiti";
+$item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
+$item_starting_bid= 1000.00;
+$item_starting_bid= 500.00;
+$item_minimum_inc = 100.02;
+$item_donor = "The Royal Family";
+#also Picture file ... url for now
+$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+ ?>
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,63 +21,68 @@
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="index.html">AuctionForHaiti</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="../index.html">AuctionForHaiti</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="index.html">Login</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="addItem.html">Add Item</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="createAuction.html">Create Auction</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
           </li>
+
         </ul>
         <form class="form-inline">
           <!--TODO: Add functionality to Search bar -->
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-h5="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
 
     <div class="container">
-      <h1 class="text-center">Login to Auction Manager</h1>
-
-      <form class="needs-validation" novalidate>
-        <!--TODO: Add functionality to this form -->
-        <div class="form-group text-dark">
-          <div class="form-row">
-            <label for="username" class="col-md-4 text-right pr-4">Admin Username:</label>
-            <input class="form-control col-md-8" type="text" name="username" placeholder="yourExampleUsername" required>
-          </div>
-          <div class="form-row mt-2">
-            <label class="col-md-4 text-right pr-4" for="password">Password:</label>
-            <div class="col-md-8 p-0">
-              <input class="form-control" type="password" name="password" required>
-              <small><a class="text-secondary" href="forgotPassword.html">Forgot Password?</a></small>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col">
+          <img <?php echo "src=\"".$item_picture."\""?> class="img-fluid" alt="...">
         </div>
 
-        <div class="form-group text-right">
-          <button class="btn btn-primary mt-3" type="submit" name="Login">Login</button>
-      </form>
-
+        <div class="col">
+          <h1><?php echo $item_title;?></h1>
+          <div class="row">
+            <h5>Auction:  <?php echo $item_auction;?> </h5>
+          </div>
+          <div class="row">
+            <p><?php echo $item_description;?></p>
+          </div>
+          <div class="row">
+            <h5 class="text-primary">Current Bid: <?php echo "$".$item_current_bid;?></h5>
+          </div>
+          <div class="row">
+            <h5>Starting Bid: <?php echo "$".$item_starting_bid;?></h5>
+          </div>
+          <div class="row">
+            <h5>Minimum Bid Increment: <?php echo "$".$item_minimum_inc;?></h5>
+          </div>
+          <div class="row">
+            <h5>Donor: <?php echo $item_donor;?></h5>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    <div class="footer footer-dark container-fluid">
+    <div class="footer footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
@@ -87,6 +104,7 @@
         </div>
       </div>
     </div>
+
   </body>
 
 </html>
