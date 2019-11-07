@@ -4,7 +4,7 @@ $auction_description = "This auction is in support of the XYZ group and features
 $auction_start_date = date("l jS \of F Y h:i:s A", 1530054626);;
 $auction_end_date= date("l jS \of F Y h:i:s A", 1530154626);
 $auction_charity = "The Children's Project";
-$item_arr = array(1){array("Chessboard","This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.","The Royal Family",1000, 500.00,100.02,)}
+$item_arr = array("Chessboard","This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.","The Royal Family",1000, 500.00,100.02,)
  ?>
 
 <html>
@@ -52,65 +52,57 @@ $item_arr = array(1){array("Chessboard","This chessboard was owned by King Georg
 
     <div class="container">
       <h1><?php echo $auction_title;?></h1>
-      <div class="row">
         <p><?php echo $auction_description;?></p>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h5 class="text-primary">Start Date and Time: <?php echo $auction_start_date;?></h5>
-        </div>
-        <div class="col">
-          <h5>End Date and Time: <?php echo $auction_end_date;?></h5>
-        </div>
-      </div>
-      <div class="row">
-        <h5>Beneficiary: <?php echo "$".$auction_charity;?></h5>
-      </div>
+        <p class="text-primary">Start Date and Time: <?php echo $auction_start_date;?></p>
+        <p class="text-primary">End Date and Time: <?php echo $auction_end_date;?></p>
+        <h6>Beneficiary: <?php echo $auction_charity;?></h6>
       <a class="btn btn-primary" href="editAuction.html">Edit Auction Details</a>
-      <div class="row">
-        <table class="table">
-          <thead>
-            <th>Item Title</th>
-            <th>Item Description</th>
-            <th>Item's Donor</th>
-            <th>Current Bid</th>
-            <th>Minimum Bid</th>
-            <th>Starting Bid</th>
-          </thead>
-          <?php echo "
+    </div>
+    <div class="container-fluid mt-3">
+      <table class="table table-responsive ">
+        <thead>
+          <th>Item Title</th>
+          <th scope="col" data-bind="tableSort: { arr: _data, propName: 'text()'}">Item Description</th>
+          <th>Item's Donor</th>
+          <th>Current Bid</th>
+          <th>Minimum Bid</th>
+          <th>Starting Bid</th>
+        </thead>
+        <?php echo "
           <tr>
-            <td></td>
-            <td>".$item_arr[0][0]."</td>
-            <td>".$item_arr[0][1]."</td>
-            <td>".$item_arr[0][2]."</td>
-            <td>".$item_arr[0][3]."</td>
-            <td>".$item_arr[0][4]."</td>
+            <td>".$item_arr[0]."</td>
+            <td>".$item_arr[1]."</td>
+            <td>".$item_arr[2]."</td>
+            <td>".$item_arr[3]."</td>
+            <td>".$item_arr[4]."</td>
+            <td>".$item_arr[5]."</td>
           </tr>"
           ?>
-        </table>
-      </div>
-      <div class="footer fixed-bottom footer-dark">
-        <h3> Contact Us </h3>
-        <div class="row">
-          <div class="col">Main Campus<br>
-            4501 N. Charles Street<br>
-            Baltimore, MD 21210<br>
-            410-617-2000 or 1-800-221-9107<br>
-          </div>
-          <div class="col">
-            Timonium Graduate Center<br>
-            2034 Greenspring Drive<br>
-            Timonium, MD 21093<br>
-            410-617-1903<br>
-          </div>
-          <div class="col">
-            Columbia Graduate Center<br>
-            8890 McGaw Road<br>
-            Columbia, MD 21045<br>
-            410-617-7600
-          </div>
+      </table>
+    </div>
+
+    <div class="footer fixed-bottom footer-dark">
+      <h3> Contact Us </h3>
+      <div class="row">
+        <div class="col">Main Campus<br>
+          4501 N. Charles Street<br>
+          Baltimore, MD 21210<br>
+          410-617-2000 or 1-800-221-9107<br>
+        </div>
+        <div class="col">
+          Timonium Graduate Center<br>
+          2034 Greenspring Drive<br>
+          Timonium, MD 21093<br>
+          410-617-1903<br>
+        </div>
+        <div class="col">
+          Columbia Graduate Center<br>
+          8890 McGaw Road<br>
+          Columbia, MD 21045<br>
+          410-617-7600
         </div>
       </div>
+    </div>
 
   </body>
 
