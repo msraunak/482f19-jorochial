@@ -85,7 +85,8 @@ $item_arr = array(1){array("Chessboard","This chessboard was owned by King Georg
             <td>".$item_arr[0][2]."</td>
             <td>".$item_arr[0][3]."</td>
             <td>".$item_arr[0][4]."</td>
-          </tr>
+          </tr>"
+          ?>
         </table>
       </div>
       <div class="footer fixed-bottom footer-dark">
