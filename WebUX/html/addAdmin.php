@@ -17,7 +17,7 @@ if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
   $user[2] = htmlspecialchars(trim($user[2]));
   $user[3] = htmlspecialchars(trim($user[3]));
   $user[4]= password_hash(htmlspecialchars(trim($users[4])), PASSWORD_BCRYPT);
-  $sql .= '(\"'.$user[0].'\",\"'. $user[1] .'\",\"'. $user[2] .'\",\"'. $user[3] .'\",\"'. $user[4] .'\")';
+  $sql .= '("'.$user[0].'","'. $user[1] .'","'. $user[2] .'","'. $user[3] .'","'. $user[4] .'")';
   $sql .= ";";
   echo $sql;
   if ($mysqli->query($sql) === TRUE) {
