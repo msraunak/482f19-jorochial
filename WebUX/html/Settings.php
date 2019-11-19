@@ -1,5 +1,24 @@
-<?php session_start()
-?>
+<?php session_start();
+
+if (!isset($_SESSION["adminAdd"]){
+  if($_SESSION["adminAdd"] == True){
+    $alert =  '<div class="alert alert-success alert-dismissible fade show" role="alert">
+       New Admin added.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  if($_SESSION["adminAdd"] == False){
+    $alert =  '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+       New Admin not added.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+}
+ ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -29,29 +48,7 @@
     <title>Settings</title>
   </head>
   <body>
-    <?php
-    if (!isset($_SESSION["adminAdd"]){
-      if($_SESSION["adminAdd"] == True){
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-           New Admin added.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
-      }
-      if($_SESSION["adminAdd"] == False){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-           New Admin not added.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
-      }
-    }
 
-
-
-     ?>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
       <a class="navbar-brand" href="index.html">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +82,7 @@
       </div>
     </nav>
 
-
+<?php echo $alert ?>
 
 <!-- Main Body of Settings/functionality -->
     <div class="content">
