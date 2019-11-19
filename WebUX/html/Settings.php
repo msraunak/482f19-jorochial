@@ -188,7 +188,123 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!-- Old javascript
+=======
+
+<!--
+            <form class="needs-validation" novalidate>
+              <!TODO: Add functionality to this form
+              <div class="form-group text-dark">
+                <div class="form-row">
+                  <label for="username" class="col-md-4 text-md-right pr-4">Admin Username:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="username" value="yourUsername" readonly>
+                </div>
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="currentPassword">Current Password:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="currentPassword" required>
+                  <div class="invalid-feedback">
+                    Please enter your current password.
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword">New Password:</label>
+                  <input class="form-control" style="max-width:33%;" type="password" name="newPassword" required>
+                </div>
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword2">New Password again:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                  <div class="invalid-feedback">
+                    Your new password must match.
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <br>
+                  <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+              </form>
+                </div>
+            </div>
+          </div>
+
+
+
+          <div id="myDIV2">
+
+            <h3 class="text-center">Add Admin</h3>
+            <br><br>
+-->
+            <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
+              <!--TODO: Add functionality to this form -->
+              <div class="form-group text-dark">
+                <div class="form-row mt-2">
+                  <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminUsername">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminUsernameEmail" class="col-md-4 text-md-right pr-4">New Admin Email:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminEmail">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminFirstName" class="col-md-4 text-md-right pr-4">First Name:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminFirstName">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label for="adminLastName" class="col-md-4 text-md-right pr-4">Last Name:</label>
+                  <input class="form-control" style="max-width:33%;" type="text" name="newAdminLastName">
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newAdminPassword">New Password</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newAdminPassword" required>
+                  <div class="invalid-feedback">
+                    Please enter a password
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-row mt-2">
+                  <label class="col-md-4 text-md-right pr-4" for="newPassword2">Confirm New Password:</label>
+                  <div class="col-md-8 p-0">
+                  <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                  <div class="invalid-feedback">
+                    Your new password must match.
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <br>
+                  <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+              </form>
+                </div>
+            </div>
+
+
+
+
+
+
+          </div>
+
+          <div id="myDIV3">
+            Enhanced features coming soon...
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+>>>>>>> 05298e512ec253d2a3c843635f7eeb2a4ade3d62
     <script>
       function myFunction1() {
         var x = document.getElementById("myDIV1");
