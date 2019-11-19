@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION["adminAdd"] = False;
 $mysqli = new mysqli( "cs-database.cs.loyola.edu", "arschilke", "1737341", "jorochial" );
 // Check connection
 if ($mysqli->connect_error) {
@@ -27,9 +29,11 @@ if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
     $htmlOutput .= "Insertion Failed: ". $mysqli->error;
   }
   #echo $htmlOutput;
+  $_SESSION["adminAdd"] = True;
 }
 else {
   echo "vaildation fail";
+  $_SESSION["adminAdd"] = False;
 }
 header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
 exit;
