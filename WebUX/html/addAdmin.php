@@ -4,7 +4,7 @@ $mysqli = new mysqli( "cs-database.cs.loyola.edu", "arschilke", "1737341", "joro
 if ($mysqli->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
+#echo "Connected successfully";
 $user = array($_POST["newAdminEmail"],$_POST["newAdminFirstName"],$_POST["newAdminLastName"],$_POST["newAdminUsername"],$_POST["newAdminPassword"]);
 #$user = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
@@ -19,14 +19,14 @@ if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
   $user[4]= password_hash(htmlspecialchars(trim($users[4])), PASSWORD_BCRYPT);
   $sql .= '("'.$user[0].'","'. $user[1] .'","'. $user[2] .'","'. $user[3] .'","'. $user[4] .'")';
   $sql .= ";";
-  echo $sql;
+  #echo $sql;
   if ($mysqli->query($sql) === TRUE) {
       $htmlOutput .= "<p>Users added successfully.</p>";
   }
   else{
     $htmlOutput .= "Insertion Failed: ". $mysqli->error;
   }
-  echo $htmlOutput;
+  #echo $htmlOutput;
 }
 else {
   echo "vaildation fail";
