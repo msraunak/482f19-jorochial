@@ -69,27 +69,129 @@
       <br>
 
       <div class="row">
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction1()">Reset Password</button>
-          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction2()">Add admin</button>
-          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction3()">Update profile</button>
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Reset Password</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Add Admin</a>
+        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Update other info</a>
+      </div>
+      <div class="tab-content col" id="v-pills-tabContent">
+        <!-- Reset password -->
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
+
+
+          <form class="needs-validation" novalidate>
+            <!--TODO: Add functionality to this form -->
+            <div class="form-group text-dark">
+              <div class="form-row">
+                <label for="username" class="col-md-4 text-md-right pr-4">Admin Username:</label>
+                <input class="form-control" style="max-width:33%;" type="text" name="username">
+              </div>
+              <div class="form-row mt-2">
+                <label class="col-md-4 text-md-right pr-4" for="currentPassword">Current Password:</label>
+                <div class="col-md-8 p-0">
+                <input class="form-control" style="max-width:50%;" type="password" name="currentPassword" required>
+                <div class="invalid-feedback">
+                  Please enter your current password.
+                </div>
+              </div>
+              </div>
+
+              <div class="form-row mt-2">
+                <label class="col-md-4 text-md-right pr-4" for="newPassword">New Password:</label>
+                <input class="form-control" style="max-width:33%;" type="password" name="newPassword" required>
+              </div>
+              <div class="form-row mt-2">
+                <label class="col-md-4 text-md-right pr-4" for="newPassword2">New Password again:</label>
+                <div class="col-md-8 p-0">
+                <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                <div class="invalid-feedback">
+                  Your new password must match.
+                </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <br>
+                <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+            </form>
+              </div>
+          </div>
         </div>
 
-        <div class="col">
-          <div class="divDefault">
-            <p>
-              Press button to begin....
-            </p>
+
+        <!-- Second add admin -->
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+          <h3 class="text-center">Add Admin</h3>
+          <br>
+
+          <form class="needs-validation" novalidate>
+            <!--TODO: Add functionality to this form -->
+            <div class="form-group text-dark">
+              <div class="form-row mt-2">
+                <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
+                <input class="form-control" style="max-width:33%;" type="text" name="newAdminUsername">
+              </div>
+
+              <div class="form-row mt-2">
+                <label for="adminUsernameEmail" class="col-md-4 text-md-right pr-4">New Admin Email:</label>
+                <input class="form-control" style="max-width:33%;" type="text" name="newAdminEmail">
+              </div>
+
+              <div class="form-row mt-2">
+                <label for="adminFirstName" class="col-md-4 text-md-right pr-4">First Name:</label>
+                <input class="form-control" style="max-width:33%;" type="text" name="newAdminFirstName">
+              </div>
+
+              <div class="form-row mt-2">
+                <label for="adminLastName" class="col-md-4 text-md-right pr-4">Last Name:</label>
+                <input class="form-control" style="max-width:33%;" type="text" name="newAdminLastName">
+              </div>
+
+              <div class="form-row mt-2">
+                <label class="col-md-4 text-md-right pr-4" for="newAdminPassword">New Password</label>
+                <div class="col-md-8 p-0">
+                <input class="form-control" style="max-width:50%;" type="password" name="newAdminPassword" required>
+                <div class="invalid-feedback">
+                  Please enter a password
+                </div>
+              </div>
+              </div>
+
+              <div class="form-row mt-2">
+                <label class="col-md-4 text-md-right pr-4" for="newPassword2">Confirm New Password:</label>
+                <div class="col-md-8 p-0">
+                <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                <div class="invalid-feedback">
+                  Your new password must match.
+                </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <br>
+                <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
+            </form>
+              </div>
           </div>
+        </div>
 
-          <div id="myDIV1">
 
-            <h2>Reset Password</h2>
-            <br><br>
+        <!-- Third update other info -->
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 
+          Enhanced features coming soon...
+
+
+        </div>
+      </div>
+       <!-- End of pill -->
+    </div>
+</div>
+
+
+<!--
             <form class="needs-validation" novalidate>
-              <!--TODO: Add functionality to this form -->
+              <!TODO: Add functionality to this form
               <div class="form-group text-dark">
                 <div class="form-row">
                   <label for="username" class="col-md-4 text-md-right pr-4">Admin Username:</label>
@@ -133,8 +235,13 @@
             <h3 class="text-center">Add Admin</h3>
             <br><br>
 
+<<<<<<< HEAD
             <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
               <!--TODO: Add functionality to this form -->
+=======
+            <form class="needs-validation" novalidate>
+              <-TODO: Add functionality to this form >
+>>>>>>> d88f5ec5424f953700e76597fd6db0c370fa15b4
               <div class="form-group text-dark">
                 <div class="form-row mt-2">
                   <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
@@ -231,6 +338,7 @@
       }
     </script>
 
+-->
 
     <div class="footer">
       <h3> Contact Us </h3>
