@@ -5,11 +5,11 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
-$user = array($_GET["newAdminEmail"],$_GET["newAdminFirstName"],$_GET["newAdminLastName"],$_GET["newAdminUsername"],$_GET["newAdminPassword"]);
+$user = array($_POST["newAdminEmail"],$_POST["newAdminFirstName"],$_POST["newAdminLastName"],$_POST["newAdminUsername"],$_POST["newAdminPassword"]);
 #$user = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
-if (user[4] == $_GET["newPassword2"]){
+if (user[4] == $_POST["newPassword2"]){
   $sql .= 'INSERT INTO admin(email, fname, lname, uname, pwd) VALUES';
 
   $user[0] = htmlspecialchars(trim($user[0]));
