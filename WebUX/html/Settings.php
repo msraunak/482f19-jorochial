@@ -125,7 +125,7 @@
           <h3 class="text-center">Add Admin</h3>
           <br>
 
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
             <!--TODO: Add functionality to this form -->
             <div class="form-group text-dark">
               <div class="form-row mt-2">
@@ -188,9 +188,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-<!-- Old javascript
-=======
 
 <!--
             <form class="needs-validation" novalidate>
@@ -238,8 +235,10 @@
             <h3 class="text-center">Add Admin</h3>
             <br><br>
 -->
+
+<!-- Added by Alyssa, put above
             <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
-              <!--TODO: Add functionality to this form -->
+              <TODO: Add functionality to this form
               <div class="form-group text-dark">
                 <div class="form-row mt-2">
                   <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
@@ -287,24 +286,9 @@
                 </div>
             </div>
 
+-->
 
-
-
-
-
-          </div>
-
-          <div id="myDIV3">
-            Enhanced features coming soon...
-          </div>
-
-
-        </div>
-
-      </div>
-    </div>
-
->>>>>>> 05298e512ec253d2a3c843635f7eeb2a4ade3d62
+<!-- Old javascript
     <script>
       function myFunction1() {
         var x = document.getElementById("myDIV1");

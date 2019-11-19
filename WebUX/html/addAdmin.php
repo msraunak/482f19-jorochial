@@ -29,6 +29,6 @@ else{
 echo $htmlOutput;
 }
 else {
-  echo "vaildation fail"
+  echo "vaildation fail";
 }
 ?>
