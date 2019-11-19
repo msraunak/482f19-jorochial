@@ -1,4 +1,9 @@
 <?php
+// Start the session
+session_start();
+?>
+
+<?php
 $auction_title = "The Children's Auction";
 $auction_description = "This auction is in support of the XYZ group and features items from Donors.";
 $auction_start_date = date("l jS \of F Y h:i:s A", 1530054626);;
