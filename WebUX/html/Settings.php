@@ -1,6 +1,7 @@
 <?php session_start();
 
-if (!isset($_SESSION["adminAdd"]){
+if (isset($_SESSION["adminAdd"])
+{
   if($_SESSION["adminAdd"] == True){
     $alert =  '<div class="alert alert-success alert-dismissible fade show" role="alert">
        New Admin added.
