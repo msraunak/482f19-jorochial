@@ -1,7 +1,6 @@
 <?php session_start();
 
-if (isset($_SESSION["adminAdd"])
-{
+if (isset($_SESSION["adminAdd"]){
   if($_SESSION["adminAdd"] == True){
     $alert =  '<div class="alert alert-success alert-dismissible fade show" role="alert">
        New Admin added.
@@ -10,7 +9,7 @@ if (isset($_SESSION["adminAdd"])
       </button>
     </div>';
   }
-  if($_SESSION["adminAdd"] == False){
+  else{#($_SESSION["adminAdd"] == False){
     $alert =  '<div class="alert alert-warning alert-dismissible fade show" role="alert">
        New Admin not added.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
