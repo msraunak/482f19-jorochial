@@ -7,10 +7,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/formValidation.js"></script>
   </head>
-  <body class="bg-dark text-light-primary">
-    <!--differences -->
+  <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.html">AuctionForHaiti</a>
+      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,17 +20,18 @@
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="index.html">Login</a>
+            <a class="nav-link" href="index.php">Login</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="addItem.php">Add Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="addItem.html">Add Item</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="createAuction.html">Create Auction</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
           </li>
+
         </ul>
         <form class="form-inline">
           <!--TODO: Add functionality to Search bar -->
@@ -42,7 +42,7 @@
     </nav>
 
     <div class="container">
-      <h1 class="text-light">Add Item to Auction</h1>
+      <h1>Edit Item from Auction</h1>
 
       <form class="needs-validation" novalidate>
         <!--TODO: Add functionality to this form -->
@@ -91,10 +91,30 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary mt-3 mt-md-0" type="submit" name="submit">Submit</button>
+          <button class="btn btn-info mt-3 mt-md-0" type="submit" name="update">Update</button>
+          <button class="btn btn-danger mt-3 mt-md-0" type="button" name="delete" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+
         </div>
       </form>
     </div>
+    <div class="modal fade" id="DeleteModal" aria-labelledby="deleteModalLabel" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="DeleteModalTitle">Are you sure you want to delete this item?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger">Delete</button> <!-- TODO: Add functionality to this button-->
+            <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="footer">
       <h3> Contact Us </h3>
       <div class="row">
@@ -117,6 +137,7 @@
         </div>
       </div>
     </div>
+
   </body>
 
 </html>

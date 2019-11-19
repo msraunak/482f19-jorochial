@@ -17,7 +17,7 @@
   <body>
 
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="index.html">AuctionForHaiti</a>
+      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,13 +28,13 @@
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Login</a>
+            <a class="nav-link" href="../index.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addItem.html">Add Item</a>
+            <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.html">Create Auction</a>
+            <a class="nav-link" href="createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -51,9 +51,9 @@
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="DashboardPage.php">All Items</a>
-        <a class="nav-item nav-link" href="AuctionDashboard.html">Auctions</a>
-        <a class="nav-item nav-link" href="DonorsDashboard.html">Donors</a>
-        <a class="nav-item nav-link active" href="CharitiesDashboard.html">Charities</a>
+        <a class="nav-item nav-link" href="AuctionDashboard.php">Auctions</a>
+        <a class="nav-item nav-link" href="DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link active" href="CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 

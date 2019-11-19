@@ -16,7 +16,7 @@ $auction_charity = "The Children's Project";
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.html">AuctionForHaiti</a>
+      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,13 +27,13 @@ $auction_charity = "The Children's Project";
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="index.html">Login</a>
+            <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="addItem.html">Add Item</a>
+            <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.html">Create Auction</a>
+            <a class="nav-link" href="createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -54,7 +54,7 @@ $auction_charity = "The Children's Project";
         <p class="text-primary">Start Date and Time: <?= $auction_start_date;?></p>
         <p class="text-primary">End Date and Time: <?php echo $auction_end_date;?></p>
         <h6>Beneficiary: <?php echo $auction_charity;?></h6>
-      <a class="btn btn-primary" href="editAuction.html">Edit Auction Details</a>
+      <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
     </div>
     <div class="container-fluid mt-3">
       <table class="table table-responsive ">

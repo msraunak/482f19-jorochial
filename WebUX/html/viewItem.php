@@ -21,7 +21,7 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.html">AuctionForHaiti</a>
+      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,13 +32,13 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="index.html">Login</a>
+            <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="addItem.html">Add Item</a>
+            <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.html">Create Auction</a>
+            <a class="nav-link" href="createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -79,7 +79,7 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
           <div class="row">
             <h5>Donor: <?php echo $item_donor;?></h5>
           </div>
-          <a class="btn btn-primary" href="editItem.html">Edit Item</a>
+          <a class="btn btn-primary" href="editItem.php">Edit Item</a>
         </div>
       </div>
     </div>
