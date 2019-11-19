@@ -9,24 +9,24 @@ $user = array($_GET["newAdminEmail"],$_GET["newAdminFirstName"],$_GET["newAdminL
 #$user = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
-if (user[4] == $_GET["newPassword2"] && $user[3]!= ""){
-$sql .= 'INSERT INTO admin(email, fname, lname, uname, pwd) VALUES';
+if (user[4] == $_GET["newPassword2"]){
+  $sql .= 'INSERT INTO admin(email, fname, lname, uname, pwd) VALUES';
 
-$user[0] = htmlspecialchars(trim($user[0]));
-$user[1] = htmlspecialchars(trim($user[1]));
-$user[2] = htmlspecialchars(trim($user[2]));
-$user[3] = htmlspecialchars(trim($user[3]));
-$user[4]= password_hash(htmlspecialchars(trim($users[4])), PASSWORD_BCRYPT);
-$sql .= '(\"'.$user[0].'\",\"'. $user[1] .'\",\"'. $user[2] .'\",\"'. $user[3] .'\",\"'. $user[4] .'\")';
-$sql .= ";";
-echo $sql;
-if ($mysqli->query($sql) === TRUE) {
-    $htmlOutput .= "<p>Users added successfully.</p>";
-}
-else{
-  $htmlOutput .= "Insertion Failed: ". $mysqli->error;
-}
-echo $htmlOutput;
+  $user[0] = htmlspecialchars(trim($user[0]));
+  $user[1] = htmlspecialchars(trim($user[1]));
+  $user[2] = htmlspecialchars(trim($user[2]));
+  $user[3] = htmlspecialchars(trim($user[3]));
+  $user[4]= password_hash(htmlspecialchars(trim($users[4])), PASSWORD_BCRYPT);
+  $sql .= '(\"'.$user[0].'\",\"'. $user[1] .'\",\"'. $user[2] .'\",\"'. $user[3] .'\",\"'. $user[4] .'\")';
+  $sql .= ";";
+  echo $sql;
+  if ($mysqli->query($sql) === TRUE) {
+      $htmlOutput .= "<p>Users added successfully.</p>";
+  }
+  else{
+    $htmlOutput .= "Insertion Failed: ". $mysqli->error;
+  }
+  echo $htmlOutput;
 }
 else {
   echo "vaildation fail";
