@@ -31,4 +31,6 @@ if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
 else {
   echo "vaildation fail";
 }
+header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
+exit;
 ?>
