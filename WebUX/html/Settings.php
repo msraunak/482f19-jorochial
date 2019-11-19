@@ -234,14 +234,9 @@
 
             <h3 class="text-center">Add Admin</h3>
             <br><br>
-
-<<<<<<< HEAD
+-->
             <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
               <!--TODO: Add functionality to this form -->
-=======
-            <form class="needs-validation" novalidate>
-              <-TODO: Add functionality to this form >
->>>>>>> d88f5ec5424f953700e76597fd6db0c370fa15b4
               <div class="form-group text-dark">
                 <div class="form-row mt-2">
                   <label for="adminUsername" class="col-md-4 text-md-right pr-4">New Admin Username:</label>
