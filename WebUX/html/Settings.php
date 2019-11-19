@@ -133,7 +133,7 @@
             <h3 class="text-center">Add Admin</h3>
             <br><br>
 
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
               <!--TODO: Add functionality to this form -->
               <div class="form-group text-dark">
                 <div class="form-row mt-2">
