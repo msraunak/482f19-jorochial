@@ -82,11 +82,11 @@ if (isset($_SESSION["adminAdd"])){
       </div>
     </nav>
 
-<?php echo $alert ?>
+
 
 <!-- Main Body of Settings/functionality -->
     <div class="content">
-
+      <?php echo $alert ?>
       <h1 class="text-center">Settings</h1>
       <br>
 
