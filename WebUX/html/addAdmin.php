@@ -12,6 +12,7 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($mysqli->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 #echo "Connected successfully";
 $user = array($_POST["newAdminEmail"],$_POST["newAdminFirstName"],$_POST["newAdminLastName"],$_POST["newAdminUsername"],$_POST["newAdminPassword"]);
 #$user = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");

@@ -8,19 +8,18 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 
 
-$name = 'Game Sale'
+$name = "Game Sale";
 
-$result = $mysqli->query( 'select * from auctionTB where auctionName ="'.$name.'"' );
+$result = $mysqli->query('SELECT * FROM auctionTb WHERE auctionName = "'.$name.'";');
 
-while( $row = $result->fetch_assoc( ) )
-{
-  $auction_title = $row['auctionName'];
-  $auction_description = $row['description'];
-  $auction_start_date = $row['startTime'];# date("l jS \of F Y h:i:s A", 1530054626);#TODO: read in date?
-  # strftime($row['startTime']);
-  $auction_end_date= $row['endTime']; #date("l jS \of F Y h:i:s A", 1530154626);
-  $auction_charity = $row['beneficiary'];
-}
+$row = $result->fetch_assoc( );
+
+$auction_title = $row['auctionName'];
+$auction_description = $row['description'];
+$auction_start_date = date("F j, Y, g:i a", strtotime($row["startTime"]));
+$auction_end_date=  date("F j, Y, g:i a", strtotime($row['endTime']));
+$auction_charity = $row['beneficiary'];
+
 
 /*
 $auction_title = "The Children's Auction";
