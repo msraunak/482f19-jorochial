@@ -21,7 +21,7 @@ $auction_charity = "The Children's Project";
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
+      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

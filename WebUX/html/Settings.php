@@ -1,9 +1,9 @@
 <?php session_start();
 
 if (isset($_SESSION["adminAdd"])){
-  if($_SESSION["adminAdd"] == True){
+  if($_SESSION["adminAdd"] == TRUE){
     $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-       New Admin added.
+       New Admin added.'.$_SESSION["adminMessage"].'
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -147,7 +147,7 @@ if (isset($_SESSION["adminAdd"])){
           <h3 class="text-center">Add Admin</h3>
           <br>
 
-          <form class="needs-validation" action="addAdmin.php" method="GET" novalidate>
+          <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
             <!--TODO: Add functionality to this form -->
             <div class="form-group text-dark">
               <div class="form-row mt-2">
