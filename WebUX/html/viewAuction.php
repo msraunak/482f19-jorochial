@@ -1,14 +1,34 @@
 <?php
 // Start the session
 session_start();
-?>
 
-<?php
+require_once 'config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+
+
+
+$name = 'Game Sale'
+
+$result = $mysqli->query( 'select * from auctionTB where auctionName ="'.$name.'"' );
+
+while( $row = $result->fetch_assoc( ) )
+{
+  $auction_title = $row['auctionName'];
+  $auction_description = $row['description'];
+  $auction_start_date = $row['startTime'];# date("l jS \of F Y h:i:s A", 1530054626);#TODO: read in date?
+  # strftime($row['startTime']);
+  $auction_end_date= $row['endTime']; #date("l jS \of F Y h:i:s A", 1530154626);
+  $auction_charity = $row['beneficiary'];
+}
+
+/*
 $auction_title = "The Children's Auction";
 $auction_description = "This auction is in support of the XYZ group and features items from Donors.";
 $auction_start_date = date("l jS \of F Y h:i:s A", 1530054626);;
 $auction_end_date= date("l jS \of F Y h:i:s A", 1530154626);
 $auction_charity = "The Children's Project";
+*/
 ?>
 <html>
   <head>
