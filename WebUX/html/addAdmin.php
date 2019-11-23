@@ -1,9 +1,13 @@
 <?php
 session_start();
+
+require_once 'config.php';
+
 $_SESSION["adminAdd"] = False;
 $htmlOutput = "";
 
-$mysqli = new mysqli( "cs-database.cs.loyola.edu", "arschilke", "1737341", "jorochial" );
+
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Check connection
 if ($mysqli->connect_error) {
     die("Connection failed: " . $conn->connect_error);
