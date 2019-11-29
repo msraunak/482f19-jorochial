@@ -23,7 +23,7 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.php">Login</a>
