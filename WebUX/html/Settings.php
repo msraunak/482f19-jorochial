@@ -64,10 +64,10 @@ if (isset($_SESSION["adminAdd"])){
             <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
+            <a class="nav-link" href="Item/addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -147,7 +147,7 @@ if (isset($_SESSION["adminAdd"])){
           <h3 class="text-center">Add Admin</h3>
           <br>
 
-          <form class="needs-validation" action="addAdmin.php" method="POST" novalidate>
+          <form class="needs-validation" action="Admin/AddAdmin.php" method="POST" novalidate>
             <!--TODO: Add functionality to this form -->
             <div class="form-group text-dark">
               <div class="form-row mt-2">

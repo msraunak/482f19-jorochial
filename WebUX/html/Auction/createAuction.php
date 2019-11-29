@@ -1,6 +1,24 @@
 <?php
 // Start the session
 session_start();
+
+require_once 'config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+
+
+$charites = array();
+
+$sql = "Select orgName from auctionCharites";
+$result = $mysqli->query( $sql );
+$threadId = 0;
+while( $row = $result->fetch_assoc( ) )
+{
+  $charites =  $row['orgName'];
+}
+
+
+
 ?>
 
 <html>
@@ -31,10 +49,10 @@ session_start();
               <a class="nav-link" href="index.php">Login</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="addItem.php">Add Item</a>
+              <a class="nav-link" href="../Item/addItem.php">Add Item</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="createAuction.php">Create Auction</a>
+              <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Settings.php">Settings</a>
@@ -51,7 +69,7 @@ session_start();
       <div class="container">
         <h1>Create Auction</h1>
 
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" action="addAuctionForm.php" method="post" novalidate>
           <!--TODO: Add functionality to this form -->
           <div class="form-group">
             <label for="AuctionTitle">Auction Title</label>

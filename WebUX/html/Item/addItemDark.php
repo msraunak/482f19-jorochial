@@ -11,9 +11,9 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/formValidation.js"></script>
-    <title>Add Item</title>
   </head>
-  <body>
+  <body class="bg-dark text-light-primary">
+    <!--differences -->
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
       <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,14 +25,14 @@ session_start();
           <li class="nav-item ">
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -47,13 +47,13 @@ session_start();
     </nav>
 
     <div class="container">
-      <h1>Add Item to Auction</h1>
+      <h1 class="text-light">Add Item to Auction</h1>
 
       <form class="needs-validation" novalidate>
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
-          <label for="ItemAuction">Auction:</label>
-          <select class="form-control" id="ItemAuction">
+          <label for="ItemDonor">Auction:</label>
+          <select class="form-control" id="ItemDonor">
             <option>Auction1</option>
             <option>Auction2</option>
             <option>Auction3</option>
@@ -100,7 +100,6 @@ session_start();
         </div>
       </form>
     </div>
-
     <div class="footer">
       <h3> Contact Us </h3>
       <div class="row">

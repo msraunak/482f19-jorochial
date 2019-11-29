@@ -24,10 +24,10 @@
             <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
+            <a class="nav-link" href="Item/addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>

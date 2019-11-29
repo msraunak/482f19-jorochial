@@ -39,7 +39,7 @@ session_start();
             <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -56,9 +56,9 @@ session_start();
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link active" href="DashboardPage.php">All Items</a>
-        <a class="nav-item nav-link" href="AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link" href="CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
+        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 

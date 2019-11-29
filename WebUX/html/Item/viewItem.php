@@ -1,3 +1,20 @@
+<?php
+// Start the session
+session_start();
+?>
+
+<?php
+$item_title = "Chessboard";
+$item_auction = "Rendevous Haiti";
+$item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
+$item_current_bid= 1000.00;
+$item_starting_bid= 500.00;
+$item_minimum_inc = 100.02;
+$item_donor = "The Royal Family";
+#also Picture file ... url for now
+$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+ ?>
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +43,7 @@
             <a class="nav-link" href="addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -42,36 +59,35 @@
     </nav>
 
     <div class="container">
-      <h1><?= $auction_title ?></h1>
-        <p><?= $auction_description;?></p>
-        <p class="text-primary">Start Date and Time: <?= $auction_start_date?></p>
-        <p class="text-primary">End Date and Time: <?= $auction_end_date?></p>
-        <h6>Beneficiary: <?=$auction_charity?></h6>
-      <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
-    </div>
-    <div class="container-fluid mt-3">
-      <table class="table table-responsive ">
-        <thead>
-          <th>Item Title</th>
-          <th scope="col" data-bind="tableSort: { arr: _data, propName: 'text()'}">Item Description</th>
-          <th>Item's Donor</th>
-          <th>Current Bid</th>
-          <th>Minimum Bid</th>
-          <th>Starting Bid</th>
-        </thead>
-        <?= "
-          <tr>
-            <td>".$item_arr[0]."</td>
-            <td>".$item_arr[1]."</td>
-            <td>".$item_arr[2]."</td>
-            <td>".$item_arr[3]."</td>
-            <td>".$item_arr[4]."</td>
-            <td>".$item_arr[5]."</td>
-          </tr>"
-          ?>
-      </table>
-    </div>
+      <div class="row">
+        <div class="col">
+          <img <?php echo "src=\"".$item_picture."\""?> class="img-fluid" alt="...">
+        </div>
 
+        <div class="col">
+          <h1><?php echo $item_title;?></h1>
+          <div class="row">
+            <h5>Auction:  <?php echo $item_auction;?> </h5>
+          </div>
+          <div class="row">
+            <p><?php echo $item_description;?></p>
+          </div>
+          <div class="row">
+            <h5 class="text-primary">Current Bid: <?php echo "$".$item_current_bid;?></h5>
+          </div>
+          <div class="row">
+            <h5>Starting Bid: <?php echo "$".$item_starting_bid;?></h5>
+          </div>
+          <div class="row">
+            <h5>Minimum Bid Increment: <?php echo "$".$item_minimum_inc;?></h5>
+          </div>
+          <div class="row">
+            <h5>Donor: <?php echo $item_donor;?></h5>
+          </div>
+          <a class="btn btn-primary" href="editItem.php">Edit Item</a>
+        </div>
+      </div>
+    </div>
     <div class="footer fixed-bottom footer-dark">
       <h3> Contact Us </h3>
       <div class="row">

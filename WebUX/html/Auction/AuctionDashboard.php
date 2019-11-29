@@ -36,10 +36,10 @@ session_start();
             <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
+            <a class="nav-link" href="../Item/addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -56,9 +56,9 @@ session_start();
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="DashboardPage.php">All Items</a>
-        <a class="nav-item nav-link" href="AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link active" href="DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link" href="CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link active" href="AuctionDashboard.php">Auctions</a>
+        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
@@ -68,55 +68,57 @@ session_start();
         <label for="inputLGEx"></label>
       </form>
       <div class="content">
-        <table class="container table table-responsive">
-          <tr>
-            <th>Name</th>
-            <th>Auction</th>
-            <th>Rep Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-          </tr>
-          <tr>
-            <td>
-              <h5>The Agatha Foundation</h5>
-            </td>
-            <td>The Children's Auction</td>
-            <td>Jane Doe</td>
-            <td>213-123-2312</td>
-            <td>jane@childrenProject.org</td>
-            <td>123 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>Auto Retailers of America</h5></td>
-            <td>Cars for Kids</td>
-            <td>John Doe</td>
-            <td>555-555-5555</td>
-            <td>john@karsForkids.org</td>
-            <td>1234 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>The Royal Family</h5></td>
-            <td>Rendevous Haiti's Auction</td>
-            <td>Jim Doe</td>
-            <td>555-545-5555</td>
-            <td>jim@haiti.org</td>
-            <td>14 Main Street<br> Baltimore, MD </td>
-          </tr>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">The Children's Auction</h5>
+          <p class="card-text">This Auction is about xyz...</p>
+          <p class="card-text"><strong>Beneficary:</strong> The Children's Project</p>
+          <div class="row text-primary">
+            <p class="card-text col-lg-6">Start Date and Time: 11/23/2019 6:00:00 PM</p>
+            <p class="card-text col-lg-6">End Date and Time: 11/23/2019 11:00:00 PM</p>
+          </div>
+            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
+          </div>
+        </div>
 
-        </table>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Cars for Kids</h5>
+          <p class="card-text">This Auction is about xyz...</p>
+          <p class="card-text"><strong><strong>Beneficary:</strong></strong> Kars for Kids</p>
+          <div class="row text-primary">
+            <p class="card-text col-lg-6">Start Date and Time: 12/12/2019 6:00:00 PM</p>
+            <p class="card-text col-lg-6">End Date and Time: 12/12/2019 11:00:00 PM</p>
+          </div>
+            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
+        </div>
       </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Rendevous Haiti's Auction</h5>
+          <p class="card-text">This Auction is about xyz...</p>
+          <p class="card-text"><strong>Beneficary:</strong> Rendevous Haiti</p>
+          <div class="row text-primary">
+            <p class="card-text col-lg-6">Start Date and Time: 11/09/2019 6:00:00 PM</p>
+            <p class="card-text col-lg-6">End Date and Time: 11/09/2019 11:00:00 PM</p>
+            </div>
+            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
 
-      <!--
+        </div>
+      </div>
+    </div>
+  </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+
+    <!--
       $servername = "cs-database.cs.loyola.edu";
       $username = "jdbennett";
       $password = "1670682";
@@ -141,28 +143,28 @@ session_start();
       $mysqli->close();
       -->
 
-      <div class="footer container-fluid">
-        <h3> Contact Us </h3>
-        <div class="row">
-          <div class="col">Main Campus<br>
-            4501 N. Charles Street<br>
-            Baltimore, MD 21210<br>
-            410-617-2000 or 1-800-221-9107<br>
-          </div>
-          <div class="col">
-            Timonium Graduate Center<br>
-            2034 Greenspring Drive<br>
-            Timonium, MD 21093<br>
-            410-617-1903<br>
-          </div>
-          <div class="col">
-            Columbia Graduate Center<br>
-            8890 McGaw Road<br>
-            Columbia, MD 21045<br>
-            410-617-7600
-          </div>
+    <div class="footer container-fluid">
+      <h3> Contact Us </h3>
+      <div class="row">
+        <div class="col">Main Campus<br>
+          4501 N. Charles Street<br>
+          Baltimore, MD 21210<br>
+          410-617-2000 or 1-800-221-9107<br>
+        </div>
+        <div class="col">
+          Timonium Graduate Center<br>
+          2034 Greenspring Drive<br>
+          Timonium, MD 21093<br>
+          410-617-1903<br>
+        </div>
+        <div class="col">
+          Columbia Graduate Center<br>
+          8890 McGaw Road<br>
+          Columbia, MD 21045<br>
+          410-617-7600
         </div>
       </div>
+    </div>
 
   </body>
 

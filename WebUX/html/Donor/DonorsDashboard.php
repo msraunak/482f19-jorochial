@@ -36,10 +36,10 @@ session_start();
             <a class="nav-link" href="index.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
+            <a class="nav-link" href="Item/addItem.php">Add Item</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
+            <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Settings.php">Settings</a>
@@ -56,9 +56,9 @@ session_start();
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="DashboardPage.php">All Items</a>
-        <a class="nav-item nav-link" href="AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link active" href="CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
+        <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
@@ -79,7 +79,7 @@ session_start();
           </tr>
           <tr>
             <td>
-              <h5>The Children's Project</h5>
+              <h5>The Agatha Foundation</h5>
             </td>
             <td>The Children's Auction</td>
             <td>Jane Doe</td>
@@ -88,7 +88,7 @@ session_start();
             <td>123 Main Street<br> Baltimore, MD </td>
           </tr>
           <tr>
-            <td><h5>Kars for Kids</h5></td>
+            <td><h5>Auto Retailers of America</h5></td>
             <td>Cars for Kids</td>
             <td>John Doe</td>
             <td>555-555-5555</td>
@@ -96,7 +96,7 @@ session_start();
             <td>1234 Main Street<br> Baltimore, MD </td>
           </tr>
           <tr>
-            <td><h5>Rendevous Haiti</h5></td>
+            <td><h5>The Royal Family</h5></td>
             <td>Rendevous Haiti's Auction</td>
             <td>Jim Doe</td>
             <td>555-545-5555</td>
