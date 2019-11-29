@@ -2,6 +2,25 @@
 <?php
 // Start the session
 session_start();
+
+if (isset($_SESSION["insertAdd"])){
+  if($_SESSION["insertAdd"] == TRUE){
+    $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+       New Admin added.'.$_SESSION["itemMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  else{#($_SESSION["insertAdd"] == False){
+    $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       New Admin not added.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+}
 ?>
 
 <html lang="en" dir="ltr">
