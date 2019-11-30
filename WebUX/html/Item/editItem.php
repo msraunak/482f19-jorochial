@@ -1,6 +1,29 @@
 <?php
 // Start the session
 session_start();
+
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+
+$sql = "SELECT * FROM auctionItemTb WHERE id = ". $_GET["id"];
+
+$result = $mysqli->query($sql);
+$row = $result->fetch_assoc( );
+
+$item_title = $row["itemName"];
+$item_auction = $row["auctionNameRef"];
+$item_description = $row["description"];
+$item_current_bid= $row["currentBid"];
+$item_starting_bid= $row["startingBid"];
+$item_minimum_inc = $row["minimumBidInc"];
+$item_donor = $row["donor"];
+#TODO: use pic from DB also Picture file ... url for now
+$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+
 ?>
 
 <html>
@@ -54,37 +77,52 @@ session_start();
         <div class="form-group">
           <label for="ItemDonor">Auction:</label>
           <select class="form-control" id="ItemDonor">
-            <option>Auction1</option>
-            <option>Auction2</option>
-            <option>Auction3</option>
+            <?php
+            $sql = $mysqli->query("SELECT * FROM auctionTb");
+            while ($row2 = $sql->fetch_assoc()){
+              if($row2['auctionName'] == $row['auctionNameRef']){
+                echo '<option selected value="'.$row2['auctionName'].'">' . $row2['auctionName'] . '</option>';
+              }
+              else{
+              echo '<option value="'.$row2['auctionName'].'">' . $row2['auctionName'] . '</option>';
+                }
+            }
+            ?>
           </select>
         </div>
         <div class="form-group">
           <label for="ItemTitle">Item Title</label>
-          <input type="text" class="form-control" id="ItemTitle" placeholder="My Item" required>
+          <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" value="<?php $item_title ?>" required>
         </div>
         <div class="form-group">
           <label for="ItemDescription">Description:</label>
-          <textarea class="form-control" id="ItemDescription" rows="3" required></textarea>
+          <textarea class="form-control" name="ItemDescription" value="<?php $item_description ?>" id="ItemDescription" rows="3" required></textarea>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ItemStartingBid">Starting Bid:</label>
-            <input type="number" class="form-control" id="ItemStartingBid" placeholder="0.00" step="0.01" min="0" required>
+            <input type="number" class="form-control" id="ItemStartingBid" name="ItemStartingBid" value="<?php $item_starting_bid ?>" step="0.01" min="0"  required>
           </div>
           <div class="form-group col-md-6">
             <label for="ItemMinIncrement">Minimum Bid Increment:</label>
-            <input type="number" class="form-control" id="ItemMinIncrement" placeholder="0.00" step="0.01" min="0" required>
+            <input type="number" class="form-control" id="ItemMinIncrement" name="ItemMinIncrement" value="<?php $item_minimum_inc ?>" step="0.01" min="0" required>
           </div>
         </div>
         <div class="form-group">
           <label for="ItemDonor">Donor:</label>
           <!-- NOTE: Use dropdown from list of registerd Donors? or just text field?-->
           <select class="form-control" id="ItemDonor" required>
-            <option>Anonymous</option>
-            <option>Donor1</option>
-            <option>Donor2</option>
-            <option>Donor3</option>
+            <option value="null">Anonymous</option>
+            <?php
+            $sql = $mysqli->query("SELECT donorName FROM auctionDonorTb");
+            while ($row3 = $sql->fetch_assoc()){
+              if($row3['donorName'] == $item_donor)
+                echo  '<option selected value="'.$row3['donorName'].'">' . $row3['donorName'] . '</option>';
+              else{
+                echo '<option value="'.$row3['donorName'].'">' . $row3['donorName'] . '</option>';
+              }
+            }
+            ?>
           </select>
         </div>
         <div class="form-group">
