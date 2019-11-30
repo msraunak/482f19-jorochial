@@ -24,7 +24,7 @@
 
 
       if($row["auctionNameRef"] != htmlspecialchars(trim($item[0]))){
-        $sql .= 'UPDATE auctionItemTb SET auctionNameRef ='.htmlspecialchars(trim($item[0])).'WHERE id ='.$item[7];
+        $sql = 'UPDATE auctionItemTb SET auctionNameRef ="'.htmlspecialchars(trim($item[0])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Auction updated successfully";
         }
@@ -34,7 +34,7 @@
         }
       }
       if($row["itemName"] != htmlspecialchars(trim($item[1]))){
-        $sql .= 'UPDATE auctionItemTb SET itemName ='.htmlspecialchars(trim($item[1])).'WHERE id ='.$item[7];
+        $sql = 'UPDATE auctionItemTb SET itemName ="'.htmlspecialchars(trim($item[1])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Title updated successfully";
         }
@@ -44,7 +44,7 @@
         }
       }
       if($row["description"] != htmlspecialchars(trim($item[2]))){
-        $sql .= 'UPDATE auctionItemTb SET description ='.htmlspecialchars(trim($item[2])).'WHERE id ='$item[7];
+        $sql = 'UPDATE auctionItemTb SET description ="'.htmlspecialchars(trim($item[2])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Description updated successfully";
         }
@@ -54,7 +54,7 @@
         }
       }
       if($row["startingBid"] != htmlspecialchars(trim($item[3]))){
-        $sql .= 'UPDATE auctionItemTb SET description ='.htmlspecialchars(trim($item[3])).'WHERE id ='$item[7];
+        $sql = 'UPDATE auctionItemTb SET startingBid ="'.htmlspecialchars(trim($item[3])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Starting Bid updated successfully";
         }
@@ -64,7 +64,7 @@
         }
       }
       if($row["minimumBidInc"] != htmlspecialchars(trim($item[4]))){
-        $sql .= 'UPDATE auctionItemTb SET description ='.htmlspecialchars(trim($item[3])).'WHERE id ='$item[7];
+        $sql = 'UPDATE auctionItemTb SET minimumBidInc ="'.htmlspecialchars(trim($item[3])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Minimum Bid Increment updated successfully";
         }
@@ -74,7 +74,7 @@
         }
       }
       if($row["donor"] != htmlspecialchars(trim($item[5]))){
-        $sql .= 'UPDATE auctionItemTb SET description ='.htmlspecialchars(trim($item[3])).'WHERE id ='$item[7];
+        $sql = 'UPDATE auctionItemTb SET donor ="'.htmlspecialchars(trim($item[3])).'"WHERE id ='.$item[7];
         if ($mysqli->query($sql) === TRUE) {
             $htmlOutput .= "Minimum Bid Increment updated successfully";
         }
@@ -86,7 +86,7 @@
 
       #TODO: add itemPic update here
 
-  
+
     $_SESSION["itemMessage"] = $htmlOutput;
     header("Location: http://jorochial.cs.loyola.edu/html/Item/viewItem.php?id=".$item[7]);
     exit;
