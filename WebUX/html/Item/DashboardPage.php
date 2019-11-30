@@ -3,23 +3,22 @@
 // Start the session
 session_start();
 
-if (isset($_SESSION["insertAdd"])){
-  if($_SESSION["insertAdd"] == TRUE){
-    $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+if (isset($_SESSION["insertAdd"])) {
+    if ($_SESSION["insertAdd"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
        New Admin added.'.$_SESSION["itemMessage"].'
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-  }
-  else{#($_SESSION["insertAdd"] == False){
-    $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    } else {#($_SESSION["insertAdd"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        New Admin not added.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-  }
+    }
 }
 ?>
 
@@ -71,7 +70,7 @@ if (isset($_SESSION["insertAdd"])){
         </form>
       </div>
     </nav>
-
+    <?php echo $alert ?>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link active" href="DashboardPage.php">All Items</a>
@@ -104,7 +103,7 @@ if (isset($_SESSION["insertAdd"])){
                 </div>
                 <p class="card-text"><small class="text-muted">Donated by: The Royal Family</small></p>
                 <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
-                <a href="viewItem.php" class="btn stretched-link"></a>
+                <a href="viewItem.php?id=1" class="btn stretched-link"></a>
               </div>
             </div>
           </div>
@@ -127,7 +126,7 @@ if (isset($_SESSION["insertAdd"])){
                 </div>
                 <p class="card-text"><small class="text-muted">Donated by: The Dolittle Association</small></p>
                 <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
-                <a href="#" class="btn stretched-link"></a>
+                <a href="viewItem.php?id=2" class="btn stretched-link"></a>
               </div>
             </div>
           </div>

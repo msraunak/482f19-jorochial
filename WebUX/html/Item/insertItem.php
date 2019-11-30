@@ -16,21 +16,21 @@ if ($mysqli->connect_error) {
 
 #echo "Connected successfully";
 #INSERT INTO `auctionItemTb`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `donor`, `itemPic`)
-$user = array($_POST["ItemAuction"],$_POST["ItemTitle"],$_POST["ItemDescription"],$_POST["ItemStartingBid"],$_POST["ItemMinIncrement"],$_POST["ItemDonor"],$_POST["ItemPicture"]);
-#$user = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
+$item = array($_POST["ItemAuction"],$_POST["ItemTitle"],$_POST["ItemDescription"],$_POST["ItemStartingBid"],$_POST["ItemMinIncrement"],$_POST["ItemDonor"],$_POST["ItemPicture"]);
+#$item = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
-if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
-  $sql .= 'INSERT INTO auctionItemTb (auctionNameRef, itemName, description, startingBid, minimumBidInc, donor)'; #TODO: add itemPic
+if (true){
+  $sql .= 'INSERT INTO auctionItemTb (auctionNameRef, itemName, description, startingBid, minimumBidInc, donor) VALUES'; #TODO: add itemPic
 
-  $user[0] = htmlspecialchars(trim($user[0]));
-  $user[1] = htmlspecialchars(trim($user[1]));
-  $user[2] = htmlspecialchars(trim($user[2]));
-  $user[3] = htmlspecialchars(trim($user[3]));
-  $user[4] = htmlspecialchars(trim($user[4]));
-  $user[5] = htmlspecialchars(trim($user[5]));
-#  $user[6] = htmlspecialchars(trim($user[6]));
-  $sql .= '("'.$user[0].'","'. $user[1] .'","'. $user[2] .'","'. $user[3] .'","'. $user[4] .'","'. $user[5]. '")';
+  $item[0] = htmlspecialchars($item[0]);
+  $item[1] = htmlspecialchars(trim($item[1]));
+  $item[2] = htmlspecialchars(trim($item[2]));
+  $item[3] = htmlspecialchars(trim($item[3]));
+  $item[4] = htmlspecialchars(trim($item[4]));
+  $item[5] = htmlspecialchars($item[5]);
+#  $item[6] = htmlspecialchars(trim($item[6]));
+  $sql .= '("'.$item[0].'","'. $item[1] .'","'. $item[2] .'",'. $item[3] .','. $item[4] .',"'. $item[5]. '")';
   $sql .= ";";
   #echo $sql;
   if ($mysqli->query($sql) === TRUE) {
@@ -47,8 +47,8 @@ else {
   #echo "vaildation fail";
   $_SESSION["insertAdd"] = False;
 }
-$htmlOutput = " Username: ".$user[3];
+$htmlOutput = " Item: ".$item[1];
 $_SESSION["itemMessage"] = $htmlOutput;
-header("Location: http://jorochial.cs.loyola.edu/html/DashboardPage.php");
+header("Location: http://jorochial.cs.loyola.edu/html/Item/DashboardPage.php");
 exit;
 ?>

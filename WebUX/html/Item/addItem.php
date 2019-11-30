@@ -66,7 +66,7 @@ if ($mysqli->connect_error) {
           <?php
           $sql = $mysqli->query("SELECT * FROM auctionTb");
           while ($row = $sql->fetch_assoc()){
-          echo "<option value=".$row['auctionName'].">" . $row['auctionName'] . "</option>";
+          echo '<option value="'.$row['auctionName'].'">' . $row['auctionName'] . '</option>';
           }
           ?>
           </select>
@@ -97,7 +97,7 @@ if ($mysqli->connect_error) {
             <?php
             $sql = $mysqli->query("SELECT donorName FROM auctionDonorTb");
             while ($row = $sql->fetch_assoc()){
-            echo "<option value=".$row['donorName'].">" . $row['donorName'] . "</option>";
+            echo '<option value="'.$row['donorName'].'">' . $row['donorName'] . '</option>';
             }
             ?>
           </select>

@@ -1,18 +1,40 @@
 <?php
 // Start the session
 session_start();
-?>
+if(isset($_GET["id"])){
+  require_once '../config.php';
+  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  // Check connection
+  if ($mysqli->connect_error) {
+      die("Connection failed: " . $mysqli->connect_error);
+  }
 
-<?php
-$item_title = "Chessboard";
-$item_auction = "Rendevous Haiti";
-$item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
-$item_current_bid= 1000.00;
-$item_starting_bid= 500.00;
-$item_minimum_inc = 100.02;
-$item_donor = "The Royal Family";
-#also Picture file ... url for now
-$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+  $sql = "SELECT * FROM auctionItemTb WHERE id = ". $_GET["id"];
+
+  $result = $mysqli->query($sql);
+  $row = $result->fetch_assoc( );
+
+  $item_title = $row["itemName"];
+  $item_auction = $row["auctionNameRef"];
+  $item_description = $row["description"];
+  $item_current_bid= $row["currentBid"];
+  $item_starting_bid= $row["startingBid"];
+  $item_minimum_inc = $row["minimumBidInc"];
+  $item_donor = $row["donor"];
+  #TODO: use pic from DB also Picture file ... url for now
+  $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+}
+else{
+  $item_title = "Chessboard";
+  $item_auction = "Rendevous Haiti";
+  $item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
+  $item_current_bid= 1000.00;
+  $item_starting_bid= 500.00;
+  $item_minimum_inc = 100.02;
+  $item_donor = "The Royal Family";
+  #also Picture file ... url for now
+  $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+}
  ?>
 
 <html>
