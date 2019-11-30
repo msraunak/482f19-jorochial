@@ -113,7 +113,10 @@ session_start();
             <p>This action cannot be undone.</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-danger">Delete</button> <!-- TODO: Add functionality to this button-->
+            <form method="POST" action="deleteItem.php" novalidate>
+            <input type="hidden" class="invisible" name= "itemId" value="<?php $_GET["id"]?>">
+            <input type="submit" class="btn btn-danger">Delete</button>
+          </form>
             <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>
           </div>
         </div>
