@@ -1,14 +1,14 @@
 <?php
 // Start the session
 session_start();
-
+require_once '../config.php';
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Check connection
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-
+if(isset($_GET["id"])){
 $sql = "SELECT * FROM auctionItemTb WHERE id = ". $_GET["id"];
 
 $result = $mysqli->query($sql);
@@ -23,7 +23,18 @@ $item_minimum_inc = $row["minimumBidInc"];
 $item_donor = $row["donor"];
 #TODO: use pic from DB also Picture file ... url for now
 $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
-
+}
+else{
+  $item_title = "Chessboard TEST";
+  $item_auction = "Rendevous Haiti";
+  $item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
+  $item_current_bid= 1000.00;
+  $item_starting_bid= 500.00;
+  $item_minimum_inc = 100.02;
+  $item_donor = "The Royal Family";
+  #also Picture file ... url for now
+  $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+}
 ?>
 
 <html>
@@ -72,11 +83,12 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
     <div class="container">
       <h1>Edit Item from Auction</h1>
 
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" method="POST" action="updateItem.php" novalidate>
+        <input type="hidden" class="invisible" name="ItemId" value="<?php echo $_GET['id'];?>">
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
-          <label for="ItemDonor">Auction:</label>
-          <select class="form-control" id="ItemDonor">
+          <label for="ItemAuction">Auction:</label>
+          <select class="form-control" id="ItemAuction" name="ItemAuction">
             <?php
             $sql = $mysqli->query("SELECT * FROM auctionTb");
             while ($row2 = $sql->fetch_assoc()){
@@ -92,26 +104,26 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
         </div>
         <div class="form-group">
           <label for="ItemTitle">Item Title</label>
-          <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" value="<?php $item_title ?>" required>
+          <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" value="<?php echo $item_title ?>" required>
         </div>
         <div class="form-group">
           <label for="ItemDescription">Description:</label>
-          <textarea class="form-control" name="ItemDescription" value="<?php $item_description ?>" id="ItemDescription" rows="3" required></textarea>
+          <textarea class="form-control" name="ItemDescription" id="ItemDescription" name="ItemDescription" rows="3" required><?php echo $item_description ?></textarea>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ItemStartingBid">Starting Bid:</label>
-            <input type="number" class="form-control" id="ItemStartingBid" name="ItemStartingBid" value="<?php $item_starting_bid ?>" step="0.01" min="0"  required>
+            <input type="number" class="form-control" id="ItemStartingBid" name="ItemStartingBid" value="<?php echo $item_starting_bid ?>" step="0.01" min="0"  required>
           </div>
           <div class="form-group col-md-6">
             <label for="ItemMinIncrement">Minimum Bid Increment:</label>
-            <input type="number" class="form-control" id="ItemMinIncrement" name="ItemMinIncrement" value="<?php $item_minimum_inc ?>" step="0.01" min="0" required>
+            <input type="number" class="form-control" id="ItemMinIncrement" name="ItemMinIncrement" value="<?php echo $item_minimum_inc ?>" step="0.01" min="0" required>
           </div>
         </div>
         <div class="form-group">
           <label for="ItemDonor">Donor:</label>
           <!-- NOTE: Use dropdown from list of registerd Donors? or just text field?-->
-          <select class="form-control" id="ItemDonor" required>
+          <select class="form-control" id="ItemDonor" name="ItemDonor" required>
             <option value="null">Anonymous</option>
             <?php
             $sql = $mysqli->query("SELECT donorName FROM auctionDonorTb");
@@ -129,7 +141,7 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
           <label for="file-input">Picture:</label>
           <!--TODO: add Javascript to change the label txt to the name of the file. see https://getbootstrap.com/docs/4.0/components/forms/#file-browser -->
           <div class="custom-file" id="file-input" required>
-            <input type="file" class="custom-file-input" id="ItemPicture" onchange="changeLabel( this )" required>
+            <input type="file" class="custom-file-input" id="ItemPicture" name="ItemPicture" onchange="changeLabel( this )" required>
             <label class="custom-file-label" for="ItemPicture">Choose file</label>
           </div>
         </div>
@@ -152,7 +164,7 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
           </div>
           <div class="modal-footer">
             <form method="POST" action="deleteItem.php" novalidate>
-            <input type="hidden" class="invisible" name= "itemId" value="<?php $_GET["id"]?>">
+            <input type="hidden" class="invisible" name= "itemId" value="<?php echo $_GET["id"]?>">
             <input type="submit" class="btn btn-danger">Delete</button>
           </form>
             <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>

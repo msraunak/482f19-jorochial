@@ -1,19 +1,21 @@
 <?php
 // Start the session
 session_start();
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
 if(isset($_GET["id"])){
-  require_once '../config.php';
-  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  // Check connection
-  if ($mysqli->connect_error) {
-      die("Connection failed: " . $mysqli->connect_error);
-  }
+
 
   $sql = "SELECT * FROM auctionItemTb WHERE id = ". $_GET["id"];
 
   $result = $mysqli->query($sql);
   $row = $result->fetch_assoc( );
-
+  $item_edit_link= "editItem.php?id=".$row["id"];
   $item_title = $row["itemName"];
   $item_auction = $row["auctionNameRef"];
   $item_description = $row["description"];
@@ -106,7 +108,7 @@ else{
           <div class="row">
             <h5>Donor: <?php echo $item_donor;?></h5>
           </div>
-          <a class="btn btn-primary" href="editItem.php">Edit Item</a>
+          <a class="btn btn-primary" href="<?php echo $item_edit_link?>" > Edit Item</a>
         </div>
       </div>
     </div>
