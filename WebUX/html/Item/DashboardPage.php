@@ -2,6 +2,12 @@
 <?php
 // Start the session
 session_start();
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
 
 if (isset($_SESSION["itemNotice"])) {
     if ($_SESSION["itemNotice"] == true) {
@@ -20,6 +26,54 @@ if (isset($_SESSION["itemNotice"])) {
     </div>';
     }
 }
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
+  #TODO: Change hard coded picture to link
+  return '<div class="col-sm-6 card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">'.$title.'</h5>
+          <p class="card-text">'.$description.'</p>
+          <div class="row text-primary">
+            <p class="card-text col-lg-4">Current Bid: '.$current_bid.'</p>
+            <p class="card-text col-lg-4">Minimum Increment:'.$min_inc.'</p>
+            <p class="card=text col-lg-4">Starting Bid:'.$start_bid.'</p>
+          </div>
+          <p class="card-text"><small class="text-muted">Donated by: '.$donor.'</small></p>
+          <p class="card-text"><small class="text-muted">Auction: '.$auction.'</small></p>
+          <a href="viewItem.php?id='.$id.'" class="btn stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  </div>';
+}
+
+function itemGrid($pageNum, $mysqli){
+  $htmlResult = "";
+  $startRow = ($pageNum-1)*4;
+  $sql = "SELECT * from auctionItemTb order by id LIMIT $startRow , 4";
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row["currentBid"],$row["minimumBidInc"],$row["currentBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
+  }
+  return $htmlResult;
+}
+
 ?>
 
 <html lang="en" dir="ltr">
@@ -87,6 +141,8 @@ if (isset($_SESSION["itemNotice"])) {
         </form>
 
       <div class="row justify-content-around">
+        <?php echo itemGrid($pageNumber, $mysqli);?>
+      <!-- OLD: Hard coded item entries
         <div class="col-sm-6 card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4">
@@ -95,7 +151,7 @@ if (isset($_SESSION["itemNotice"])) {
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">Chessboard</h5>
-                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family.</p>
+                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family.</p>
                 <div class="row text-primary">
                   <p class="card-text col-lg-4">Current Bid: $1,000.00</p>
                   <p class="card-text col-lg-4">Minimum Increment: $100.00</p>
@@ -177,15 +233,17 @@ if (isset($_SESSION["itemNotice"])) {
             </div>
           </div>
         </div>
+      -->
       </div>
     </div>
+    <!--TODO: make this dynamicly active-->
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
       </ul>
     </nav>
 
