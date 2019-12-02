@@ -5,7 +5,7 @@ session_start();
 
 require_once '../config.php';
 
-$_SESSION["insertAdd"] = False;
+$_SESSION["itemNotice"] = False;
 $htmlOutput = "";
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -41,13 +41,13 @@ if (true){
 
   }
   #echo $htmlOutput;
-  $_SESSION["insertAdd"] = True;
+  $_SESSION["itemNotice"] = True;
 }
 else {
   #echo "vaildation fail";
-  $_SESSION["insertAdd"] = False;
+  $_SESSION["itemNotice"] = False;
 }
-$htmlOutput = " Item: ".$item[1];
+$htmlOutput .= " Item: ".$item[1];
 $_SESSION["itemMessage"] = $htmlOutput;
 header("Location: http://jorochial.cs.loyola.edu/html/Item/DashboardPage.php");
 exit;

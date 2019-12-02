@@ -163,9 +163,9 @@ else{
             <p>This action cannot be undone.</p>
           </div>
           <div class="modal-footer">
-            <form method="POST" action="deleteItem.php" novalidate>
+            <form class = "m-0" method="POST" action="deleteItem.php" novalidate>
             <input type="hidden" class="invisible" name= "itemId" value="<?php echo $_GET["id"]?>">
-            <input type="submit" class="btn btn-danger">Delete</button>
+            <input type="submit" value="Delete" class="btn btn-danger">
           </form>
             <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>
           </div>
