@@ -37,12 +37,8 @@ else {
   }
 }
 
-<<<<<<< HEAD
 function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
-=======
-function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid, $donor, $auction) {
->>>>>>> 7fe414023e7e3fd830270a69b33a8759f99cb17d
   return '<div class="col-sm-6 card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -73,11 +69,7 @@ function itemGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-<<<<<<< HEAD
      $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row["currentBid"],$row["minimumBidInc"],$row["currentBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
-=======
-     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row["currentBid"],$row["minimumBidInc"],$row["currentBid"],$row["donor"],$row["auctionNameRef"]);
->>>>>>> 7fe414023e7e3fd830270a69b33a8759f99cb17d
   }
   return $htmlResult;
 }
