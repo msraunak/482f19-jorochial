@@ -4,6 +4,7 @@ require_once '../config.php';
 
 $htmlOutput = "";
 $_SESSION["itemNotice"] == false;
+$_SESSION["itemMessage"] = "";
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Check connection
