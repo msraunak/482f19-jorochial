@@ -64,7 +64,7 @@ if ($mysqli->connect_error) {
           <label for="ItemAuction">Auction:</label>
           <select class="form-control" id="ItemAuction" name="ItemAuction">
           <?php
-          $sql = $mysqli->query("SELECT * FROM auctionTb");
+          $sql = $mysqli->query("SELECT * FROM Auction");
           while ($row = $sql->fetch_assoc()){
           echo '<option value="'.$row['auctionName'].'">' . $row['auctionName'] . '</option>';
           }
@@ -95,7 +95,7 @@ if ($mysqli->connect_error) {
           <select class="form-control" id="ItemDonor" name="ItemDonor" required>
             <option value="null">Anonymous</option>
             <?php
-            $sql = $mysqli->query("SELECT donorName FROM auctionDonorTb");
+            $sql = $mysqli->query("SELECT orgName FROM Donor");
             while ($row = $sql->fetch_assoc()){
             echo '<option value="'.$row['donorName'].'">' . $row['donorName'] . '</option>';
             }

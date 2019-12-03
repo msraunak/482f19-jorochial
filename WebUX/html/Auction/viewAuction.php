@@ -10,7 +10,7 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 $name = "Game Sale";
 
-$result = $mysqli->query('SELECT * FROM auctionTb WHERE auctionName = "'.$name.'";');
+$result = $mysqli->query('SELECT * FROM Auction WHERE auctionName = "'.$name.'";');
 
 $row = $result->fetch_assoc( );
 

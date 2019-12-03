@@ -65,7 +65,7 @@ function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid,
 function itemGrid($pageNum, $mysqli){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
-  $sql = "SELECT * from auctionItemTb order by id LIMIT $startRow , 4";
+  $sql = "SELECT * from Item order by id LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
@@ -246,31 +246,6 @@ function itemGrid($pageNum, $mysqli){
         <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
       </ul>
     </nav>
-
-    <!--
-      $servername = "cs-database.cs.loyola.edu";
-      $username = "jdbennett";
-      $password = "1670682";
-      $dbName = "jorochial";
-      $mysqli = new mysqli($servername, $username, $password, $dbName);
-
-      #Connects
-      if($mysqli->connect_error) {
-          die("Database connection failed: " . $mysqli->connect_error);
-      }
-
-      $sql1 = "select * from testItems";
-      $result = $mysqli->query($sql1);
-      echo "<p>";
-
-      while($row = $result->fetch_assoc()){
-        echo "id: " . $row["id"]. " - name: " . $row["name"]. " - description: " . $row["description"]. " - date: " . $row["date"]. "<br><br>";
-      }
-
-      echo "</p>";
-
-      $mysqli->close();
-      -->
 
     <div class="footer footer-dark container-fluid">
       <h3> Contact Us </h3>

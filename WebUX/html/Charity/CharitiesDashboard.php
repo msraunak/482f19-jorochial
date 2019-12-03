@@ -2,6 +2,66 @@
 <?php
 // Start the session
 session_start();
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
+
+if (isset($_SESSION["charityNotice"])) {
+    if ($_SESSION["charityNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["charityMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["charityMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+function charityRow($charityName, $repName, $phoneNum, $email, $address) {
+  return '<tr>
+      <td>
+        <h5>'.$charityName.'</h5>
+      </td>
+      <td>'.$repName.'</td>
+      <td>'.$phoneNum.'</td>
+      <td>'.$email.'</td>
+      <td>'.$address.'</td>
+    </tr>';
+}
+
+function charityTable($pageNum, $tableSize ,$mysqli){
+  $htmlResult = "";
+  $startRow = ($pageNum-1)*$tableSize;
+  $sql = "SELECT * from Charity order by charityId LIMIT $startRow , $tableSize";
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= charityRow($row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
+  }
+  return $htmlResult;
+}
+
+
 ?>
 
 <html lang="en" dir="ltr">
@@ -11,7 +71,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../../js/formValidation.js"></script>
     <title>Dashboard</title>
     <style>
       .content {
@@ -22,7 +82,7 @@ session_start();
   <body>
 
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
+      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,7 +102,7 @@ session_start();
             <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Settings.php">Settings</a>
+            <a class="nav-link" href="Settings.php">Settings</a>
           </li>
         </ul>
         <form class="form-inline">
@@ -57,8 +117,8 @@ session_start();
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="../Item/DashboardPage.php">All Items</a>
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link active" href="CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
@@ -71,15 +131,15 @@ session_start();
         <table class="container table table-responsive">
           <tr>
             <th>Name</th>
-            <th>Auction</th>
             <th>Rep Name</th>
             <th>Phone Number</th>
             <th>Email</th>
             <th>Address</th>
           </tr>
-          <tr>
+          <?php echo charityTable($pageNumber, 10, $mysqli);?>
+        <!-- OLD HARD CODE  <tr>
             <td>
-              <h5>The Children's Project</h5>
+              <h5>The Agatha Foundation</h5>
             </td>
             <td>The Children's Auction</td>
             <td>Jane Doe</td>
@@ -88,7 +148,7 @@ session_start();
             <td>123 Main Street<br> Baltimore, MD </td>
           </tr>
           <tr>
-            <td><h5>Kars for Kids</h5></td>
+            <td><h5>Auto Retailers of America</h5></td>
             <td>Cars for Kids</td>
             <td>John Doe</td>
             <td>555-555-5555</td>
@@ -96,50 +156,25 @@ session_start();
             <td>1234 Main Street<br> Baltimore, MD </td>
           </tr>
           <tr>
-            <td><h5>Rendevous Haiti</h5></td>
+            <td><h5>The Royal Family</h5></td>
             <td>Rendevous Haiti's Auction</td>
             <td>Jim Doe</td>
             <td>555-545-5555</td>
             <td>jim@haiti.org</td>
             <td>14 Main Street<br> Baltimore, MD </td>
           </tr>
-
+-->
         </table>
       </div>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=1">1</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=3">3</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
         </ul>
       </nav>
-
-      <!--
-      $servername = "cs-database.cs.loyola.edu";
-      $username = "jdbennett";
-      $password = "1670682";
-      $dbName = "jorochial";
-      $mysqli = new mysqli($servername, $username, $password, $dbName);
-
-      #Connects
-      if($mysqli->connect_error) {
-          die("Database connection failed: " . $mysqli->connect_error);
-      }
-
-      $sql1 = "select * from testItems";
-      $result = $mysqli->query($sql1);
-      echo "<p>";
-
-      while($row = $result->fetch_assoc()){
-        echo "id: " . $row["id"]. " - name: " . $row["name"]. " - description: " . $row["description"]. " - date: " . $row["date"]. "<br><br>";
-      }
-
-      echo "</p>";
-
-      $mysqli->close();
-      -->
 
       <div class="footer container-fluid">
         <h3> Contact Us </h3>

@@ -9,7 +9,7 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 $charites = array();
 
-$sql = "Select orgName from auctionCharites";
+$sql = "Select orgName from Charity";
 $result = $mysqli->query( $sql );
 $threadId = 0;
 while( $row = $result->fetch_assoc( ) )

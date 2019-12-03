@@ -90,7 +90,7 @@ else{
           <label for="ItemAuction">Auction:</label>
           <select class="form-control" id="ItemAuction" name="ItemAuction">
             <?php
-            $sql = $mysqli->query("SELECT * FROM Auction");
+            $sql = $mysqli->query("SELECT * FROM auctionTb");
             while ($row2 = $sql->fetch_assoc()){
               if($row2['auctionName'] == $row['auctionNameRef']){
                 echo '<option selected value="'.$row2['auctionName'].'">' . $row2['auctionName'] . '</option>';

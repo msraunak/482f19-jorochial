@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 if(isset($_GET["id"])){
 
 
-  $sql = "SELECT * FROM auctionItemTb WHERE id = ". $_GET["id"];
+  $sql = "SELECT * FROM Item WHERE id = ". $_GET["id"];
 
   $result = $mysqli->query($sql);
   $row = $result->fetch_assoc( );
@@ -22,7 +22,7 @@ if(isset($_GET["id"])){
   $item_current_bid= $row["currentBid"];
   $item_starting_bid= $row["startingBid"];
   $item_minimum_inc = $row["minimumBidInc"];
-  $item_donor = $row["donor"];
+  $item_donor = $row["donorName"];
   #TODO: use pic from DB also Picture file ... url for now
   $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
 }

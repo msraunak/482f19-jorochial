@@ -1,28 +1,43 @@
 <?php
 // Start the session
 session_start();
-?>
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
-<?php
-$item_title = "Chessboard";
-$item_auction = "Rendevous Haiti";
-$item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
-$item_starting_bid= 1000.00;
-$item_starting_bid= 500.00;
-$item_minimum_inc = 100.02;
-$item_donor = "The Royal Family";
-#also Picture file ... url for now
-$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
- ?>
+if (isset($_GET["id"])) {
+    $sql = "SELECT * FROM Donor WHERE donorId = ". $_GET["id"];
+
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    $donor_edit_link= "editDonor.php?id=".$row["donorId"];
+    $donor_title = $row["orgName"];
+    $donor_auction = $row["auctionName"];
+    $donor_repName = $row["repName"];
+    $donor_phoneNum= $row["phoneNum"];
+    $donor_email= $row["email"];
+    $donor_address = $row["address"];
+} else {
+    $donor_title = "The Agatha Foundation";
+    $donor_auction = "The Children's Auction";
+    $donor_repName = "Jane Doe";
+    $donor_phoneNum= "213-123-2312";
+    $donor_email= "jane@childrenProject.org";
+    $donor_address = "123 Main Street <br> Baltimore, MD";
+}
+?>
 
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/SASS/AuctionProject.css">
+    <link rel="stylesheet" href="../../css/SASS/AuctionProject.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../../js/formValidation.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
@@ -59,33 +74,25 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
     </nav>
 
     <div class="container">
-      <div class="row">
-        <div class="col">
-          <img <?php echo "src=\"".$item_picture."\""?> class="img-fluid" alt="...">
+      <div class="col">
+        <h1 class="text-center"><?php echo $donor_title;?></h1>
+        <div class="row">
+          <div class="col">
+            <h5>Auction:</h5>
+          </div>
+          <div class="col">
+            <h5><?php echo $donor_auction;?> </h5>
+          </div>
         </div>
-
-        <div class="col">
-          <h1><?php echo $item_title;?></h1>
-          <div class="row">
-            <h5>Auction:  <?php echo $item_auction;?> </h5>
+        <div class="row">
+          <div class="col">
+            <h5>Represtative:</h5>
           </div>
-          <div class="row">
-            <p><?php echo $item_description;?></p>
+          <div class="col">
+            <h5><?php echo $donor_repName;?><br><?php echo $donor_phoneNum;?><br><?php echo $donor_email;?><br><?php echo $donor_address;?></h5>
           </div>
-          <div class="row">
-            <h5 class="text-primary">Current Bid: <?php echo "$".$item_current_bid;?></h5>
-          </div>
-          <div class="row">
-            <h5>Starting Bid: <?php echo "$".$item_starting_bid;?></h5>
-          </div>
-          <div class="row">
-            <h5>Minimum Bid Increment: <?php echo "$".$item_minimum_inc;?></h5>
-          </div>
-          <div class="row">
-            <h5>Donor: <?php echo $item_donor;?></h5>
-          </div>
-          <a class="btn btn-primary" href="editItem.php">Edit Item</a>
         </div>
+        <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
       </div>
     </div>
     <div class="footer fixed-bottom footer-dark">

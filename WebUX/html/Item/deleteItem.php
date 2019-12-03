@@ -10,7 +10,7 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
-$sql = "DELETE from auctionItemTb where id = ".$_POST["itemId"];
+$sql = "DELETE from Item where id = ".$_POST["itemId"];
 
 if ($mysqli->query($sql) === TRUE) {
     $htmlOutput .= "Item deleted successfully";

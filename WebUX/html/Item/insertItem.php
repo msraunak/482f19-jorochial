@@ -15,13 +15,13 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-#INSERT INTO `auctionItemTb`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `donor`, `itemPic`)
+#INSERT INTO `Item`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `donor`, `itemPic`)
 $item = array($_POST["ItemAuction"],$_POST["ItemTitle"],$_POST["ItemDescription"],$_POST["ItemStartingBid"],$_POST["ItemMinIncrement"],$_POST["ItemDonor"],$_POST["ItemPicture"]);
 #$item = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
 if (true){
-  $sql .= 'INSERT INTO auctionItemTb (auctionNameRef, itemName, description, startingBid, minimumBidInc, donor) VALUES'; #TODO: add itemPic
+  $sql .= 'INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc, donor) VALUES'; #TODO: add itemPic
 
   $item[0] = htmlspecialchars($item[0]);
   $item[1] = htmlspecialchars(trim($item[1]));
