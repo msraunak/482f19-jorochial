@@ -57,16 +57,7 @@ if (isset($_SESSION["donorNotice"])) {
     </div>';
     }
 }
-if(!isset($_GET["page"])){
-  $pageNumber = 1;
-}
-else {
-  $pageNumber = $_GET["page"];
-  if($pageNumber < 1){
-    $pageNumber = 1;
-    $_GET["page"] = 1;
-  }
-}
+
 
 function itemRow($id,$name, $auction, $current_bid, $start, $min_inc) {
   #TODO: Change hard coded picture to link
@@ -82,7 +73,7 @@ function itemRow($id,$name, $auction, $current_bid, $start, $min_inc) {
     </tr>';
 }
 
-function itemTable($pageNum,$tableSize, $mysqli, $orgName){
+function itemTable($mysqli, $orgName){
   $htmlResult = "";
   $sql = 'SELECT *  FROM Item WHERE donorName LIKE "'.$orgName.'"';
   $result = $mysqli->query($sql);

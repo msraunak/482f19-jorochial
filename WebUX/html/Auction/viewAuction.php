@@ -5,38 +5,77 @@ session_start();
 require_once '../config.php';
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+  $_GET["page"] = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+if(isset($_GET["id"])){
+
+  $name = "Game Sale";
+
+  $result = $mysqli->query('SELECT * FROM Auction WHERE id = "'.$_GET["id"].'";');
+
+  $row = $result->fetch_assoc( );
+  $auction_id = $row["id"];
+  $auction_title = $row['auctionName'];
+  $auction_description = $row['description'];
+  $auction_start_date = date("F j, Y, g:i a", strtotime($row["startTime"]));
+  $auction_end_date=  date("F j, Y, g:i a", strtotime($row['endTime']));
+  $auction_charity = $row['beneficiary'];
+}
+else{
+  $auction_id = 0;
+  $auction_title = "The Best Auction";
+  $auction_description = "This auction is in support of the XYZ group and features items from Donors.";
+  $auction_start_date = date("l jS \of F Y h:i:s A", 1530054626);;
+  $auction_end_date= date("l jS \of F Y h:i:s A", 1530154626);
+  $auction_charity = "The Children's Project";
+}
 
 
+function itemRow($id,$name, $donor, $current_bid, $start, $min_inc) {
+  #TODO: Change hard coded picture to link
+  return '<tr>
+      <td>
+        <h5><a href="../Item/viewItem.php?id='.$id.'">'.$name.'</a></h5>
+      </td>
+      <td>'.$donor.'</td>
+      <td> $'.$current_bid.'</td>
+      <td> $'.$start.'</td>
+      <td> $'.$min_inc.'</td>
+      <td><a class="btn btn-primary"href="../Item/viewItem.php?id='.$id.'">View Item</a></td>
+    </tr>';
+}
 
-$name = "Game Sale";
+function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
+  $htmlResult = "";
+  $startRow = ($pageNum-1)*$tableSize;
+  $sql = 'SELECT *  FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'" order by id LIMIT '.$startRow.' , '.$tableSize;
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= itemRow($row["id"],$row["itemName"],$row["donorName"],$row["currentBid"],$row["startingBid"],$row["minimumBidInc"]);
+  }
+  return $htmlResult;
+}
 
-$result = $mysqli->query('SELECT * FROM Auction WHERE auctionName = "'.$name.'";');
-
-$row = $result->fetch_assoc( );
-
-$auction_title = $row['auctionName'];
-$auction_description = $row['description'];
-$auction_start_date = date("F j, Y, g:i a", strtotime($row["startTime"]));
-$auction_end_date=  date("F j, Y, g:i a", strtotime($row['endTime']));
-$auction_charity = $row['beneficiary'];
-
-
-/*
-$auction_title = "The Children's Auction";
-$auction_description = "This auction is in support of the XYZ group and features items from Donors.";
-$auction_start_date = date("l jS \of F Y h:i:s A", 1530054626);;
-$auction_end_date= date("l jS \of F Y h:i:s A", 1530154626);
-$auction_charity = "The Children's Project";
-*/
 ?>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/SASS/AuctionProject.css">
+    <link rel="stylesheet" href="../../css/SASS/AuctionProject.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../../js/formValidation.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
@@ -80,7 +119,7 @@ $auction_charity = "The Children's Project";
         <h6>Beneficiary: <?php echo $auction_charity;?></h6>
       <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
     </div>
-    <div class="container-fluid mt-3">
+    <div class="container mt-3">
       <table class="table table-responsive ">
         <thead>
           <th>Item Title</th>
@@ -89,21 +128,22 @@ $auction_charity = "The Children's Project";
           <th>Current Bid</th>
           <th>Minimum Bid</th>
           <th>Starting Bid</th>
+          <th></th>
         </thead>
-        <?php echo "
-          <tr>
-            <td>".$item_arr[0]."</td>
-            <td>".$item_arr[1]."</td>
-            <td>".$item_arr[2]."</td>
-            <td>".$item_arr[3]."</td>
-            <td>".$item_arr[4]."</td>
-            <td>".$item_arr[5]."</td>
-          </tr>"
-          ?>
+        <?php echo itemTable($mysqli,$auction_title, $pageNumber,5);?>
       </table>
     </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="viewAuction.php?id=<?php echo $auction_id."page=".$pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="viewAuction.php?id=<?php echo $auction_id;?>&page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="viewAuction.php?id=<?php echo $auction_id;?>&page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="viewAuction.php?id=<?php echo $auction_id;?>&page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="viewAuction.php?id=<?php echo $auction_id;?>&page=<?php echo $pageNumber+1;?>">Next</a></li>
+      </ul>
+    </nav>
 
-    <div class="footer fixed-bottom footer-dark">
+    <div class="footer footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
