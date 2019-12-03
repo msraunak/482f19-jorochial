@@ -37,7 +37,7 @@ else {
   }
 }
 
-function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
+function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
   return '<div class="col-sm-6 card mb-3">
     <div class="row no-gutters">
@@ -49,9 +49,9 @@ function itemCard($id, $title, $description, $current_bid, $min_inc, $start_bid,
           <h5 class="card-title">'.$title.'</h5>
           <p class="card-text">'.$description.'</p>
           <div class="row text-primary">
-            <p class="card-text col-lg-4">Current Bid: '.$current_bid.'</p>
-            <p class="card-text col-lg-4">Minimum Increment:'.$min_inc.'</p>
-            <p class="card=text col-lg-4">Starting Bid:'.$start_bid.'</p>
+            <p class="card-text col-lg-4">Current Bid: $'.$c_bid.'</p>
+            <p class="card-text col-lg-4">Minimum Increment: $'.$min_inc.'</p>
+            <p class="card=text col-lg-4">Starting Bid: $'.$start_bid.'</p>
           </div>
           <p class="card-text"><small class="text-muted">Donated by: '.$donor.'</small></p>
           <p class="card-text"><small class="text-muted">Auction: '.$auction.'</small></p>
@@ -69,7 +69,7 @@ function itemGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row["currentBid"],$row["minimumBidInc"],$row["currentBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
   }
   return $htmlResult;
 }

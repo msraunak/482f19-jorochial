@@ -28,6 +28,81 @@ if (isset($_GET["id"])) {
     $donor_email= "jane@childrenProject.org";
     $donor_address = "123 Main Street <br> Baltimore, MD";
 }
+
+
+#Donaton table
+
+session_start();
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
+
+if (isset($_SESSION["donorNotice"])) {
+    if ($_SESSION["donorNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["donorMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["donorMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+function itemRow($id,$name, $auction, $current_bid, $start, $min_inc) {
+  #TODO: Change hard coded picture to link
+  return '<tr>
+      <td>
+        <h5><a href="../Item/viewItem.php?id='.$id.'">'.$name.'</a></h5>
+      </td>
+      <td>'.$auction.'</td>
+      <td> $'.$current_bid.'</td>
+      <td> $'.$start.'</td>
+      <td> $'.$min_inc.'</td>
+      <td><a class="btn btn-primary"href="../Item/viewItem.php?id='.$id.'">View Item</a></td>
+    </tr>';
+}
+
+function itemTable($pageNum,$tableSize, $mysqli, $orgName){
+  $htmlResult = "";
+  $sql = 'SELECT *  FROM Item WHERE donorName LIKE "'.$orgName.'"';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= itemRow($row["id"],$row["itemName"],$row["auctionNameRef"],$row["currentBid"],$row["startingBid"],$row["minimumBidInc"]);
+  }
+  return $htmlResult;
+}
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 <html>
@@ -94,6 +169,19 @@ if (isset($_GET["id"])) {
         </div>
         <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
       </div>
+
+      <h3 class="mt-3">Items Donated:</h3>
+      <table class="table table-responsive">
+        <tr>
+          <th>Name</th>
+          <th>Auction</th>
+          <th>Current Bid</th>
+          <th>Starting Bid</th>
+          <th> Minimum Increment</th>
+          <th></th>
+        </tr>
+        <?php echo itemTable($pageNumber, 10, $mysqli, $donor_title);?>
+      </table>
     </div>
     <div class="footer fixed-bottom footer-dark">
       <h3> Contact Us </h3>

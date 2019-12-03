@@ -120,12 +120,13 @@ else{
             <input type="number" class="form-control" id="ItemMinIncrement" name="ItemMinIncrement" value="<?php echo $item_minimum_inc ?>" step="0.01" min="0" required>
           </div>
         </div>
+        <!-- FOREGIGN KEY CONSTRIANT ERROR FIX LATER
         <div class="form-group">
           <label for="ItemDonor">Donor:</label>
-          <!-- NOTE: Use dropdown from list of registerd Donors? or just text field?-->
+          <! NOTE: Use dropdown from list of registerd Donors? or just text field?
           <select class="form-control" id="ItemDonor" name="ItemDonor" required>
             <option value="null">Anonymous</option>
-            <?php
+            <
             $sql = $mysqli->query("SELECT orgName FROM Donor");
             while ($row3 = $sql->fetch_assoc()){
               if($row3['orgName'] == $item_donor)
@@ -136,7 +137,7 @@ else{
             }
             ?>
           </select>
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="file-input">Picture:</label>
           <!--TODO: add Javascript to change the label txt to the name of the file. see https://getbootstrap.com/docs/4.0/components/forms/#file-browser -->
