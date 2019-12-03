@@ -130,7 +130,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
           <th>Starting Bid</th>
           <th></th>
         </thead>
-        <?php echo itemTable($mysqli,$auction_title, $pageNumber,5);?>
+        <?php echo itemTable($mysqli,$auction_title, $pageNumber,4);?>
       </table>
     </div>
     <nav aria-label="Page navigation example">
@@ -143,7 +143,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
       </ul>
     </nav>
 
-    <div class="footer footer-dark">
+    <div class="footer  footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
