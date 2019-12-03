@@ -97,7 +97,7 @@ if ($mysqli->connect_error) {
             <?php
             $sql = $mysqli->query("SELECT orgName FROM Donor");
             while ($row = $sql->fetch_assoc()){
-            echo '<option value="'.$row['donorName'].'">' . $row['donorName'] . '</option>';
+            echo '<option value="'.$row['orgName'].'">' . $row['orgName'] . '</option>';
             }
             ?>
           </select>
