@@ -102,7 +102,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <a class="nav-link" href="../Auction/createAuction.php">Create Auction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Settings.php">Settings</a>
+            <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
         </ul>
         <form class="form-inline">
