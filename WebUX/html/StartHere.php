@@ -2,12 +2,6 @@
 <?php
 // Start the session
 session_start();
-require_once '../config.php';
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " .  $mysqli->connect_error);
-}
 ?>
 
 <html lang="en" dir="ltr">
@@ -18,12 +12,7 @@ if ($mysqli->connect_error) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/formValidation.js"></script>
-    <title>Dashboard</title>
-    <style>
-      .content {
-        min-height: 70vh;
-      }
-    </style>
+    <title>Host an Event</title>
   </head>
   <body>
 
@@ -67,20 +56,20 @@ if ($mysqli->connect_error) {
     </div>
 
     <div class="container">
-      <h5>Follow these steps to effeceintly create your Auction.</h5>
+      <h1 class="text-primary text-center">Host an Event!</h1>
+      <h4>Follow these steps to setup your next event.</h4>
 
       <ol>
-        <li>Add the <a href="Charity/addCharity.php">Charity</a>to benefit.</li>
-        <li>Create the <a href="Auction/createAuction.php">Auction.</a></li>
-        <li>Add the <a href="Donor/addDonor.php"> Donors</a> </li>
-        <li>Add the <a href="Item/addItem.php"> Items</a></li>
-        <li>Run Your Event with the Andriod Application.</li>
-        <li>Review Your Results.</li>
+        <li>Add the <a href="Charity/addCharity.php">Charity</a> to benefit.</li>
+        <li>Input the <a href="Auction/createAuction.php">Auction</a> details.</li>
+        <li>Add the <a href="Donor/addDonor.php"> Donor's</a> information.</li>
+        <li>Add the <a href="Item/addItem.php">Items</a> that have been donated.</li>
+        <li>Run Your Event with our Andriod Application.</li>
+        <li>Review Your Results!</li>
       </ol>
-
     </div>
 
-    <div class="footer footer-dark container-fluid">
+    <div class="footer footer-dark fixed-bottom container-fluid">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
