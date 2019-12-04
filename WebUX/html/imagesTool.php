@@ -6,8 +6,9 @@
   </head>
   <body>
 
+<!-- Variation of kua tube / Code Tube solution and more to insert blob data -->
 <?php
-
+//Creates PDO object for database connection
 $dbh = new PDO("mysql:host=cs-database.cs.loyola.edu;dbname=jorochial", "jbennett", "1670682");
 if (isset($_POST['btn'])) {
   // code...
@@ -22,18 +23,21 @@ if (isset($_POST['btn'])) {
 }
 ?>
 
+<!-- Form data for submission -->
 <form method="post" enctype="multipart/form-data">
   <input type="file" name="myfile"/>
   <button name="btn">Upload</button>
 </form>
 <p></p>
 <ol>
+
+<!-- Variation of Code Tube solution to get image -->
 <?php
 $stat = $dbh->prepare("select * from myblob");
 $stat->execute();
 while($row = $stat->fetch()){
 
-  echo "<li><a target='_blank' href='view.php?id=".$row['id']."'>".$row['name']."</a><br/>
+  echo "<li><a target='_blank' href='imagesView.php?id=".$row['id']."'>".$row['name']."</a><br/>
   <embed src='data:".$row['mime'].";base64," .base64_encode($row['data'])."' width='200'/></li>";
 }
 ?>
