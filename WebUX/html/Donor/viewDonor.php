@@ -15,29 +15,17 @@ if (isset($_GET["id"])) {
     $row = $result->fetch_assoc();
     $donor_edit_link= "editDonor.php?id=".$row["donorId"];
     $donor_title = $row["orgName"];
-    $donor_auction = $row["auctionName"];
+
     $donor_repName = $row["repName"];
     $donor_phoneNum= $row["phoneNum"];
     $donor_email= $row["email"];
     $donor_address = $row["address"];
 } else {
     $donor_title = "The Agatha Foundation";
-    $donor_auction = "The Children's Auction";
     $donor_repName = "Jane Doe";
     $donor_phoneNum= "213-123-2312";
     $donor_email= "jane@childrenProject.org";
     $donor_address = "123 Main Street <br> Baltimore, MD";
-}
-
-
-#Donaton table
-
-session_start();
-require_once '../config.php';
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " .  $mysqli->connect_error);
 }
 
 if (isset($_SESSION["donorNotice"])) {
@@ -58,7 +46,7 @@ if (isset($_SESSION["donorNotice"])) {
     }
 }
 
-
+#Donaton table
 function itemRow($id,$name, $auction, $current_bid, $start, $min_inc) {
   #TODO: Change hard coded picture to link
   return '<tr>
@@ -83,16 +71,6 @@ function itemTable($mysqli, $orgName){
   }
   return $htmlResult;
 }
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
@@ -134,31 +112,22 @@ function itemTable($mysqli, $orgName){
         </form>
       </div>
     </nav>
-
+<?php echo $alert; ?>
     <div class="container">
-      <div class="col">
+
         <h1 class="text-center"><?php echo $donor_title;?></h1>
         <div class="row">
-          <div class="col">
-            <h5>Auction:</h5>
-          </div>
-          <div class="col">
-            <h5><?php echo $donor_auction;?> </h5>
-          </div>
+
         </div>
-        <div class="row">
-          <div class="col">
-            <h5>Represtative:</h5>
-          </div>
-          <div class="col">
+        <div class="col pl-0">
+            <h3>Contact Information</h3>
             <h5><?php echo $donor_repName;?><br><?php echo $donor_phoneNum;?><br><?php echo $donor_email;?><br><?php echo $donor_address;?></h5>
-          </div>
         </div>
         <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
-      </div>
+
 
       <h3 class="mt-3">Items Donated:</h3>
-      <table class="table table-responsive">
+      <table class="table table-responsive mb-4">
         <tr>
           <th>Name</th>
           <th>Auction</th>
@@ -167,10 +136,10 @@ function itemTable($mysqli, $orgName){
           <th> Minimum Increment</th>
           <th></th>
         </tr>
-        <?php echo itemTable($pageNumber, 10, $mysqli, $donor_title);?>
+        <?php echo itemTable($mysqli, $donor_title);?>
       </table>
     </div>
-    <div class="footer fixed-bottom footer-dark">
+    <div class="footer footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>

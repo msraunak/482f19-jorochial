@@ -21,7 +21,7 @@ $donor = array($_POST["OrgName"],$_POST["RepName"],$_POST["PhoneNumber"],$_POST[
 #$donor = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
-if (true){
+
 
   $sql .= 'INSERT INTO Donor (orgName, repName, phoneNum, email, address) VALUES'; #TODO: add itemPic
 
@@ -30,10 +30,8 @@ if (true){
   $donor[2] = htmlspecialchars(trim($donor[2]));
   $donor[3] = htmlspecialchars(trim($donor[3]));
   $donor[4] = htmlspecialchars(trim($donor[4]));
-
-  $sql .= '("'.$donor[0].'","'. $donor[1] .'","'. $donor[2] .'","'. $donor[3] .'","'. $donor[4]'")';
+  $sql .= '("'.$donor[0].'","'.$donor[1].'","'.$donor[2].'","'.$donor[3].'","'.$donor[4].'")';
   $sql .= ";";
-  #echo $sql;
   if ($mysqli->query($sql) === TRUE) {
       $htmlOutput .= "Donor added successfully";
   }
@@ -41,13 +39,8 @@ if (true){
     $htmlOutput .= "Insertion Failed: ".$sql. $mysqli->error;
 
   }
-  #echo $htmlOutput;
   $_SESSION["donorNotice"] = True;
-}
-else {
-  #echo "vaildation fail";
-  $_SESSION["donorNotice"] = False;
-}
+
 $htmlOutput .= " Donor: ".$donor[1];
 $_SESSION["donorMessage"] = $htmlOutput;
 header("Location: http://jorochial.cs.loyola.edu/html/Donor/DonorsDashboard.php");
