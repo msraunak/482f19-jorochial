@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>imagesTool.php</title>
   </head>
   <body>
 
 <?php
 
-$dbh = new PDO("mysql:host=cs-database.cs.loyola.edu;dbname=jorochial", "root", "");
+$dbh = new PDO("mysql:host=cs-database.cs.loyola.edu;dbname=jorochial", "jbennett", "1670682");
 if (isset($_POST['btn'])) {
   // code...
   $name = $_FILES['myfile']['name'];
@@ -31,18 +31,12 @@ if (isset($_POST['btn'])) {
 <?php
 $stat = $dbh->prepare("select * from myblob");
 $stat->execute();
+while($row = $stat->fetch()){
 
-
-//To add:
-//display immediate image allocation
-//executed img type selection
-//working on now 6:20PM
-
-
+  echo "<li><a target='_blank' href='view.php?id=".$row['id']."'>".$row['name']."</a><br/>
+  <embed src='data:".$row['mime'].";base64," .base64_encode($row['data'])."' width='200'/></li>";
+}
 ?>
 </ol>
-
-
-
   </body>
 </html>
