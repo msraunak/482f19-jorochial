@@ -6,12 +6,15 @@
   </head>
   <body>
 
-<!-- Variation of kua tube / Code Tube solution and more to insert blob data -->
+<!-- Variation of kua tube / Code Tube solution and more to insert blob data
+    IMPORTANT: Simply change table name, and add appropriate column type to
+              item table to make work in any field of project
+-->
 <?php
 //Creates PDO object for database connection
 $dbh = new PDO("mysql:host=cs-database.cs.loyola.edu;dbname=jorochial", "jbennett", "1670682");
 if (isset($_POST['btn'])) {
-  // code...
+  // Insert values and encoding for data in blob typing
   $name = $_FILES['myfile']['name'];
   $type = $_FILES['myfile']['type'];
   $data = file_get_contents($_FILES['myfile']['tmp_name']);
@@ -23,7 +26,9 @@ if (isset($_POST['btn'])) {
 }
 ?>
 
-<!-- Form data for submission -->
+<!-- Form data for submission
+    IMPORTANT: Press browse button, select image, then press the upload button
+-->
 <form method="post" enctype="multipart/form-data">
   <input type="file" name="myfile"/>
   <button name="btn">Upload</button>
@@ -31,12 +36,17 @@ if (isset($_POST['btn'])) {
 <p></p>
 <ol>
 
-<!-- Variation of Code Tube solution to get image -->
+<!-- Variation of Code Tube solution to get image
+    IMPORTANT: Change select statement to match pertinent image request
+              in project item dashboard, edit item, auctions display, etc.
+-->
 <?php
 $stat = $dbh->prepare("select * from myblob");
 $stat->execute();
 while($row = $stat->fetch()){
 
+  //Outputs to user the list of images, link data for download, translates blob data into
+  //  browser image
   echo "<li><a target='_blank' href='imagesView.php?id=".$row['id']."'>".$row['name']."</a><br/>
   <embed src='data:".$row['mime'].";base64," .base64_encode($row['data'])."' width='200'/></li>";
 }
