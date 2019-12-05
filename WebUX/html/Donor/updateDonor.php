@@ -22,6 +22,8 @@
         $row = $result->fetch_assoc();
 
 
+        $unchangedCount= 0;
+
       if ($row["orgName"] != htmlspecialchars(trim($donor[1]))) {
           $sql = 'UPDATE Donor SET orgName ="'.htmlspecialchars(trim($donor[1])).'"WHERE donorId ='.$donor[0];
           if ($mysqli->query($sql) === true) {
@@ -30,6 +32,9 @@
           } else {
               $htmlOutput .= "Update Failed: ". $mysqli->error;
           }
+      }
+      else{
+        $unchangedCount++;
       }
       if ($row["repName"] != htmlspecialchars(trim($donor[2]))) {
           $sql = 'UPDATE Donor SET repName ="'.htmlspecialchars(trim($donor[2])).'"WHERE donorId ='.$donor[0];
@@ -40,6 +45,9 @@
               $htmlOutput .= "Update Failed: ". $mysqli->error;
           }
       }
+      else{
+        $unchangedCount++;
+      }
       if ($row["phoneNum"] != htmlspecialchars(trim($donor[3]))) {
           $sql = 'UPDATE Donor SET phoneNum ="'.htmlspecialchars(trim($donor[3])).'"WHERE donorId ='.$donor[0];
           if ($mysqli->query($sql) === true) {
@@ -48,6 +56,9 @@
           } else {
               $htmlOutput .= "Update Failed: ". $mysqli->error;
           }
+      }
+      else{
+        $unchangedCount++;
       }
       if ($row["email"] != htmlspecialchars(trim($donor[4]))) {
           $sql = 'UPDATE Donor SET email ="'.htmlspecialchars(trim($donor[4])).'"WHERE donorId ='.$donor[0];
@@ -58,6 +69,9 @@
               $htmlOutput .= "Update Failed: ". $mysqli->error;
           }
       }
+      else{
+        $unchangedCount++;
+      }
       if ($row["address"] != htmlspecialchars(trim($donor[5]))) {
           $sql = 'UPDATE Donor SET address ="'.htmlspecialchars(trim($donor[5])).'"WHERE donorId ='.$donor[0];
           if ($mysqli->query($sql) === true) {
@@ -67,7 +81,14 @@
               $htmlOutput .= "Update Failed: ". $mysqli->error;
           }
       }
+      else{
+        $unchangedCount++;
+      }
 
+      if ($unchangedCount == 5){
+        $_SESSION["donorNotice"] = true;
+        $htmlOutput = "No changes detected.";
+      }
 
 
     $_SESSION["donorMessage"] = $htmlOutput;
