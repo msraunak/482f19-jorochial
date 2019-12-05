@@ -20,12 +20,13 @@ if (isset($_SESSION["donorNotice"])) {
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["donorMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["donorNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     }
 }
+
 if(!isset($_GET["page"])){
   $pageNumber = 1;
 }
@@ -111,7 +112,7 @@ function donorTable($pageNum,$tableSize ,$mysqli){
         </form>
       </div>
     </nav>
-
+<?php echo $alert;?>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="../Item/DashboardPage.php">All Items</a>

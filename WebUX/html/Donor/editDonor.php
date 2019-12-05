@@ -95,9 +95,31 @@ if (isset($_GET["id"])) {
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary mt-3 mt-md-0" type="submit" name="submit">Submit</button>
+          <button class="btn btn-info mt-3 mt-md-0" type="submit" name="Update">Update</button>
+            <button class="btn btn-danger mt-3 mt-md-0" type="button" name="delete" data-toggle="modal" data-target="#DeleteModal">Delete</button>
         </div>
       </form>
+    </div>
+
+    <div class="modal fade" id="DeleteModal" aria-labelledby="deleteModalLabel" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="DeleteModalTitle">Are you sure you want to delete this donor?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <form class = "m-0" method="POST" action="deleteDonor.php" novalidate>
+            <input type="hidden" class="invisible" name= "donorId" value="<?php echo $_GET["id"]?>">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+            <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="footer">
