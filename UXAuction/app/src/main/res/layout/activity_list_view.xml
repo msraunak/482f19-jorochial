@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ScrollingActivity">
+
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:weightSum="1"
+        android:background="@color/colorPrimaryDark"
+        android:fitsSystemWindows="true"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:text="Auction"
+            android:textColor="@color/white"
+            app:contentScrim="?attr/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/Mytoolbar">
+
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/Mytoolbar"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/Currentbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:layout_toRightOf="@+id/search"
+                        android:background="@color/white"
+                        android:textColor="@color/colorPrimary"
+                        android:onClick="goToCurrent"
+                        android:text="Current Bids"
+                        android:visibility="visible"
+                        />
+
+                    <Button
+                        android:id="@+id/Pastbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_toRightOf="@+id/Currentbutton"
+                        android:onClick="goToPast"
+                        android:text="Past Bids"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/Loginbutton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:background="@color/white"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Log Out"
+                        android:onClick="logout"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:layout_toRightOf="@+id/Loginbutton"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@color/white"
+                        android:text="Search Auction"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="center|end"
+        app:srcCompat="@android:drawable/ic_menu_view"
+        android:visibility="invisible"/>
+
+    <SearchView
+        android:id="@+id/ItemSearch"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="119dp"
+        android:layout_gravity="top"
+        android:background="@color/grey" />
+
+</android.support.design.widget.CoordinatorLayout>
+

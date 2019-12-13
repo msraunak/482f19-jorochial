@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+
+        android:id="@+id/itemImage"
+
+        style="@style/ItemPic"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_marginTop="37dp"
+
+        android:background="@drawable/bike" />
+
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toRightOf="@+id/itemImage"
+        android:layout_alignLeft="@+id/price"
+        android:layout_alignTop="@+id/itemImage"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Bike"/>
+
+
+
+    <Button
+
+        android:id="@+id/price"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_below="@id/title"
+
+        android:layout_toRightOf="@id/itemImage"
+        android:layout_marginRight="@dimen/text_margin"
+        android:layout_marginTop="10dp"
+
+        android:onClick="itemClick"
+        android:background="@color/colorPrimary"
+        android:text="$25"
+        android:textSize="18dp" />
+
+
+
+    <Button
+
+        android:id="@+id/viewListing"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_toRightOf="@id/price"
+
+        android:layout_alignBottom="@id/price"
+
+        android:text="View" />
+</RelativeLayout>
