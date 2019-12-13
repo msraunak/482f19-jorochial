@@ -2,16 +2,88 @@
 <?php
 // Start the session
 session_start();
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
+
+if (isset($_SESSION["itemNotice"])) {
+    if ($_SESSION["itemNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["itemMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["itemMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
+  #TODO: Change hard coded picture to link
+  return '<div class="col-sm-6 card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">'.$title.'</h5>
+          <p class="card-text">'.$description.'</p>
+          <div class="row text-primary">
+            <p class="card-text col-lg-4">Current Bid: $'.$c_bid.'</p>
+            <p class="card-text col-lg-4">Minimum Increment: $'.$min_inc.'</p>
+            <p class="card=text col-lg-4">Starting Bid: $'.$start_bid.'</p>
+          </div>
+          <p class="card-text"><small class="text-muted">Donated by: '.$donor.'</small></p>
+          <p class="card-text"><small class="text-muted">Auction: '.$auction.'</small></p>
+          <a href="viewItem.php?id='.$id.'" class="btn btn-secondary stretched-link">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>';
+}
+
+function itemGrid($pageNum, $mysqli){
+  $htmlResult = "";
+  $startRow = ($pageNum-1)*4;
+  $sql = "SELECT * from Item order by id LIMIT $startRow , 4";
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
+  }
+  return $htmlResult;
+}
+
 ?>
 
 <html lang="en" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/SASS/AuctionProject.css">
+    <link rel="stylesheet" href="../../css/SASS/AuctionProject.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../../js/formValidation.js"></script>
     <title>Dashboard</title>
     <style>
       .content {
@@ -22,27 +94,24 @@ session_start();
   <body>
 
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
+      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Login</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="../index.php">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Settings.php">Settings</a>
+            <li class="nav-item">
+              <a class="nav-link" href="../StartHere.php">Host an Event</a>
+            </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
         </ul>
         <form class="form-inline">
@@ -52,13 +121,13 @@ session_start();
         </form>
       </div>
     </nav>
-
+    <?php echo $alert ?>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link active" href="DashboardPage.php">All Items</a>
-        <a class="nav-item nav-link" href="AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link" href="CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
+        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
@@ -69,6 +138,8 @@ session_start();
         </form>
 
       <div class="row justify-content-around">
+        <?php echo itemGrid($pageNumber, $mysqli);?>
+      <!-- OLD: Hard coded item entries
         <div class="col-sm-6 card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4">
@@ -77,7 +148,7 @@ session_start();
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">Chessboard</h5>
-                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generation sof royal family.</p>
+                <p class="card-text">This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family.</p>
                 <div class="row text-primary">
                   <p class="card-text col-lg-4">Current Bid: $1,000.00</p>
                   <p class="card-text col-lg-4">Minimum Increment: $100.00</p>
@@ -85,7 +156,7 @@ session_start();
                 </div>
                 <p class="card-text"><small class="text-muted">Donated by: The Royal Family</small></p>
                 <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
-                <a href="viewItem.php" class="btn stretched-link"></a>
+                <a href="viewItem.php?id=1" class="btn stretched-link"></a>
               </div>
             </div>
           </div>
@@ -108,7 +179,7 @@ session_start();
                 </div>
                 <p class="card-text"><small class="text-muted">Donated by: The Dolittle Association</small></p>
                 <p class="card-text"><small class="text-muted">Auction: Rendevous Haiti's Auction</small></p>
-                <a href="#" class="btn stretched-link"></a>
+                <a href="viewItem.php?id=2" class="btn stretched-link"></a>
               </div>
             </div>
           </div>
@@ -159,42 +230,19 @@ session_start();
             </div>
           </div>
         </div>
+      -->
       </div>
     </div>
+    <!--TODO: make this dynamicly active-->
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
       </ul>
     </nav>
-
-    <!--
-      $servername = "cs-database.cs.loyola.edu";
-      $username = "jdbennett";
-      $password = "1670682";
-      $dbName = "jorochial";
-      $mysqli = new mysqli($servername, $username, $password, $dbName);
-
-      #Connects
-      if($mysqli->connect_error) {
-          die("Database connection failed: " . $mysqli->connect_error);
-      }
-
-      $sql1 = "select * from testItems";
-      $result = $mysqli->query($sql1);
-      echo "<p>";
-
-      while($row = $result->fetch_assoc()){
-        echo "id: " . $row["id"]. " - name: " . $row["name"]. " - description: " . $row["description"]. " - date: " . $row["date"]. "<br><br>";
-      }
-
-      echo "</p>";
-
-      $mysqli->close();
-      -->
 
     <div class="footer footer-dark container-fluid">
       <h3> Contact Us </h3>

@@ -1,4 +1,10 @@
-<html>
+<!DOCTYPE html>
+<?php
+// Start the session
+session_start();
+?>
+
+<html lang="en" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/SASS/AuctionProject.css">
@@ -6,73 +12,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/formValidation.js"></script>
+    <title>Host an Event</title>
   </head>
   <body>
+
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
+      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="index.php">Login</a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="addItem.php">Add Item</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="StartHere.php">Host an Event</a>
+            </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
           </li>
-
         </ul>
         <form class="form-inline">
           <!--TODO: Add functionality to Search bar -->
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-h5="Search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
+    <div class="container-fluid">
+      <nav class="nav nav-pills nav-justified mb-3">
+        <a class="nav-item nav-link active" href="AddItem.php">Add an Item</a>
+        <a class="nav-item nav-link disabled" href="Auction/createAuction.php">Create Auction</a>
+        <a class="nav-item nav-link" href="Donor/addDonor.php"> Add Donor</a>
+        <a class="nav-item nav-link disabled" href="Charity/addCharity.php">Add Charity</a>
+        <a class="nav-item nav-link" href="#">Results Summary</a>
+      </nav>
+
+    </div>
 
     <div class="container">
-      <h1><?= $auction_title ?></h1>
-        <p><?= $auction_description;?></p>
-        <p class="text-primary">Start Date and Time: <?= $auction_start_date?></p>
-        <p class="text-primary">End Date and Time: <?= $auction_end_date?></p>
-        <h6>Beneficiary: <?=$auction_charity?></h6>
-      <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
-    </div>
-    <div class="container-fluid mt-3">
-      <table class="table table-responsive ">
-        <thead>
-          <th>Item Title</th>
-          <th scope="col" data-bind="tableSort: { arr: _data, propName: 'text()'}">Item Description</th>
-          <th>Item's Donor</th>
-          <th>Current Bid</th>
-          <th>Minimum Bid</th>
-          <th>Starting Bid</th>
-        </thead>
-        <?= "
-          <tr>
-            <td>".$item_arr[0]."</td>
-            <td>".$item_arr[1]."</td>
-            <td>".$item_arr[2]."</td>
-            <td>".$item_arr[3]."</td>
-            <td>".$item_arr[4]."</td>
-            <td>".$item_arr[5]."</td>
-          </tr>"
-          ?>
-      </table>
+      <h1 class="text-primary text-center">Host an Event!</h1>
+      <h4>Follow these steps to setup your next event.</h4>
+
+      <ol>
+        <li>Add the <a href="Charity/addCharity.php">Charity</a> to benefit.</li>
+        <li>Input the <a href="Auction/createAuction.php">Auction</a> details.</li>
+        <li>Add the <a href="Donor/addDonor.php"> Donor's</a> information.</li>
+        <li>Add the <a href="Item/addItem.php">Items</a> that have been donated.</li>
+        <li>Run Your Event with our Andriod Application.</li>
+        <li>Review Your Results!</li>
+      </ol>
     </div>
 
-    <div class="footer fixed-bottom footer-dark">
+    <div class="footer footer-dark fixed-bottom container-fluid">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>

@@ -21,19 +21,16 @@ session_start();
 
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
+          <li class="nav-item ">
+            <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="index.php">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="addItem.php">Add Item</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="createAuction.php">Create Auction</a>
-          </li>
-          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="StartHere.php">Host an Event</a>
+            </li>
+          <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
           </li>
         </ul>
