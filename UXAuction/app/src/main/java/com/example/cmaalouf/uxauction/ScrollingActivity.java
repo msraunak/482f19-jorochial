@@ -5,20 +5,31 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScrollingActivity extends AppCompatActivity {
+
+    List<AuctionItem> itemList;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_list_view);
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.Mytoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.white));
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +38,18 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("bike");
+        items.add("car");
+        items.add("monopoly");
+        items.add("guitar");
+        Adapter adapter = new Adapter(this,items);// set LayoutManager to RecyclerView
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        // set a LinearLayoutManager with default orientation
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
