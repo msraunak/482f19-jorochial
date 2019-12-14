@@ -78,15 +78,16 @@ else{
     <div class="container">
       <h1>Edit Auction</h1>
 
-      <form class="needs-validation" action="addAuctionForm.php" method="post" novalidate>
+      <form class="needs-validation" action="updateAuction.php" method="post" novalidate>
         <!--TODO: Add functionality to this form -->
+          <input type="hidden" name ="id" value="<?php echo $_GET["id"];?>">
         <div class="form-group">
           <label for="AuctionTitle">Auction Title</label>
-          <input type="text" class="form-control" id="AuctionTitle" value="<?= $auction_title?>" required>
+          <input type="text" class="form-control" id="AuctionTitle" name="AuctionTitle" value="<?= $auction_title?>" required>
         </div>
         <div class="form-group">
           <label for="AuctionDescription">Description:</label>
-          <textarea class="form-control" id="AuctionDescription" rows="3" required><?= $auction_description ?></textarea>
+          <textarea class="form-control" id="AuctionDescription" name="AuctionDescription" rows="3" required><?= $auction_description ?></textarea>
         </div>
 
         <!--<div class="form-group">
@@ -102,11 +103,11 @@ else{
         <!TODO: ADD Validation and a date picker if possible -->
         <div class="form-group">
           <label for="StartDateTime">Start Date and Time</label>
-          <input type="text" class="form-control" id="AuctionTitle" value="<?= date('m/d/Y h:i A', $auction_start_time) ?>" required>
+          <input type="text" class="form-control" id="StartDateTime" name="StartDateTime" value="<?= date('m/d/Y h:i A', $auction_start_time) ?>" required>
         </div>
         <div class="form-group">
           <label for="EndDateTime">End Date and Time</label>
-          <input type="text" class="form-control" id="EndDateTime" value="<?= date('m/d/Y h:i A', $auction_end_time)?>" required>
+          <input type="text" class="form-control" name="EndDateTime" id="EndDateTime" value="<?= date('m/d/Y h:i A', $auction_end_time)?>" required>
         </div>
 
         <div class="form-group">

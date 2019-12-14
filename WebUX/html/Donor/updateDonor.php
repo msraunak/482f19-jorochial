@@ -16,12 +16,8 @@
         die("Connection failed: " .  $mysqli->connect_error);
     }
 
-    #echo "Connected successfully";
-    #UPDATE INTO `Donor`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `donor`, `itemPic`)
     $donor = array($_POST["id"],$_POST["OrgName"],$_POST["RepName"],$_POST["PhoneNumber"],$_POST["email"],$_POST["Address"]);
-    #$donor = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
-    # user should be from form
-    #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
+
         $sql = "SELECT * FROM Donor WHERE donorId = ".$donor[0];
 
         $result = $mysqli->query($sql);

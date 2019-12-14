@@ -46,6 +46,23 @@ else{
   $auction_charity = "The Children's Project";
 }
 
+if (isset($_SESSION["auctionNotice"])) {
+    if ($_SESSION["auctionNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["auctionMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["auctionMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
 
 function itemRow($id,$name, $donor, $current_bid, $start, $min_inc) {
   #TODO: Change hard coded picture to link
@@ -113,7 +130,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
         </form>
       </div>
     </nav>
-
+<?php echo $alert; ?>
     <div class="container">
       <h1><?= $auction_title ?></h1>
         <p><?= $auction_description;?></p>

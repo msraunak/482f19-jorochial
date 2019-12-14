@@ -1,11 +1,11 @@
 <?php
 // Start the session
 session_start();
-if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
-  //if not login in
-  $_SESSION["secure_Attempt"] = true;
-  header("location: ../index.php");
-  exit();
+if (!isset($_SESSION["login"]) || $_SESSION["login"] !== true) {
+    //if not login in
+    $_SESSION["secure_Attempt"] = true;
+    header("location: ../index.php");
+    exit();
 }
 require_once '../config.php';
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -15,11 +15,10 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $charites = array();
 
 $sql = "Select orgName from Charity";
-$result = $mysqli->query( $sql );
+$result = $mysqli->query($sql);
 $threadId = 0;
-while( $row = $result->fetch_assoc( ) )
-{
-  $charites =  $row['orgName'];
+while ($row = $result->fetch_assoc()) {
+    $charites =  $row['orgName'];
 }
 
 
@@ -50,7 +49,7 @@ while( $row = $result->fetch_assoc( ) )
             <li class="nav-item ">
               <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
             </li>
-            
+
               <li class="nav-item active">
                 <a class="nav-link" href="../StartHere.php">Host an Event</a>
               </li>
@@ -76,17 +75,17 @@ while( $row = $result->fetch_assoc( ) )
           <!--TODO: Add functionality to this form -->
           <div class="form-group">
             <label for="AuctionTitle">Auction Title</label>
-            <input type="text" class="form-control" id="AuctionTitle" placeholder="My Auction" required>
+            <input type="text" class="form-control" id="AuctionTitle" name="AuctionTitle" placeholder="My Auction" required>
           </div>
           <div class="form-group">
             <label for="AuctionDescription">Description:</label>
-            <textarea class="form-control" id="AuctionDescription" rows="3" required></textarea>
+            <textarea class="form-control" id="AuctionDescription" name="AuctionDescription" rows="3" required></textarea>
           </div>
 
           <div class="form-group">
             <label for="AuctionCharity">Beneficary:</label>
             <!-- NOTE: Use dropdown from list of registerd Charities? or just text field?-->
-            <select class="form-control" id="AuctionCharity" required>
+            <select class="form-control" name="AuctionCharity" id="AuctionCharity" required>
               <option>Anonymous</option>
               <option>Charity1</option>
               <option>Charity2</option>
@@ -96,11 +95,11 @@ while( $row = $result->fetch_assoc( ) )
           <!--TODO: ADD Validation and a date picker if possible -->
           <div class="form-group">
             <label for="StartDateTime">Start Date and Time</label>
-            <input type="text" class="form-control" id="AuctionTitle" placeholder="01/01/1970 10:00AM" required>
+            <input type="text" class="form-control" id="StartDateTime" name="StartDateTime" placeholder="01/01/1970 10:00AM" required>
           </div>
           <div class="form-group">
             <label for="EndDateTime">End Date and Time</label>
-            <input type="text" class="form-control" id="EndDateTime" placeholder="01/01/1970 10:01AM" required>
+            <input type="text" class="form-control" name="EndDateTime" id="EndDateTime" placeholder="01/01/1970 10:01AM" required>
           </div>
 
           <div class="form-group">
