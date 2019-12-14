@@ -143,7 +143,7 @@ if (isset($_SESSION["adminAdd"])){
           <h3 class="text-center">Add Admin</h3>
           <br>
 
-          <form class="needs-validation" action="Admin/AddAdmin.php" method="POST" novalidate>
+          <form class="needs-validation" action="Admin/addAdmin.php" method="POST" novalidate>
             <!--TODO: Add functionality to this form -->
             <div class="form-group text-dark">
               <div class="form-row mt-2">
