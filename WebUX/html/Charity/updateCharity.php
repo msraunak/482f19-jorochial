@@ -13,7 +13,6 @@
     #echo "Connected successfully";
     #UPDATE INTO `Charity`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `charity`, `itemPic`)
     $charity = array($_POST["id"],$_POST["OrgName"],$_POST["RepName"],$_POST["PhoneNumber"],$_POST["email"],$_POST["Address"]);
-    #$charity = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
     # user should be from form
     #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
         $sql = "SELECT * FROM Charity WHERE charityId = ".$charity[0];
