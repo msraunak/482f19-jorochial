@@ -129,7 +129,7 @@ if (isset($_GET["id"])) {
       </div>
     </div>
 
-    <div class="footer">
+    <div class="footer fixed-bottom footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
