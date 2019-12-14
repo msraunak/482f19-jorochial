@@ -1,5 +1,10 @@
 <?php session_start();
-
+if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+  //if not login in
+  $_SESSION["secure_Attempt"] = true;
+  header("location: index.php");
+  exit();
+}
 if (isset($_SESSION["adminAdd"])){
   if($_SESSION["adminAdd"] == TRUE){
     $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
@@ -68,6 +73,9 @@ if (isset($_SESSION["adminAdd"])){
             </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
           </li>
         </ul>
         <form class="form-inline">

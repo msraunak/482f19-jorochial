@@ -1,6 +1,12 @@
 <?php
 // Start the session
 session_start();
+if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+  //if not login in
+  $_SESSION["secure_Attempt"] = true;
+  header("location: ../index.php");
+  exit();
+}
 
 require_once '../config.php';
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -97,6 +103,9 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
             </li>
           <li class="nav-item active">
             <a class="nav-link" href="../Settings.php">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
           </li>
         </ul>
         <form class="form-inline">

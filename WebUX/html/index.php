@@ -19,11 +19,30 @@ session_start();
 $alertHTML = "";
 if(isset($_SESSION["secure_Attempt"]) && $_SESSION["secure_Attempt"] === true){
     $_SESSION["secure_Attempt"]= "false";
-    $alertHTML = "<div class=\"alert alert-danger alert-dismissible fade show mt-3\" role=\"alert\">Please login to access the secure page.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    $alertHTML = "<div class=\"alert alert-danger alert-dismissible fade show mt-3\" role=\"alert\">Please login to access the site.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
     <span aria-hidden=\"true\">&times;</span>
   </button></div>";
 
 }
+
+if (isset($_SESSION["loggedOut"])) {
+    if ($_SESSION["loggedOut"] == true) {
+        $alertHTML =  '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Logged Out Successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alertHTML =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       Log out not successful.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+
 
 $passwordClass = $userClass = 'class="form-control"';
 
@@ -31,14 +50,8 @@ $passwordClass = $userClass = 'class="form-control"';
 $username = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-
-  $username = trim($username);
-  $username = htmlspecialchars($username);
-  $password = trim( $password );
-  $password = htmlspecialchars($password);
+  $username = htmlspecialchars(trim($_POST['username']));
+  $password = htmlspecialchars(trim($_POST['password']));
 
   if ($password == "" || $username == ""){
     $passwordClass = $userClass = 'class="form-control is-invalid"';
@@ -55,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //verify Password
         if (password_verify($password, $row["pwd"])){
           $_SESSION["login"] = true;
-          header("location: secure.php");
+          header("location: Item/DashboardPage.php");
           exit();
         }else{
           $_SESSION["login"] = false;
@@ -64,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
       }
   }  else{
+    echo $mysqli->connect_error;
     $userClass = $passwordClass= 'class="form-control is-invalid"';
   }
 }
@@ -83,31 +97,6 @@ $mysqli->close();
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
       <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="index.php">Login</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" href="StartHere.php">Host an Event</a>
-            </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="Settings.php">Settings</a>
-          </li>
-        </ul>
-        <form class="form-inline">
-          <!--TODO: Add functionality to Search bar -->
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
     </nav>
 
     <div class="container">
@@ -124,7 +113,7 @@ $mysqli->close();
           </form>
 
     </div>
-    </div>
+
     <div class="footer footer-dark fixed-bottom container-fluid">
       <h3> Contact Us </h3>
       <div class="row">

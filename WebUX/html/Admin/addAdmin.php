@@ -1,6 +1,11 @@
 <?php
 session_start();
-
+if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+  //if not login in
+  $_SESSION["secure_Attempt"] = true;
+  header("location: ../index.php");
+  exit();
+}
 require_once '../config.php';
 
 $_SESSION["adminAdd"] = False;
@@ -25,7 +30,7 @@ if ($_POST["newAdminPassword"] == $_POST["newPassword2"]){
   $user[1] = htmlspecialchars(trim($user[1]));
   $user[2] = htmlspecialchars(trim($user[2]));
   $user[3] = htmlspecialchars(trim($user[3]));
-  $user[4]= password_hash(htmlspecialchars(trim($users[4])), PASSWORD_BCRYPT);
+  $user[4]= password_hash(htmlspecialchars(trim($user[4])), PASSWORD_DEFAULT);
   $sql .= '("'.$user[0].'","'. $user[1] .'","'. $user[2] .'","'. $user[3] .'","'. $user[4] .'")';
   $sql .= ";";
   #echo $sql;
