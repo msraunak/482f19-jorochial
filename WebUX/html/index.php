@@ -108,7 +108,7 @@ $mysqli->close();
             <input type="text" <?php echo $userClass; ?> <?php echo 'value="'.$username.'"'?> name="username" id="username" required>
             <label for="password">Password</label>
             <input type="password" <?php echo $passwordClass; ?> name="password" id="password" required>
-            <div class="invalid-feedback">Username or Password incorrect.</div>
+            <div class="invalid-feedback">Username or Password incorrect. <a href="forgotPassword.php">Forgot Your Password?</a></div>
             <input class="btn btn-primary mt-3" type="submit" value="Login">
           </form>
 

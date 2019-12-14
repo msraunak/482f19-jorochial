@@ -31,9 +31,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
           <li class="nav-item ">
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../index.php">Login</a>
-          </li>
+          
           <li class="nav-item active">
             <a class="nav-link" href="addItem.php">Add Item</a>
           </li>

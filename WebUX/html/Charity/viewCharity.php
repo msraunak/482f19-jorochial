@@ -98,9 +98,7 @@ function auctionTable($mysqli, $orgName){
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../index.php">Login</a>
-          </li>
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
