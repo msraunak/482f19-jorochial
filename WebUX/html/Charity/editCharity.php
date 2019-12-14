@@ -1,9 +1,32 @@
 <?php
 // Start the session
-
 session_start();
-?>
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
+if (isset($_GET["id"])) {
+    $sql = "SELECT * FROM Charity WHERE charityId = ". $_GET["id"];
+
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    $charity_edit_link= "editCharity.php?id=".$row["charityId"];
+    $charity_title = $row["orgName"];
+    $charity_repName = $row["repName"];
+    $charity_phoneNum= $row["phoneNum"];
+    $charity_email= $row["email"];
+    $charity_address = $row["address"];
+} else {
+    $charity_title = "The Agatha Foundation";
+    $charity_repName = "Jane Doe";
+    $charity_phoneNum= "213-123-2312";
+    $charity_email= "jane@childrenProject.org";
+    $charity_address = "123 Main Street <br> Baltimore, MD";
+}
+?>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,35 +68,58 @@ session_start();
     </nav>
 
     <div class="container">
-      <h1>Add Charity to the System</h1>
+      <h1>Edit a Charity</h1>
 
-      <form class="needs-validation" action="insertCharity.php" method="post" novalidate>
+      <form class="needs-validation" action="updateCharity.php" method="post" novalidate>
+        <input type="hidden" name ="id" value="<?php echo $_GET["id"];?>">
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
           <label for="OrgName">Organization's Name</label>
-          <input type="text" class="form-control" id="OrgName" name="OrgName" placeholder="My Organization" required>
+          <input type="text" class="form-control" id="OrgName" name="OrgName" value="<?php echo $charity_title ?>" required>
         </div>
         <div class="form-group">
           <label for="RepName">Reprenstative's Name</label>
-          <input type="text" class="form-control" id="RepName" name="RepName" placeholder="John Smith" required>
+          <input type="text" class="form-control" id="RepName" name="RepName" value="<?php echo $charity_repName ?>" required>
         </div>
         <div class="form-group">
           <label for="PhoneNumber">Phone Number</label>
-          <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="+1 555-555-5555" required>
+          <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="<?php echo $charity_phoneNum ?>" required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="joey@example.com" required>
+          <input type="email" class="form-control" id="email" name="email" value="<?php echo $charity_email ?>" required>
         </div>
         <div class="form-group">
           <label for="Address">Address:</label>
-          <textarea class="form-control" id="Address" name="Address" rows="3" required></textarea>
+          <textarea class="form-control" id="Address" name="Address" rows="3" required><?php echo $charity_address ?></textarea>
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary mt-3 mt-md-0" type="submit" name="submit">Submit</button>
+          <button class="btn btn-info mt-3 mt-md-0" type="submit" name="Update">Update</button>
+            <button class="btn btn-danger mt-3 mt-md-0" type="button" name="delete" data-toggle="modal" data-target="#DeleteModal">Delete</button>
         </div>
       </form>
+    </div>
+
+    <div class="modal fade" id="DeleteModal" aria-labelledby="deleteModalLabel" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="DeleteModalTitle">Are you sure you want to delete this charity?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <form class = "m-0" method="POST" action="deleteCharity.php" novalidate>
+            <input type="hidden" class="invisible" name= "charityId" value="<?php echo $_GET["id"]?>">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+            <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close Delete Box" aria-hidden="true" id="buttonClose">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="footer">

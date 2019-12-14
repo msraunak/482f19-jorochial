@@ -37,15 +37,16 @@ else {
   }
 }
 
-function charityRow($charityName, $repName, $phoneNum, $email, $address) {
+function charityRow($charityId, $charityName, $repName, $phoneNum, $email, $address) {
   return '<tr>
       <td>
-        <h5>'.$charityName.'</h5>
+        <h5> <a href="viewCharity.php?id='.$charityId.'">'.$charityName.'</a></h5>
       </td>
       <td>'.$repName.'</td>
       <td>'.$phoneNum.'</td>
       <td>'.$email.'</td>
       <td>'.$address.'</td>
+      <td>  <a href="viewCharity.php?id='.$charityId.'" class="btn btn-secondary">View Details</a></td>
     </tr>';
 }
 
@@ -56,7 +57,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= charityRow($row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
+     $htmlResult .= charityRow($row['charityId'],$row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
   }
   return $htmlResult;
 }
@@ -98,7 +99,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
         </ul>
@@ -114,8 +115,8 @@ function charityTable($pageNum, $tableSize ,$mysqli){
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="../Item/DashboardPage.php">All Items</a>
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link active" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
@@ -132,6 +133,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <th>Phone Number</th>
             <th>Email</th>
             <th>Address</th>
+            <th></th>
           </tr>
           <?php echo charityTable($pageNumber, 10, $mysqli);?>
         <!-- OLD HARD CODE  <tr>

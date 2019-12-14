@@ -52,9 +52,8 @@ function auctionRow($id,$name, $descript, $startTime, $endTime) {
       <td>
         <h5><a href="../Auction/viewAuciton.php?id='.$id.'">'.$name.'</a></h5>
       </td>
-      <td>'.$description.'</td>
-      <td>'.date('l dS \o\f F Y h:i:s A', $startTime);.'</td>
-      <td>'.date('l dS \o\f F Y h:i:s A', $endTime).'</td>
+      <td>'.date('m/d/Y h:i A', $startTime).'</td>
+      <td>'.date('m/d/Y h:i A', $endTime).'</td>
       <td><a class="btn btn-primary"href="../Auction/viewAuction.php?id='.$id.'">View Auction</a></td>
     </tr>';
 }
@@ -128,7 +127,6 @@ function auctionTable($mysqli, $orgName){
       <table class="table table-responsive mb-4">
         <tr>
           <th>Name</th>
-          <th>Description</th>
           <th>Start Time</th>
           <th>End Time</th>
           <th></th>
@@ -136,7 +134,7 @@ function auctionTable($mysqli, $orgName){
         <?php echo auctionTable($mysqli, $charity_title);?>
       </table>
     </div>
-    <div class="footer footer-dark">
+    <div class="footer fixed-bottom footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
