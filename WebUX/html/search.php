@@ -1,5 +1,5 @@
 <?php
-/*
+
 session_start();
 if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   //if not login in
@@ -14,14 +14,15 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
+
 if (isset($_GET["query"])){
 
   $query = htmlspecialchars($_GET["query"]);
 }else{
   $query = htmlspecialchars("Car");
 }
-
-
+echo $query;
+/*
 function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
   return '<div class="col-sm-6 card mb-3">
