@@ -120,7 +120,11 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
-
+      <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
+        <label for="inputLGEx"></label>
+      </form>
 
       <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
       <br><br>
@@ -137,33 +141,7 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
             </tr>
             <?php echo donorTable($pageNumber, 10, $mysqli, $query);?>
 
-            <!-- OLD HARD CODE  <tr>
-            <td>
-              <h5>The Agatha Foundation</h5>
-            </td>
-            <td>The Children's Auction</td>
-            <td>Jane Doe</td>
-            <td>213-123-2312</td>
-            <td>jane@childrenProject.org</td>
-            <td>123 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>Auto Retailers of America</h5></td>
-            <td>Cars for Kids</td>
-            <td>John Doe</td>
-            <td>555-555-5555</td>
-            <td>john@karsForkids.org</td>
-            <td>1234 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>The Royal Family</h5></td>
-            <td>Rendevous Haiti's Auction</td>
-            <td>Jim Doe</td>
-            <td>555-545-5555</td>
-            <td>jim@haiti.org</td>
-            <td>14 Main Street<br> Baltimore, MD </td>
-          </tr>
--->
+
           </table>
         </div>
       </div>

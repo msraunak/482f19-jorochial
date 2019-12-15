@@ -118,7 +118,12 @@ function itemGrid($pageNum, $mysqli, $query){
       </form>
     </div>
   </nav>
-
+  <!-- Large input -->
+  <form class="form-inline md-form form-lg " method="GET" action="search.php">
+    <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing auction" name="query">
+    <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
+    <label for="inputLGEx"></label>
+  </form>
   <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
   <br><br>
 
