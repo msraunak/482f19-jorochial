@@ -40,7 +40,7 @@ if ($mysqli->connect_error) {
           <li class="nav-item ">
             <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-        
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
@@ -58,7 +58,13 @@ if ($mysqli->connect_error) {
         </form>
       </div>
     </nav>
-
+    <nav class="nav nav-pills nav-justified mb-3">
+      <a class="nav-item nav-link " href="../Charity/addCharity.php">Add Charity</a>
+      <a class="nav-item nav-link" href="../Auction/createAuction.php">Create Auction</a>
+      <a class="nav-item nav-link" href="../Donor/addDonor.php"> Add Donor</a>
+      <a class="nav-item nav-link active" href="../AddItem.php">Add an Item</a>
+      <a class="nav-item nav-link" href="#">Results Summary</a>
+    </nav>
     <div class="container">
       <h1>Add Item to Auction</h1>
 
