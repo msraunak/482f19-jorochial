@@ -15,8 +15,7 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_GET["query"])){
-
+if(isset($_GET["query"])){
   $query = htmlspecialchars($_GET["query"]);
 }else{
   $query = htmlspecialchars("Car");
