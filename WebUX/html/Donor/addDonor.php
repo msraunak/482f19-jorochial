@@ -54,7 +54,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
       <a class="nav-item nav-link " href="../Auction/createAuction.php">Create Auction</a>
       <a class="nav-item nav-link active" href="../Donor/addDonor.php"> Add Donor</a>
       <a class="nav-item nav-link text-primary" href="../AddItem.php">Add an Item</a>
-      <a class="nav-item nav-link" href="#">Results Summary</a>
+      <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
     </nav>
     <div class="container">
       <h1>Add Donor to the System</h1>

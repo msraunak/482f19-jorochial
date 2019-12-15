@@ -63,7 +63,7 @@ if ($mysqli->connect_error) {
       <a class="nav-item nav-link" href="../Auction/createAuction.php">Create Auction</a>
       <a class="nav-item nav-link" href="../Donor/addDonor.php"> Add Donor</a>
       <a class="nav-item nav-link active" href="../AddItem.php">Add an Item</a>
-      <a class="nav-item nav-link" href="#">Results Summary</a>
+      <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
     </nav>
     <div class="container">
       <h1>Add Item to Auction</h1>

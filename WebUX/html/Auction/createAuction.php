@@ -72,7 +72,7 @@ while ($row = $result->fetch_assoc()) {
         <a class="nav-item nav-link active" href="../Auction/createAuction.php">Create Auction</a>
         <a class="nav-item nav-link text-primary" href="../Donor/addDonor.php"> Add Donor</a>
         <a class="nav-item nav-link " href="../AddItem.php">Add an Item</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
       <div class="container">
         <h1>Create Auction</h1>

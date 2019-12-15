@@ -116,7 +116,7 @@ function charityTable($pageNum, $tableSize ,$mysqli, $query){
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
         <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link active" href="../Charity/CharitiesDashboard.php">Charities</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
 
       <form class="form-inline md-form form-lg " method="GET" action="searchCharities.php">
