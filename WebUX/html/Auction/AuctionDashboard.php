@@ -60,7 +60,7 @@ function auctionGrid($pageNum, $mysqli){
   $startRow = ($pageNum-1)*4;
   $sql = "SELECT * from Auction order by id LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
-  echo $sql.$mysqli->error;
+  echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
      $htmlResult .= auctionCard($row["id"],$row["auctionName"],$row["description"], $row['beneficary'],strtotime($row["startTime"]),strtotime($row["endTime"]));
   }
