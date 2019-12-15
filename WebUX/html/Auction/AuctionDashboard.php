@@ -7,7 +7,14 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   $_SESSION["secure_Attempt"] = true;
   header("location: ../index.php");
   exit();
+}
 
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
 
 if (isset($_SESSION["auctionNotice"])) {
     if ($_SESSION["auctionNotice"] == true) {
@@ -46,8 +53,8 @@ function auctionCard($id, $title, $description, $charity, $start, $end) {
     <p class="card-text">'.$description.'</p>
     <p class="card-text"><strong>Beneficary:</strong> '.$charity.'</p>
     <div class="row text-primary">
-      <p class="card-text col-lg-6">Start Date and Time: '.date("jS \of F Y h:i:s A", $start).'</p>
-      <p class="card-text col-lg-6">End Date and Time: '.date("jS \of F Y h:i:s A", $end).'</p>
+      <p class="card-text col-lg-6">Start Date and Time: '.date("l jS \of F Y h:i:s A",strtotime( $start)).'</p>
+      <p class="card-text col-lg-6">End Date and Time: '.date("l jS \of F Y h:i:s A",strtotime($end)).'</p>
       </div>
       <a href="viewAuction.php?id='.$id.'" class="btn btn-secondary stretched-link mt-2">More Details</a>
     </div> </div>';
@@ -62,7 +69,7 @@ function auctionGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= auctionCard($row["id"],$row["auctionName"],$row["description"], $row['beneficary'],strtotime($row["startTime"]),strtotime($row["endTime"]));
+     $htmlResult .= auctionCard($row["id"],$row["auctionName"],$row["description"], $row['beneficary'],$row["startTime"],$row["endTime"]);
   }
   return $htmlResult;
 }
