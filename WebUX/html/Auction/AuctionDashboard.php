@@ -67,7 +67,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
 
       <!-- Large input -->
       <form class="md-form form-lg"  method="get" action="../search.php">
-        <input type="text" id="inputLGEx" class="form-control form-control-lg" name="query" placeholder="Search for an existing item at auction">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query name="query" placeholder="Search for an existing item at auction">
         <label for="inputLGEx"></label>
       </form>
       <div class="content">

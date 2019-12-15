@@ -129,7 +129,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
 
       <!-- Large input -->
       <form class="md-form form-lg" method="get" action="searchCharities.php">
-        <input type="text" id="inputLGEx" class="form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
         <label for="inputLGEx"></label>
       </form>
       <div class="content">

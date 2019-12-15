@@ -131,7 +131,7 @@ function donorTable($pageNum,$tableSize ,$mysqli){
 
       <!-- Large input -->
       <form class="md-form form-lg" method="get" action="searchDonors.php">
-        <input type="text" id="inputLGEx" class="form-control form-control-lg" name="query" placeholder="Search for an existing Donor">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Donor">
         <label for="inputLGEx"></label>
       </form>
 
