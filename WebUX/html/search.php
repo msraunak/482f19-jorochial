@@ -60,7 +60,7 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
 function itemGrid($pageNum, $mysqli){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
-  $sql = "SELECT * from Item where itemName like '% $query %' or description like '% $query %' order by id LIMIT $startRow , 4";
+  $sql = "SELECT * from Item where (itemName like '%$query%' or description like '%$query%') LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
