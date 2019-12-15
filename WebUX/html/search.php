@@ -7,7 +7,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   header("location: ../index.php");
   exit();
 }
-require_once '../config.php';
+require_once 'config.php';
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Check connection
