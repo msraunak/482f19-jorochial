@@ -52,25 +52,25 @@ public class CurrentActivity extends AppCompatActivity{
 
 
 
-    protected void itemClick(View view) {
+    public void itemClick(View view) {
         Intent myIntent = new Intent(this,
                 ItemActivity.class);
         this.startActivity(myIntent);
     }
 
-    protected void goToCurrent(View view) {
+    public void goToCurrent(View view) {
         Intent myIntent = new Intent(this,
                 CurrentActivity.class);
         this.startActivity(myIntent);
     }
 
-    protected void goToPast(View view) {
+    public void goToPast(View view) {
         Intent myIntent = new Intent(this,
                 PastActivity.class);
         this.startActivity(myIntent);
     }
 
-    protected void goToSearch(View view)
+    public void goToSearch(View view)
     {
 
         Intent myIntent = new Intent( this,
