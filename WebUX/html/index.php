@@ -1,7 +1,89 @@
 <?php
-// Start the session
+
+require_once 'config.php';
+
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
+
 session_start();
+//check if already logged in
+ if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
+     header("location: Item/DashboardPage.php");
+     exit();
+}
+
+//check if redirected from secure
+$alertHTML = "";
+if(isset($_SESSION["secure_Attempt"]) && $_SESSION["secure_Attempt"] === true){
+    $_SESSION["secure_Attempt"]= "false";
+    $alertHTML = "<div class=\"alert alert-danger alert-dismissible fade show mt-3\" role=\"alert\">Please login to access the site.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    <span aria-hidden=\"true\">&times;</span>
+  </button></div>";
+
+}
+
+if (isset($_SESSION["loggedOut"])) {
+    if ($_SESSION["loggedOut"] == true) {
+        $alertHTML =  '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Logged Out Successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["itemNotice"] == False){
+        $alertHTML =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       Log out not successful.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+
+
+$passwordClass = $userClass = 'class="form-control"';
+
+//retrieve user entered information from form
+$username = $password = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $username = htmlspecialchars(trim($_POST['username']));
+  $password = htmlspecialchars(trim($_POST['password']));
+
+  if ($password == "" || $username == ""){
+    $passwordClass = $userClass = 'class="form-control is-invalid"';
+    exit();
+  }
+
+  //get information from Database
+  $sql = 'SELECT * FROM admin WHERE uname = "' . $username . '";';
+  $result = $mysqli->query($sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      if ($username == $row["uname"]){
+        //verify Password
+        if (password_verify($password, $row["pwd"])){
+          $_SESSION["login"] = true;
+          header("location: Item/DashboardPage.php");
+          exit();
+        }else{
+          $_SESSION["login"] = false;
+          $passwordClass = $userClass = 'class="form-control is-invalid"';
+        }
+      }
+      }
+  }  else{
+    echo $mysqli->connect_error;
+    $userClass = $passwordClass= 'class="form-control is-invalid"';
+  }
+}
+$mysqli->close();
 ?>
+
 
 <html>
   <head>
@@ -15,58 +97,23 @@ session_start();
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
       <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="index.php">Login</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" href="StartHere.php">Host an Event</a>
-            </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="Settings.php">Settings</a>
-          </li>
-        </ul>
-        <form class="form-inline">
-          <!--TODO: Add functionality to Search bar -->
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
     </nav>
 
     <div class="container">
       <h1 class="text-center">Login to Auction Manager</h1>
+          <?php echo $alertHTML ?>
 
-      <form class="needs-validation" novalidate>
-        <!--TODO: Add functionality to this form -->
-        <div class="form-group text-dark">
-          <div class="form-row">
-            <label for="username" class="col-md-4 text-right pr-4">Admin Username:</label>
-            <input class="form-control col-md-8" type="text" name="username" placeholder="yourExampleUsername" required>
-          </div>
-          <div class="form-row mt-2">
-            <label class="col-md-4 text-right pr-4" for="password">Password:</label>
-            <div class="col-md-8 p-0">
-              <input class="form-control" type="password" name="password" required>
-              <small><a class="text-secondary" href="forgotPassword.php">Forgot Password?</a></small>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group text-right">
-          <button class="btn btn-primary mt-3" type="submit" name="Login">Login</button>
-      </form>
+          <form class="needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" novalidate>
+            <label for="username">Username:</label>
+            <input type="text" <?php echo $userClass; ?> <?php echo 'value="'.$username.'"'?> name="username" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" <?php echo $passwordClass; ?> name="password" id="password" required>
+            <div class="invalid-feedback">Username or Password incorrect. <a href="forgotPassword.php">Forgot Your Password?</a></div>
+            <input class="btn btn-primary mt-3" type="submit" value="Login">
+          </form>
 
     </div>
-    </div>
+
     <div class="footer footer-dark fixed-bottom container-fluid">
       <h3> Contact Us </h3>
       <div class="row">

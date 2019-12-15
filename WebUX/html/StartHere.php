@@ -2,6 +2,12 @@
 <?php
 // Start the session
 session_start();
+if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+  //if not login in
+  $_SESSION["secure_Attempt"] = true;
+  header("location: index.php");
+  exit();
+}
 ?>
 
 <html lang="en" dir="ltr">
@@ -27,29 +33,29 @@ session_start();
           <li class="nav-item ">
             <a class="nav-link" href="Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="index.php">Login</a>
-          </li>
             <li class="nav-item">
               <a class="nav-link" href="StartHere.php">Host an Event</a>
             </li>
           <li class="nav-item active">
             <a class="nav-link" href="Settings.php">Settings</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+          </li>
         </ul>
-        <form class="form-inline">
+        <form class="form-inline" method="get" action="search.php">
           <!--TODO: Add functionality to Search bar -->
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
-        <a class="nav-item nav-link active" href="AddItem.php">Add an Item</a>
-        <a class="nav-item nav-link disabled" href="Auction/createAuction.php">Create Auction</a>
+        <a class="nav-item nav-link" href="Charity/addCharity.php">Add Charity</a>
+        <a class="nav-item nav-link" href="Auction/createAuction.php">Create Auction</a>
         <a class="nav-item nav-link" href="Donor/addDonor.php"> Add Donor</a>
-        <a class="nav-item nav-link disabled" href="Charity/addCharity.php">Add Charity</a>
+        <a class="nav-item nav-link " href="AddItem.php">Add an Item</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 

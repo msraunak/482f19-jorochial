@@ -15,23 +15,12 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_SESSION["itemNotice"])) {
-    if ($_SESSION["itemNotice"] == true) {
-        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    } else {#($_SESSION["itemNotice"] == False){
-        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    }
+if(isset($_GET["query"])){
+  $query = htmlspecialchars($_GET["query"]);
+}else{
+  $query = htmlspecialchars("Car");
 }
+
 if(!isset($_GET["page"])){
   $pageNumber = 1;
 }
@@ -43,42 +32,36 @@ else {
   }
 }
 
-function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
+function donorRow($donorId,$orgName, $repName, $phoneNum, $email, $address) {
   #TODO: Change hard coded picture to link
-  return '<div class="col-sm-6 card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">'.$title.'</h5>
-          <p class="card-text">'.$description.'</p>
-          <div class="row text-primary">
-            <p class="card-text col-lg-4">Current Bid: $'.$c_bid.'</p>
-            <p class="card-text col-lg-4">Minimum Increment: $'.$min_inc.'</p>
-            <p class="card=text col-lg-4">Starting Bid: $'.$start_bid.'</p>
-          </div>
-          <p class="card-text"><small class="text-muted">Donated by: '.$donor.'</small></p>
-          <p class="card-text"><small class="text-muted">Auction: '.$auction.'</small></p>
-          <a href="viewItem.php?id='.$id.'" class="btn btn-secondary stretched-link">View Details</a>
-        </div>
-      </div>
-    </div>
-  </div>';
+  return '<tr>
+      <td>
+        <h5><a href="viewDonor.php?id='.$donorId.'">'.$orgName.'</a></h5>
+      </td>
+      <td>'.$repName.'</td>
+      <td>'.$phoneNum.'</td>
+      <td>'.$email.'</td>
+      <td>'.$address.'</td>
+      <td><a class="btn btn-primary"href="viewDonor.php?id='.$donorId.'">View Details</a></td>
+    </tr>';
 }
 
-function itemGrid($pageNum, $mysqli){
+function donorTable($pageNum,$tableSize ,$mysqli, $query){
   $htmlResult = "";
-  $startRow = ($pageNum-1)*4;
-  $sql = "SELECT * from Item order by id LIMIT $startRow , 4";
+  $startRow = ($pageNum-1)*$tableSize;
+  $sql = "SELECT * from Donor where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
+  if ($result->num_rows <= 0) {
+      $sql = "SELECT * from Donor where (repName like '%$query%') LIMIT $startRow , 4";
+      $result = $mysqli->query($sql);
+  }
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
+     $htmlResult .= donorRow($row['donorId'],$row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
   }
   return $htmlResult;
 }
+
 
 ?>
 
@@ -100,7 +83,7 @@ function itemGrid($pageNum, $mysqli){
   <body>
 
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
+      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -108,7 +91,7 @@ function itemGrid($pageNum, $mysqli){
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
 
             <li class="nav-item">
@@ -128,40 +111,52 @@ function itemGrid($pageNum, $mysqli){
         </form>
       </div>
     </nav>
-    <?php echo $alert ?>
+<?php echo $alert;?>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
-        <a class="nav-item nav-link active" href="DashboardPage.php">All Items</a>
+        <a class="nav-item nav-link" href="../Item/DashboardPage.php">All Items</a>
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
+      <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
+        <label for="inputLGEx"></label>
+      </form>
 
-        <!-- Large input -->
+      <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
+      <br><br>
+      <div class="content row justify-content-center">
+        <div class="col-auto">
+          <table class="table table-responsive">
+            <tr>
+              <th>Name</th>
+              <th>Rep Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th></th>
+            </tr>
+            <?php echo donorTable($pageNumber, 10, $mysqli, $query);?>
 
-        <form class="form-inline md-form form-lg " method="GET" action="../search.php">
-          <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing item at auction" name="query">
-          <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
-          <label for="inputLGEx"></label>
-        </form>
 
-      <div class="row justify-content-around">
-        <?php echo itemGrid($pageNumber, $mysqli);?>
+          </table>
+        </div>
       </div>
     </div>
-    <!--TODO: make this dynamicly active-->
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=1">1</a></li>
-        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=2">2</a></li>
-        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=3">3</a></li>
-        <li class="page-item"><a class="page-link" href="DashboardPage.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber+1;?>">Next</a></li>
       </ul>
     </nav>
 
-    <div class="footer footer-dark container-fluid">
+    <div class="footer container-fluid">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>

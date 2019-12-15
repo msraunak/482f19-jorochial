@@ -1,19 +1,81 @@
 <?php
 // Start the session
 session_start();
-?>
+if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+  //if not login in
+  $_SESSION["secure_Attempt"] = true;
+  header("location: ../index.php");
+  exit();
+}
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
-<?php
-$item_title = "Chessboard";
-$item_auction = "Rendevous Haiti";
-$item_description = "This chessboard was owned by King George back in 1945, seeing use by over three generations of royal family. It was sold to the French after the Battle of 1765 and was gifted to the King after the former owner when in against a Sicilian when death was on the line.";
-$item_starting_bid= 1000.00;
-$item_starting_bid= 500.00;
-$item_minimum_inc = 100.02;
-$item_donor = "The Royal Family";
-#also Picture file ... url for now
-$item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
- ?>
+if (isset($_GET["id"])) {
+    $sql = "SELECT * FROM Charity WHERE charityId = ". $_GET["id"];
+
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    $charity_edit_link= "editCharity.php?id=".$row["charityId"];
+    $charity_title = $row["orgName"];
+
+    $charity_repName = $row["repName"];
+    $charity_phoneNum= $row["phoneNumber"];
+    $charity_email= $row["email"];
+    $charity_address = $row["address"];
+} else {
+    $charity_title = "Cars for Kids";
+    $charity_repName = "DEFAULT NAME";
+    $charity_phoneNum= "213-123-2312";
+    $charity_email= "jane@cars4Kids.org";
+    $charity_address = "123 Main Street <br> Baltimore, MD";
+}
+
+if (isset($_SESSION["charityNotice"])) {
+    if ($_SESSION["charityNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["charityMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["auctionNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["charityMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+
+#Donaton table
+function auctionRow($id,$name, $descript, $startTime, $endTime) {
+  return '<tr>
+      <td>
+        <h5><a href="../Auction/viewAuciton.php?id='.$id.'">'.$name.'</a></h5>
+      </td>
+      <td>'.date('m/d/Y h:i A', $startTime).'</td>
+      <td>'.date('m/d/Y h:i A', $endTime).'</td>
+      <td><a class="btn btn-primary"href="../Auction/viewAuction.php?id='.$id.'">View Auction</a></td>
+    </tr>';
+}
+
+function auctionTable($mysqli, $orgName){
+  $htmlResult = "";
+  $sql = 'SELECT *  FROM Auction WHERE beneficiary LIKE "'.$orgName.'"';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= auctionRow($row["id"],$row["auctionName"],$row["description"],strtotime($row["startTime"]),strtotime($row["endTime"]));
+  }
+  return $htmlResult;
+}
+
+?>
 
 <html>
   <head>
@@ -22,11 +84,11 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../js/formValidation.js"></script>
+    <script type="text/javascript" src="../../js/formValidation.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
-      <a class="navbar-brand" href="../index.php">AuctionForHaiti</a>
+      <a class="navbar-brand" href="index.php">AuctionForHaiti</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-h5="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -36,53 +98,48 @@ $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../index.php">Login</a>
-          </li>
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
           <li class="nav-item active">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+          </li>
         </ul>
-        <form class="form-inline">
+        <form class="form-inline" method="get" action="../search.php">
           <!--TODO: Add functionality to Search bar -->
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-h5="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
-
+<?php echo $alert; ?>
     <div class="container">
-      <div class="row">
-        <div class="col">
-          <img <?php echo "src=\"".$item_picture."\""?> class="img-fluid" alt="...">
-        </div>
 
-        <div class="col">
-          <h1><?php echo $item_title;?></h1>
-          <div class="row">
-            <h5>Auction:  <?php echo $item_auction;?> </h5>
-          </div>
-          <div class="row">
-            <p><?php echo $item_description;?></p>
-          </div>
-          <div class="row">
-            <h5 class="text-primary">Current Bid: <?php echo "$".$item_current_bid;?></h5>
-          </div>
-          <div class="row">
-            <h5>Starting Bid: <?php echo "$".$item_starting_bid;?></h5>
-          </div>
-          <div class="row">
-            <h5>Minimum Bid Increment: <?php echo "$".$item_minimum_inc;?></h5>
-          </div>
-          <div class="row">
-            <h5>Donor: <?php echo $item_donor;?></h5>
-          </div>
-          <a class="btn btn-primary" href="../Item/editItem.php">Edit Item</a>
+        <h1 class="text-center"><?php echo $charity_title;?></h1>
+        <div class="row">
+
         </div>
-      </div>
+        <div class="col pl-0">
+            <h3>Contact Information</h3>
+            <h5><?php echo $charity_repName;?><br><?php echo $charity_phoneNum;?><br><?php echo $charity_email;?><br><?php echo $charity_address;?></h5>
+        </div>
+        <a class="btn btn-primary" href="<?php echo $charity_edit_link?>">Edit Charity's Details</a>
+
+
+      <h3 class="mt-3">Related Auctions:</h3>
+      <table class="table table-responsive mb-4">
+        <tr>
+          <th>Name</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th></th>
+        </tr>
+        <?php echo auctionTable($mysqli, $charity_title);?>
+      </table>
     </div>
     <div class="footer fixed-bottom footer-dark">
       <h3> Contact Us </h3>

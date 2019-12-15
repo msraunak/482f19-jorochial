@@ -19,17 +19,17 @@
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../index.php">Login</a>
+          <li class="nav-item">
+            <a class="nav-link" href="../StartHere.php">Host an Event</a>
           </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../StartHere.php">Host an Event</a>
-            </li>
           <li class="nav-item active">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+          </li>
         </ul>
-        <form class="form-inline">
+        <form class="form-inline" method="get" action="../search.php">
           <!--TODO: Add functionality to Search bar -->
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-h5="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
@@ -39,10 +39,10 @@
 
     <div class="container">
       <h1><?= $auction_title ?></h1>
-        <p><?= $auction_description;?></p>
-        <p class="text-primary">Start Date and Time: <?= $auction_start_date?></p>
-        <p class="text-primary">End Date and Time: <?= $auction_end_date?></p>
-        <h6>Beneficiary: <?=$auction_charity?></h6>
+      <p><?= $auction_description;?></p>
+      <p class="text-primary">Start Date and Time: <?= $auction_start_date?></p>
+      <p class="text-primary">End Date and Time: <?= $auction_end_date?></p>
+      <h6>Beneficiary: <?=$auction_charity?></h6>
       <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
     </div>
     <div class="container-fluid mt-3">

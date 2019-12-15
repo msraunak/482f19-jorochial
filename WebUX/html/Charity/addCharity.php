@@ -1,6 +1,8 @@
 <?php
 // Start the session
+
 session_start();
+
 if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   //if not login in
   $_SESSION["secure_Attempt"] = true;
@@ -17,7 +19,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../../js/formValidation.js"></script>
-    <title>Add Donor</title>
+    <title>Add Charity</title>
   </head>
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
@@ -32,10 +34,10 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
           <li class="nav-item">
@@ -50,16 +52,16 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
       </div>
     </nav>
     <nav class="nav nav-pills nav-justified mb-3">
-      <a class="nav-item nav-link " href="../Charity/addCharity.php">Add Charity</a>
-      <a class="nav-item nav-link " href="../Auction/createAuction.php">Create Auction</a>
-      <a class="nav-item nav-link active" href="../Donor/addDonor.php"> Add Donor</a>
-      <a class="nav-item nav-link text-primary" href="../AddItem.php">Add an Item</a>
+      <a class="nav-item nav-link active" href="../Charity/addCharity.php">Add Charity</a>
+      <a class="nav-item nav-link text-primary" href="../Auction/createAuction.php">Create Auction</a>
+      <a class="nav-item nav-link" href="../Donor/addDonor.php"> Add Donor</a>
+      <a class="nav-item nav-link " href="../AddItem.php">Add an Item</a>
       <a class="nav-item nav-link" href="#">Results Summary</a>
     </nav>
     <div class="container">
-      <h1>Add Donor to the System</h1>
+      <h1>Add Charity to the System</h1>
 
-      <form class="needs-validation" action="insertDonor.php" method="post" novalidate>
+      <form class="needs-validation" action="insertCharity.php" method="post" novalidate>
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
           <label for="OrgName">Organization's Name</label>
@@ -88,7 +90,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
       </form>
     </div>
 
-    <div class="footer">
+    <div class="footer footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
