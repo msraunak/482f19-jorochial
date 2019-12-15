@@ -15,23 +15,6 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_SESSION["charityNotice"])) {
-    if ($_SESSION["charityNotice"] == true) {
-        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["charityMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    } else {#($_SESSION["itemNotice"] == False){
-        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["charityMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    }
-}
 if(isset($_GET["query"])){
   $query = htmlspecialchars($_GET["query"]);
 }else{
@@ -66,7 +49,7 @@ function charityTable($pageNum, $tableSize ,$mysqli, $query){
   $startRow = ($pageNum-1)*$tableSize;
   $sql = "SELECT * from Charity where orgName like '%$query%' LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
-  if ($result->num_rows > 0) {
+  if ($result->num_rows <= 0) {
       $sql = "SELECT * from Charity where repName like '%$query%' LIMIT $startRow , 4";
       $result = $mysqli->query($sql);
   }

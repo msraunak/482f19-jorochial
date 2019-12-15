@@ -63,7 +63,7 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
   $startRow = ($pageNum-1)*$tableSize;
   $sql = "SELECT * from Donor where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
-  if ($result->num_rows > 0) {
+  if ($result->num_rows <= 0) {
       $sql = "SELECT * from Donor where (repName like '%$query%') LIMIT $startRow , 4";
       $result = $mysqli->query($sql);
   }

@@ -33,7 +33,7 @@ else {
 }
 
 function auctionCard($id, $title, $description, $charity, $start, $end) {
-  #TODO: Change hard coded picture to link
+
   return '<div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">'.$title.'</h5>
