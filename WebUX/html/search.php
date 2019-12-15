@@ -1,5 +1,5 @@
 <?php
-
+/*
 session_start();
 if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   //if not login in
@@ -59,8 +59,9 @@ function itemGrid($pageNum, $mysqli){
   return $htmlResult;
 }
 
-
+*/
 ?>
+
 <html lang="en" dir="ltr">
 
 <head>
