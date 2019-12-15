@@ -21,7 +21,17 @@ if(isset($_GET["query"])){
   $query = htmlspecialchars("Car");
 }
 
-/*
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
 function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
   return '<div class="col-sm-6 card mb-3">
@@ -50,7 +60,7 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
 function itemGrid($pageNum, $mysqli){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
-  $sql = "SELECT * from Item where itemName like '%$query%' or description like '%$query%' order by id LIMIT $startRow , 4";
+  $sql = "SELECT * from Item where itemName like '% $query %' or description like '% $query %' order by id LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
@@ -59,7 +69,7 @@ function itemGrid($pageNum, $mysqli){
   return $htmlResult;
 }
 
-*/
+
 ?>
 
 <html lang="en" dir="ltr">
@@ -105,7 +115,7 @@ function itemGrid($pageNum, $mysqli){
     </div>
   </nav>
 
-  <h2 class="text-center">Your query of <?= $query ?> returned:</h2>
+  <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
   <br><br>
 
   <div class="row justify-content-around">
