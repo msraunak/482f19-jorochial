@@ -14,7 +14,7 @@ $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
-if isset($_GET["query"]){
+if (isset($_GET["query"])){
 
   $query = htmlspecialchars($_GET["query"]);
 }else{
