@@ -130,8 +130,9 @@ function donorTable($pageNum,$tableSize ,$mysqli){
       </nav>
 
       <!-- Large input -->
-      <form class="md-form form-lg" method="get" action="searchDonors.php">
-        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Donor">
+      <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
         <label for="inputLGEx"></label>
       </form>
 
