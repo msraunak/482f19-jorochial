@@ -56,11 +56,15 @@ function charityRow($charityId, $charityName, $repName, $phoneNum, $email, $addr
     </tr>';
 }
 
-function charityTable($pageNum, $tableSize ,$mysqli){
+function charityTable($pageNum, $tableSize ,$mysqli, $query){
   $htmlResult = "";
   $startRow = ($pageNum-1)*$tableSize;
-  $sql = "SELECT * from Charity order by charityId LIMIT $startRow , $tableSize";
+  $sql = "SELECT * from Charity where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
+  if ($result->num_rows > 0) {
+      $sql = "SELECT * from Charity where (repName like '%$query%') LIMIT $startRow , 4";
+      $result = $mysqli->query($sql);
+  }
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
      $htmlResult .= charityRow($row['charityId'],$row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
@@ -132,6 +136,9 @@ function charityTable($pageNum, $tableSize ,$mysqli){
         <input type="text" id="inputLGEx" class="form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
         <label for="inputLGEx"></label>
       </form>
+
+      <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
+      <br><br>
       <div class="content">
         <table class="container table table-responsive">
           <tr>
@@ -142,43 +149,16 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <th>Address</th>
             <th></th>
           </tr>
-          <?php echo charityTable($pageNumber, 10, $mysqli);?>
-        <!-- OLD HARD CODE  <tr>
-            <td>
-              <h5>The Agatha Foundation</h5>
-            </td>
-            <td>The Children's Auction</td>
-            <td>Jane Doe</td>
-            <td>213-123-2312</td>
-            <td>jane@childrenProject.org</td>
-            <td>123 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>Auto Retailers of America</h5></td>
-            <td>Cars for Kids</td>
-            <td>John Doe</td>
-            <td>555-555-5555</td>
-            <td>john@karsForkids.org</td>
-            <td>1234 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>The Royal Family</h5></td>
-            <td>Rendevous Haiti's Auction</td>
-            <td>Jim Doe</td>
-            <td>555-545-5555</td>
-            <td>jim@haiti.org</td>
-            <td>14 Main Street<br> Baltimore, MD </td>
-          </tr>
--->
+          <?php echo charityTable($pageNumber, 10, $mysqli, $query);?>
         </table>
       </div>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=1">1</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=2">2</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=3">3</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber-1;?>">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?query=<?= $query?>&page=1">1</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?query=<?= $query?>&page=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?query=<?= $query?>&page=3">3</a></li>
+          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber+1;?>">Next</a></li>
         </ul>
       </nav>
 
