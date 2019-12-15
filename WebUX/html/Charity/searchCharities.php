@@ -64,10 +64,10 @@ function charityRow($charityId, $charityName, $repName, $phoneNum, $email, $addr
 function charityTable($pageNum, $tableSize ,$mysqli, $query){
   $htmlResult = "";
   $startRow = ($pageNum-1)*$tableSize;
-  $sql = "SELECT * from Charity where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
+  $sql = "SELECT * from Charity where orgName like '%$query%' LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
-      $sql = "SELECT * from Charity where (repName like '%$query%') LIMIT $startRow , 4";
+      $sql = "SELECT * from Charity where repName like '%$query%' LIMIT $startRow , 4";
       $result = $mysqli->query($sql);
   }
   echo $mysqli->error;
