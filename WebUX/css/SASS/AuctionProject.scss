@@ -117,14 +117,3 @@ $jumbotron-bg: theme-color("dark");
   border-color: theme-color("light-primary");
 
 }
-.footer-dark{
-  //flex-shrink: none;
-  background-color:theme-color("dark");
-  color: theme-color("light-primary") !important;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 5rem;
-  line-height: 60px; /* Vertically center the text there */
-}
