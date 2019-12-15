@@ -90,7 +90,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
       </form>
     </div>
 
-    <div class="footer">
+    <div class="footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>
