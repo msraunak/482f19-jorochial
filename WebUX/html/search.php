@@ -20,7 +20,7 @@ if(isset($_GET["query"])){
 }else{
   $query = htmlspecialchars("Car");
 }
-echo $query;
+
 /*
 function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
@@ -105,7 +105,7 @@ function itemGrid($pageNum, $mysqli){
     </div>
   </nav>
 
-  <h2 class="text-center">Your query of ________ returned:</h2>
+  <h2 class="text-center">Your query of <?= $query ?> returned:</h2>
   <br><br>
 
   <div class="row justify-content-around">
