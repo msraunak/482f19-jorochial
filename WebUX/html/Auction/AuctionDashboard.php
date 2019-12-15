@@ -133,7 +133,7 @@ function auctionGrid($pageNum, $mysqli){
       </nav>
 
       <!-- Large input -->
-      <form class="form-inline md-form form-lg " method="GET" action="../searchAuctions.php">
+      <form class="form-inline md-form form-lg " method="GET" action="searchAuctions.php">
         <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing auction" name="query">
         <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
         <label for="inputLGEx"></label>
