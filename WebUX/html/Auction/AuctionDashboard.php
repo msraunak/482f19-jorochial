@@ -41,8 +41,7 @@ else {
 
 function auctionCard($id, $title, $description, $charity, $start, $end) {
   #TODO: Change hard coded picture to link
-  return
-'<div class="card mb-3">
+  return '<div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">'.$title.'</h5>
     <p class="card-text">'.$description.'</p>
@@ -52,9 +51,7 @@ function auctionCard($id, $title, $description, $charity, $start, $end) {
       <p class="card-text col-lg-6">End Date and Time: '.date("l jS \of F Y h:i:s A", $end).'</p>
       </div>
       <a href="viewAuction.php?id='.$id.'" class="btn btn-secondary stretched-link mt-2">More Details</a>
-
-  </div>
-</div>';
+    </div> </div>';
 }
 
 
@@ -136,7 +133,7 @@ function auctionGrid($pageNum, $mysqli){
         <label for="inputLGEx"></label>
       </form>
       <div class="content">
-        <?php echo auctionGrid($pageNumber, $mysqli) ?>
+        <?php echo auctionGrid($pageNumber, $mysqli);?>
     </div>
   </div>
     <nav aria-label="Page navigation example">
