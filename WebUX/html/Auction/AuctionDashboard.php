@@ -46,8 +46,8 @@ function auctionCard($id, $title, $description, $charity, $start, $end) {
     <p class="card-text">'.$description.'</p>
     <p class="card-text"><strong>Beneficary:</strong> '.$charity.'</p>
     <div class="row text-primary">
-      <p class="card-text col-lg-6">Start Date and Time: '.date("l, jS \of F Y h:i:s A", $start).'</p>
-      <p class="card-text col-lg-6">End Date and Time: '.date("l, jS \of F Y h:i:s A", $end).'</p>
+      <p class="card-text col-lg-6">Start Date and Time: '.date("l\, jS \of F Y h:i:s A", $start).'</p>
+      <p class="card-text col-lg-6">End Date and Time: '.date("l\, jS \of F Y h:i:s A", $end).'</p>
       </div>
       <a href="viewAuction.php?id='.$id.'" class="btn btn-secondary stretched-link mt-2">More Details</a>
     </div> </div>';
