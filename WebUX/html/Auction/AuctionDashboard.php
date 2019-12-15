@@ -8,6 +8,70 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   header("location: ../index.php");
   exit();
 }
+
+
+if (isset($_SESSION["auctionNotice"])) {
+    if ($_SESSION["auctionNotice"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["auctionMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    } else {#($_SESSION["auctionNotice"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["auctionMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+
+if(!isset($_GET["page"])){
+  $pageNumber = 1;
+}
+else {
+  $pageNumber = $_GET["page"];
+  if($pageNumber < 1){
+    $pageNumber = 1;
+    $_GET["page"] = 1;
+  }
+}
+
+function auctionCard($id, $title, $description, $charity, $start, $end) {
+  #TODO: Change hard coded picture to link
+  return
+'<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">'.$title.'</h5>
+    <p class="card-text">'.$description.'</p>
+    <p class="card-text"><strong>Beneficary:</strong> '.$charity.'</p>
+    <div class="row text-primary">
+      <p class="card-text col-lg-6">Start Date and Time: '.date("l jS \of F Y h:i:s A", $start).'</p>
+      <p class="card-text col-lg-6">End Date and Time: '.date("l jS \of F Y h:i:s A", $end).'</p>
+      </div>
+      <a href="viewAuction.php?id='.$id.'" class="btn btn-secondary stretched-link mt-2">More Details</a>
+
+  </div>
+</div>';
+}
+
+
+
+function auctionGrid($pageNum, $mysqli){
+  $htmlResult = "";
+  $startRow = ($pageNum-1)*4;
+  $sql = "SELECT * from Auction order by id LIMIT $startRow , 4";
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= auctionCard($row["id"],$row["auctionName"],$row["description"], $row['beneficary'],strtotime($row["startTime"]),strtotime($row["endTime"]));
+  }
+  return $htmlResult;
+}
+
+
 ?>
 
 <html lang="en" dir="ltr">
@@ -66,85 +130,24 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
       </nav>
 
       <!-- Large input -->
-      <form class="md-form form-lg"  method="get" action="../search.php">
-        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query name="query" placeholder="Search for an existing item at auction">
+      <form class="form-inline md-form form-lg " method="GET" action="../searchAuctions.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing auction" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
         <label for="inputLGEx"></label>
       </form>
       <div class="content">
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">The Children's Auction</h5>
-          <p class="card-text">This Auction is about xyz...</p>
-          <p class="card-text"><strong>Beneficary:</strong> The Children's Project</p>
-          <div class="row text-primary">
-            <p class="card-text col-lg-6">Start Date and Time: 11/23/2019 6:00:00 PM</p>
-            <p class="card-text col-lg-6">End Date and Time: 11/23/2019 11:00:00 PM</p>
-          </div>
-            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
-          </div>
-        </div>
-
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Cars for Kids</h5>
-          <p class="card-text">This Auction is about xyz...</p>
-          <p class="card-text"><strong><strong>Beneficary:</strong></strong> Kars for Kids</p>
-          <div class="row text-primary">
-            <p class="card-text col-lg-6">Start Date and Time: 12/12/2019 6:00:00 PM</p>
-            <p class="card-text col-lg-6">End Date and Time: 12/12/2019 11:00:00 PM</p>
-          </div>
-            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
-        </div>
-      </div>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Rendevous Haiti's Auction</h5>
-          <p class="card-text">This Auction is about xyz...</p>
-          <p class="card-text"><strong>Beneficary:</strong> Rendevous Haiti</p>
-          <div class="row text-primary">
-            <p class="card-text col-lg-6">Start Date and Time: 11/09/2019 6:00:00 PM</p>
-            <p class="card-text col-lg-6">End Date and Time: 11/09/2019 11:00:00 PM</p>
-            </div>
-            <a href="viewAuction.php" class="btn btn-secondary stretched-link mt-2">More Details</a>
-
-        </div>
-      </div>
+        <?php echo auctionGrid($pageNumber, $mysqli) ?>
     </div>
   </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="AuctionDashboard.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="AuctionDashboard.php?page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="AuctionDashboard.php?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="AuctionDashboard.php?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="AuctionDashboard.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
       </ul>
     </nav>
-
-    <!--
-      $servername = "cs-database.cs.loyola.edu";
-      $username = "jdbennett";
-      $password = "1670682";
-      $dbName = "jorochial";
-      $mysqli = new mysqli($servername, $username, $password, $dbName);
-
-      #Connects
-      if($mysqli->connect_error) {
-          die("Database connection failed: " . $mysqli->connect_error);
-      }
-
-      $sql1 = "select * from testItems";
-      $result = $mysqli->query($sql1);
-      echo "<p>";
-
-      while($row = $result->fetch_assoc()){
-        echo "id: " . $row["id"]. " - name: " . $row["name"]. " - description: " . $row["description"]. " - date: " . $row["date"]. "<br><br>";
-      }
-
-      echo "</p>";
-
-      $mysqli->close();
-      -->
 
     <div class="footer container-fluid">
       <h3> Contact Us </h3>
