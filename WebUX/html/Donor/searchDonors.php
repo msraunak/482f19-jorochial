@@ -15,23 +15,24 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_SESSION["charityNotice"])) {
-    if ($_SESSION["charityNotice"] == true) {
+if (isset($_SESSION["donorNotice"])) {
+    if ($_SESSION["donorNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["charityMessage"].'
+        '.$_SESSION["donorMessage"].'
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["charityMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       '.$_SESSION["donorMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["donorNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     }
 }
+
 if(!isset($_GET["page"])){
   $pageNumber = 1;
 }
@@ -43,27 +44,32 @@ else {
   }
 }
 
-function charityRow($charityId, $charityName, $repName, $phoneNum, $email, $address) {
+function donorRow($donorId,$orgName, $repName, $phoneNum, $email, $address) {
+  #TODO: Change hard coded picture to link
   return '<tr>
       <td>
-        <h5> <a href="viewCharity.php?id='.$charityId.'">'.$charityName.'</a></h5>
+        <h5><a href="viewDonor.php?id='.$donorId.'">'.$orgName.'</a></h5>
       </td>
       <td>'.$repName.'</td>
       <td>'.$phoneNum.'</td>
       <td>'.$email.'</td>
       <td>'.$address.'</td>
-      <td>  <a href="viewCharity.php?id='.$charityId.'" class="btn btn-secondary">View Details</a></td>
+      <td><a class="btn btn-primary"href="viewDonor.php?id='.$donorId.'">View Details</a></td>
     </tr>';
 }
 
-function charityTable($pageNum, $tableSize ,$mysqli){
+function donorTable($pageNum,$tableSize ,$mysqli, $query){
   $htmlResult = "";
   $startRow = ($pageNum-1)*$tableSize;
-  $sql = "SELECT * from Charity order by charityId LIMIT $startRow , $tableSize";
+  $sql = "SELECT * from Donor where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
+  if ($result->num_rows > 0) {
+      $sql = "SELECT * from Donor where (repName like '%$query%') LIMIT $startRow , 4";
+      $result = $mysqli->query($sql);
+  }
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= charityRow($row['charityId'],$row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
+     $htmlResult .= donorRow($row['donorId'],$row['orgName'],$row['repName'], $row['phoneNum'], $row['email'], $row['address']);
   }
   return $htmlResult;
 }
@@ -103,7 +109,7 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
           <li class="nav-item">
@@ -117,33 +123,33 @@ function charityTable($pageNum, $tableSize ,$mysqli){
         </form>
       </div>
     </nav>
-
+<?php echo $alert;?>
     <div class="container-fluid">
       <nav class="nav nav-pills nav-justified mb-3">
         <a class="nav-item nav-link" href="../Item/DashboardPage.php">All Items</a>
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
-        <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
-        <a class="nav-item nav-link active" href="../Charity/CharitiesDashboard.php">Charities</a>
+        <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
+        <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
-      <!-- Large input -->
-      <form class="md-form form-lg" method="get" action="searchCharities.php">
-        <input type="text" id="inputLGEx" class="form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
-        <label for="inputLGEx"></label>
-      </form>
-      <div class="content">
-        <table class="container table table-responsive">
-          <tr>
-            <th>Name</th>
-            <th>Rep Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th></th>
-          </tr>
-          <?php echo charityTable($pageNumber, 10, $mysqli);?>
-        <!-- OLD HARD CODE  <tr>
+
+      <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
+      <br><br>
+      <div class="content row justify-content-center">
+        <div class="col-auto">
+          <table class="table table-responsive">
+            <tr>
+              <th>Name</th>
+              <th>Rep Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th></th>
+            </tr>
+            <?php echo donorTable($pageNumber, 10, $mysqli, $query);?>
+
+            <!-- OLD HARD CODE  <tr>
             <td>
               <h5>The Agatha Foundation</h5>
             </td>
@@ -170,40 +176,42 @@ function charityTable($pageNum, $tableSize ,$mysqli){
             <td>14 Main Street<br> Baltimore, MD </td>
           </tr>
 -->
-        </table>
-      </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=1">1</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=2">2</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=3">3</a></li>
-          <li class="page-item"><a class="page-link" href="CharitiesDashboard.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
-        </ul>
-      </nav>
-
-      <div class="footer container-fluid">
-        <h3> Contact Us </h3>
-        <div class="row">
-          <div class="col">Main Campus<br>
-            4501 N. Charles Street<br>
-            Baltimore, MD 21210<br>
-            410-617-2000 or 1-800-221-9107<br>
-          </div>
-          <div class="col">
-            Timonium Graduate Center<br>
-            2034 Greenspring Drive<br>
-            Timonium, MD 21093<br>
-            410-617-1903<br>
-          </div>
-          <div class="col">
-            Columbia Graduate Center<br>
-            8890 McGaw Road<br>
-            Columbia, MD 21045<br>
-            410-617-7600
-          </div>
+          </table>
         </div>
       </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber-1;?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="DonorsDashboard.php?query=<?= $query?>&page=<?php echo $pageNumber+1;?>">Next</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer container-fluid">
+      <h3> Contact Us </h3>
+      <div class="row">
+        <div class="col">Main Campus<br>
+          4501 N. Charles Street<br>
+          Baltimore, MD 21210<br>
+          410-617-2000 or 1-800-221-9107<br>
+        </div>
+        <div class="col">
+          Timonium Graduate Center<br>
+          2034 Greenspring Drive<br>
+          Timonium, MD 21093<br>
+          410-617-1903<br>
+        </div>
+        <div class="col">
+          Columbia Graduate Center<br>
+          8890 McGaw Road<br>
+          Columbia, MD 21045<br>
+          410-617-7600
+        </div>
+      </div>
+    </div>
 
   </body>
 

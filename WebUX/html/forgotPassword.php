@@ -27,9 +27,9 @@ session_start();
           <a class="nav-link" href="index.php">Login</a>
         </li>
       </ul>
-      <form class="form-inline">
+      <form class="form-inline" method="get" action="../search.php">
         <!--TODO: Add functionality to Search bar -->
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
