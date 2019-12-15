@@ -57,16 +57,14 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
   </div>';
 }
 
-function itemGrid($pageNum, $mysqli){
+function itemGrid($pageNum, $mysqli, $query){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
-  $sql = 'SELECT * from Item where itemName like "%';
-  $sql .= $query;
-  $sql .= '%" LIMIT '.$startRow.' , 4';
+  $sql = "SELECT * from Item where (itemName like '%$query%') LIMIT $startRow , 4";
   echo $sql;
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
-      $sql = "SELECT * from Item where description like '%$query%' LIMIT $startRow , 4";
+      $sql = "SELECT * from Item where (description like '%$query%') LIMIT $startRow , 4";
       $result = $mysqli->query($sql);
   }
   echo $mysqli->error;
@@ -126,7 +124,7 @@ function itemGrid($pageNum, $mysqli){
   <br><br>
 
   <div class="row justify-content-around">
-    <?php echo itemGrid($pageNumber, $mysqli);?>
+    <?php echo itemGrid($pageNumber, $mysqli, $query);?>
   </div>
   <!--TODO: make this dynamicly active-->
   <nav aria-label="Page navigation example">
