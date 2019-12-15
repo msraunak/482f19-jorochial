@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.sql.*;
 
 public class Auction
 {
@@ -19,7 +20,9 @@ public class Auction
     private int startTime;
     private int endTime;
     private Charity beneficiary;
-
+    private String access ="https:mysql://cs-database.cs.loyola.edu/jorochial";
+    private String user = "?user=cmmaalouf&password=1732813";
+    private String time = "&serverTimezone=UTC";
 
     public Auction(int startTime, int endTime, Charity beneficiary)
     {
@@ -27,51 +30,44 @@ public class Auction
         this.endTime = endTime;
         this.beneficiary = beneficiary;
         itemsInAuction = new ArrayList<>();
+
         donorsOfItems = new HashMap<>();
+        makeAuctionItems();
 
     }
 
-    /**
-     * Purpose: Add an item to the auction
-     * @param itemToAdd the item to add
-     * @param donor the donor of the item to add
-     */
-    public void addItem(Item itemToAdd, Donor donor)
+    protected void makeAuctionItems()
     {
-        //Update the map of donors associated with items
-        Set<Item> itemsDonatedByThisDonor = donor.getItemsDonated();
-        if(itemsDonatedByThisDonor == null)
-        {
-            itemsDonatedByThisDonor = new HashSet<>();
-            donorsOfItems.put(donor, itemsDonatedByThisDonor);
+       /* String url = access+user+time;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection( url );
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        itemsDonatedByThisDonor.add(itemToAdd);
-        donorsOfItems.put(donor, itemsDonatedByThisDonor);
-
-        //add to the list of items in the auction
-        itemsInAuction.add(itemToAdd);
-
+        //System.out.println( "Connection successful" );
+        try {
+            Statement stmt = conn.createStatement( );
+            String sql = "select * from Item";
+            ResultSet rs = stmt.executeQuery( sql );
+            while( rs.next( ) )
+            {
+                // System.out.println( "processing a row" );
+                String itemName = rs.getString( "itemName" );
+                String descr = rs.getString( "description" );
+                double startingBid = rs.getDouble("startingBid");
+                Item newItem = new Item(itemName,descr,startingBid,0,null);
+                itemsInAuction.add(newItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+*/
     }
 
-    /**
-     * Purpose: Remove an item from the auction
-     * @param itemToDelete the item to delete
-     * @param donor the donor of the deleted item
-     */
-    public void deleteItem(Item itemToDelete, Donor donor)
-    {
-        //update the map of donors associated with items
-        Set<Item> itemsDonatedByThisDonor = donor.getItemsDonated();
 
-        if(itemsDonatedByThisDonor != null)
-        {
-            donorsOfItems.remove(donor, itemsDonatedByThisDonor);
-        }
 
-        //update the list of items in the auction
-        itemsInAuction.remove(itemToDelete);
-    }
+
 
     /**
      * Purpose: Give other classes, namely the system, access to an auctions list of items

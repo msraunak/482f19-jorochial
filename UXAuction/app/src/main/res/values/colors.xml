@@ -7,6 +7,7 @@
     <color name="green">#548948</color>
     <color name="grey">#F0F0F0</color>
     <color name="red">#FF0000</color>
+    <color name="black">#000000</color>
     <color name="brightgreen">#32CD32</color>
     <color name = "chiara">#303F9F</color>
 </resources>

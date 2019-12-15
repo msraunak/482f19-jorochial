@@ -4,18 +4,18 @@ import java.util.TreeMap;
 
 public class Item
 {
-    private double price;
+
     private String description; //some of these aren't used yet but probably will be
-    private int startingBid;
+    private double startingBid;
     private int minIncrement;
     private Donor donor;
-    private String name;
+    public String name;
     private TreeMap<Double, Bidder> biddersForThisItem;
 
-    public Item(String name, double price, String description, int startingBid, int minIncrement, Donor donor)
+    public Item(String name, String description, double startingBid, int minIncrement, Donor donor)
     {
         this.name = name;
-        this.price = price;
+
         this.description = description;
         this.startingBid = startingBid;
         this.minIncrement = minIncrement;
@@ -52,7 +52,7 @@ public class Item
     public String toString()
     {
         String str = "";
-        str += this.name + ": " + this.price;
+        str += this.name + ": " + this.startingBid;
         return str;
     }
 

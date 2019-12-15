@@ -24,7 +24,8 @@ public class Current_Adapter extends RecyclerView.Adapter<Current_Adapter.ViewHo
     @NonNull
     @Override
     public Current_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = layoutInflater.inflate(R.layout.currentbid_view,viewGroup, false);
+        // change to currentbid_view
+        View view = layoutInflater.inflate(R.layout.search_item_view,viewGroup, false);
         return new Current_Adapter.ViewHolder(view);
 
     }
