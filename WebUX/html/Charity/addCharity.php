@@ -51,7 +51,13 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
         </form>
       </div>
     </nav>
-
+    <nav class="nav nav-pills nav-justified mb-3">
+      <a class="nav-item nav-link active" href="Charity/addCharity.php">Add Charity</a>
+      <a class="nav-item nav-link text-primary" href="Auction/createAuction.php">Create Auction</a>
+      <a class="nav-item nav-link" href="Donor/addDonor.php"> Add Donor</a>
+      <a class="nav-item nav-link " href="AddItem.php">Add an Item</a>
+      <a class="nav-item nav-link" href="#">Results Summary</a>
+    </nav>
     <div class="container">
       <h1>Add Charity to the System</h1>
 
