@@ -57,10 +57,10 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
   </div>';
 }
 
-function itemGrid($pageNum, $mysqli){
+function itemGrid($pageNum, $mysqli, $query){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
-  $sql = "SELECT * from Item where (itemName like '%$query%') LIMIT $startRow , 4";
+  $sql = "SELECT * from Item where (itemName like '%$query%') order by itemName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
       $sql = "SELECT * from Item where (description like '%$query%') LIMIT $startRow , 4";
@@ -68,6 +68,7 @@ function itemGrid($pageNum, $mysqli){
   }
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
+    echo $row;
      $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
   }
   return $htmlResult;
@@ -123,16 +124,16 @@ function itemGrid($pageNum, $mysqli){
   <br><br>
 
   <div class="row justify-content-around">
-    <?php echo itemGrid($pageNumber, $mysqli);?>
+    <?= itemGrid($pageNumber, $mysqli, $query);?>
   </div>
   <!--TODO: make this dynamicly active-->
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item"><a class="page-link" href="search.php?page=<?php echo $pageNumber-1;?>">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="search.php?page=1">1</a></li>
-      <li class="page-item"><a class="page-link" href="search.php?page=2">2</a></li>
-      <li class="page-item"><a class="page-link" href="search.php?page=3">3</a></li>
-      <li class="page-item"><a class="page-link" href="search.php?page=<?php echo $pageNumber+1;?>">Next</a></li>
+      <li class="page-item"><a class="page-link" href="search.php?query=<?= $query?>&page=<?= $pageNumber-1;?>">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="search.php?query=<?= $query?>&page=1">1</a></li>
+      <li class="page-item"><a class="page-link" href="search.php?query=<?= $query?>&page=2">2</a></li>
+      <li class="page-item"><a class="page-link" href="search.php?query=<?= $query?>&page=3">3</a></li>
+      <li class="page-item"><a class="page-link" href="search.php?query=<?= $query?>&page=<?= $pageNumber+1;?>">Next</a></li>
     </ul>
   </nav>
 
