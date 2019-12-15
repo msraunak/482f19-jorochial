@@ -61,6 +61,7 @@ function itemGrid($pageNum, $mysqli){
   $htmlResult = "";
   $startRow = ($pageNum-1)*4;
   $sql = "SELECT * from Item where (itemName like '%$query%') LIMIT $startRow , 4";
+  echo $sql;
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
       $sql = "SELECT * from Item where (description like '%$query%') LIMIT $startRow , 4";
