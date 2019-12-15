@@ -15,7 +15,7 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-$query = htmlspecialchars($_POST["OrgName"]);
+$query = htmlspecialchars($_GET["OrgName"]);
 
 function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
   #TODO: Change hard coded picture to link
