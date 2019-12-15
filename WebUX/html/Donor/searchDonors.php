@@ -15,22 +15,10 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_SESSION["donorNotice"])) {
-    if ($_SESSION["donorNotice"] == true) {
-        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["donorMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    } else {#($_SESSION["itemNotice"] == False){
-        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["donorMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["donorNotice"]); ?>">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    }
+if(isset($_GET["query"])){
+  $query = htmlspecialchars($_GET["query"]);
+}else{
+  $query = htmlspecialchars("Car");
 }
 
 if(!isset($_GET["page"])){

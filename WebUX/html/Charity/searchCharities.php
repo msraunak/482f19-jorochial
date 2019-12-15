@@ -120,9 +120,10 @@ function charityTable($pageNum, $tableSize ,$mysqli, $query){
       </nav>
 
       <!-- Large input -->
-      <form class="md-form form-lg" method="get" action="searchCharities.php">
-        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
-        <label for="inputLGEx"></label>
+      <form class="form-inline" method="get" action="../search.php">
+        <!--TODO: Add functionality to Search bar -->
+        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
       </form>
 
       <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
