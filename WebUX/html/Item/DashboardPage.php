@@ -139,8 +139,10 @@ function itemGrid($pageNum, $mysqli){
       </nav>
 
         <!-- Large input -->
-        <form class="md-form form-lg">
+
+        <form class="form-inline" method="GET" action="../search.php">
           <input type="text" id="inputLGEx" class="form-control form-control-lg" placeholder="Search for an existing item at auction">
+          <input class="btn btn-primary" type="submit" value="Submit">
           <label for="inputLGEx"></label>
         </form>
 
