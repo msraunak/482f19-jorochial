@@ -17,13 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +38,7 @@ public class ScrollingActivity extends AppCompatActivity {
     ListView listView;
     public static ArrayList<String> items = new ArrayList<String>();
     public static RecyclerView recyclerView;
-    private RequestQueue mQueue;
+
 
 
     @Override
@@ -90,41 +84,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
 
-    private void makeAuction() {
 
-        final ArrayList<String> myItems = new ArrayList<String>();
-        String url = "https://api.myjson.com/bins/pj6jk";//"http://jorochial.cs.loyola.edu/html/auctionserver.php";
-        items.add("before jsonrequest");
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                items.add("after request");
-                try {
-                    JSONArray jsonArray = response.getJSONArray("items");
-                    myItems.add("we got the array");
-
-                    for(int i =0; i< jsonArray.length(); i++) {
-                        JSONObject item = jsonArray.getJSONObject(i);
-                        String firstName = item.getString("itemName");
-                        items.add(firstName);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    items.add("json execption");
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                items.add("stack trace err");
-            }
-        });
-
-
-    }
 
 
     @Override
