@@ -1,7 +1,9 @@
 package com.example.cmaalouf.uxauction;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,15 +13,39 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScrollingActivity extends AppCompatActivity {
 
-    List<AuctionItem> itemList;
+    List<Item> itemList;
     ListView listView;
+    public static ArrayList<String> items = new ArrayList<String>();
+    public static RecyclerView recyclerView;
+    private RequestQueue mQueue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +65,65 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("bike");
-        items.add("car");
-        items.add("monopoly");
-        items.add("guitar");
-        Adapter adapter = new Adapter(this,items);// set LayoutManager to RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+
+
+        FetchData process = new FetchData(this);
+        process.execute();
+        update();
+
+
+    }
+    private void update()
+    {
+
+        Adapter adapter = new Adapter(this,items);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a LinearLayoutManager with default orientation
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
     }
+
+
+
+
+    private void makeAuction() {
+
+        final ArrayList<String> myItems = new ArrayList<String>();
+        String url = "https://api.myjson.com/bins/pj6jk";//"http://jorochial.cs.loyola.edu/html/auctionserver.php";
+        items.add("before jsonrequest");
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                items.add("after request");
+                try {
+                    JSONArray jsonArray = response.getJSONArray("items");
+                    myItems.add("we got the array");
+
+                    for(int i =0; i< jsonArray.length(); i++) {
+                        JSONObject item = jsonArray.getJSONObject(i);
+                        String firstName = item.getString("itemName");
+                        items.add(firstName);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    items.add("json execption");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                items.add("stack trace err");
+            }
+        });
+
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
