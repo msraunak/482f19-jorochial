@@ -127,9 +127,9 @@ function charityTable($pageNum, $tableSize ,$mysqli){
         <a class="nav-item nav-link" href="#">Results Summary</a>
       </nav>
 
-      <!-- Large input -->
-      <form class="md-form form-lg" method="get" action="searchCharities.php">
-        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Charity">
+      <form class="form-inline md-form form-lg " method="GET" action="searchCharities.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing item at auction" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
         <label for="inputLGEx"></label>
       </form>
       <div class="content">
