@@ -9,6 +9,12 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   exit();
 }
 
+require_once '../config.php';
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
 
 if (isset($_SESSION["auctionNotice"])) {
     if ($_SESSION["auctionNotice"] == true) {
