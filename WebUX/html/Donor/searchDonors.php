@@ -118,7 +118,7 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
         <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
       <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
         <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
