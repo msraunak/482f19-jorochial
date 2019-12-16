@@ -1,5 +1,9 @@
 package com.example.cmaalouf.uxauction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,7 +13,7 @@ import java.sql.*;
 
 public class Auction
 {
-    private List<Item> itemsInAuction;
+    private ArrayList<Item> itemsInAuction;
     /*
     In order to keep track of how much each donor makes at the end of the auction,
     as well as how much total money was raised, the auction needs to keep track of each donor
@@ -20,50 +24,24 @@ public class Auction
     private int startTime;
     private int endTime;
     private Charity beneficiary;
+    private String json;
     private String access ="https:mysql://cs-database.cs.loyola.edu/jorochial";
     private String user = "?user=cmmaalouf&password=1732813";
     private String time = "&serverTimezone=UTC";
 
-    public Auction(int startTime, int endTime, Charity beneficiary)
+    public Auction(int startTime, int endTime, ArrayList<Item> itemsInAuction)
     {
         this.startTime = startTime;
         this.endTime = endTime;
         this.beneficiary = beneficiary;
-        itemsInAuction = new ArrayList<>();
-
+        this.itemsInAuction = itemsInAuction;
+        //this.json = json;
         donorsOfItems = new HashMap<>();
-        makeAuctionItems();
+        //makeAuctionItems(json);
 
     }
 
-    protected void makeAuctionItems()
-    {
-       /* String url = access+user+time;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection( url );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        //System.out.println( "Connection successful" );
-        try {
-            Statement stmt = conn.createStatement( );
-            String sql = "select * from Item";
-            ResultSet rs = stmt.executeQuery( sql );
-            while( rs.next( ) )
-            {
-                // System.out.println( "processing a row" );
-                String itemName = rs.getString( "itemName" );
-                String descr = rs.getString( "description" );
-                double startingBid = rs.getDouble("startingBid");
-                Item newItem = new Item(itemName,descr,startingBid,0,null);
-                itemsInAuction.add(newItem);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
-    }
+
 
 
 
@@ -73,7 +51,7 @@ public class Auction
      * Purpose: Give other classes, namely the system, access to an auctions list of items
      * @return the list of items in the auction
      */
-    public List<Item> getItemsInAuction()
+    public ArrayList<Item> getItemsInAuction()
     {
         return this.itemsInAuction;
     }

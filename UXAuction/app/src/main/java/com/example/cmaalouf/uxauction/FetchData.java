@@ -37,6 +37,7 @@ public FetchData(Context context)
 protected void onPreExecute()
 {
     super.onPreExecute();
+    data ="";
 }
 
 
@@ -70,18 +71,26 @@ protected void onPreExecute()
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                     String line = "";
                     String result = "";
+                    data = "";
                     //items.add("past buffer");
                     while ((line=bufferedReader.readLine()) != null) {
                         result += line;
+                        //json+=line;
                         Log.w("echo from php", result);
                         data = data +line;
-                    }
 
+                    }
+                    data = result;
                     JSONArray jsonArray = new JSONArray(result);
                     for(int i = 0; i<jsonArray.length(); i++) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                         String name = jsonObject.get("itemName").toString();
-                        items.add(name);
+                        String desc =jsonObject.get("description").toString();
+                        String donor = jsonObject.get("donorName").toString();
+                        Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
+                        Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
+                        Item item = new Item(name, desc, startingBid,minInc,donor);
+                        items.add(item);
                     }
 
                     bufferedReader.close();
@@ -95,13 +104,22 @@ protected void onPreExecute()
                 } catch (JSONException e) {
                    e.printStackTrace();
                 }
-                return "helllooo";
+
+                return data;
     }
         @Override
-        protected void onPostExecute(String aVoid)
+        protected  void onPostExecute(String aVoid)
         {
+            //ScrollingActivity.json = data;
             super.onPostExecute(aVoid);
+            //Log.w("Data dib",""+data);
+
             //items = items;
+        }
+
+        public String getData(){
+
+                return data;
         }
 
 
