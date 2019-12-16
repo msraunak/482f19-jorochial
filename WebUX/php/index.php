@@ -16,22 +16,18 @@ $username = $password = "";
 
 if(isset($_SERVER["REQUEST_METHOD"])){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  echo "inside";
   $username = htmlspecialchars(trim($_POST['username']));
   $password = htmlspecialchars(trim($_POST['password']));
-  echo $username;
 
   //get information from Database
   $sql = 'SELECT * FROM Bidder WHERE username = "' . $username . '";';
   $result = $mysqli->query($sql);
-
   if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      if ($username == $row["uname"]){
+     while($row = $result->fetch_assoc()) {
+      if ($username == $row["username"]){
         //verify Password
         if (password_verify($password, $row["pwd"])){
           $htmlOutput = "True";
-          exit();
         }else{
           $htmlOutput = "False";
         }

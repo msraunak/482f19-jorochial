@@ -57,7 +57,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            textTitle = itemView.findViewById(R.id.name1);
+            textTitle = itemView.findViewById(R.id.item1name);
             //testDescription = itemView.findViewById(R.id.textDesc);
         }
 

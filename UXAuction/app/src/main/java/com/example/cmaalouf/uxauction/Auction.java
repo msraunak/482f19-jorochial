@@ -103,13 +103,7 @@ public class Auction
         }
     }
 
-
-
-
-
-
-
-// 2aea8722d324716f4e33e7b815a3104b3d5b57be
+    
 
     /**
      * Purpose: Give other classes, namely the system, access to an auctions list of items

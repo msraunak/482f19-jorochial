@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PastActivity extends AppCompatActivity {
 
-    public static ArrayList<Item> items = new ArrayList<Item>();
+    public static ArrayList<Item> myItems = new ArrayList<Item>();
     public static RecyclerView pastRecyclerView;
 
     @Override
@@ -36,8 +36,15 @@ public class PastActivity extends AppCompatActivity {
             }
         });
 
-        PastAdapter pastAdapter = new PastAdapter(this, items);
-        pastRecyclerView = findViewById(R.id.recyclerView);
+
+        Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        PastAdapter pastAdapter = new PastAdapter(this, myItems);
+         RecyclerView pastRecyclerView = findViewById(R.id.PastrecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         pastRecyclerView.setLayoutManager(linearLayoutManager);
         pastRecyclerView.setAdapter(pastAdapter);
