@@ -9,4 +9,5 @@
     <color name="red">#FF0000</color>
     <color name="brightgreen">#32CD32</color>
     <color name = "chiara">#303F9F</color>
+    <color name="black">#000000</color>
 </resources>
