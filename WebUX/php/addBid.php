@@ -35,7 +35,7 @@ $itemName = $row["ItemName"];
     $htmlOutput .= "Failed ". $mysqli->error;
 
   }
-  $sql = "SELECT amount FROM Bids WHERE itemId = ". $_GET["itemId"]." and amount = max(amount)";
+  $sql = "SELECT max(amount) FROM Bids WHERE itemId = ". $_GET["itemId"];
   echo $sql;
   $result = $mysqli->query($sql);
   echo $mysqli->error;
