@@ -48,18 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
     protected void login(View view)
     {
-        /*EditText user = (EditText)findViewById(R.id.user);
+        EditText user = (EditText)findViewById(R.id.user);
         username = user.getText().toString();
         EditText passw = (EditText)findViewById(R.id.password);
         pass = passw.getText().toString();
         LoginFetch process = new LoginFetch(this);
         process.execute(username,pass);
-        */
+        /*
 
         Intent myIntent = new Intent( this,
                 ScrollingActivity.class );
         this.startActivity( myIntent );
-
+*/
     }
 
 

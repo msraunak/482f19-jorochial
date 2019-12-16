@@ -18,7 +18,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.example.cmaalouf.uxauction.MainActivity.pass;
 import static com.example.cmaalouf.uxauction.MainActivity.username;
@@ -47,26 +50,48 @@ public class LoginFetch extends AsyncTask<String,String,String> {
     protected String doInBackground(String... strings) {
         try {
             //items.add("before url");
-             String user = strings[0];
+            String user = strings[0];
             String passw = strings[1];
+            //String user = "hfranceschi";// strings[0];
+            //String passw = "pwd";//strings[1];
             URL url = new URL("http://jorochial.cs.loyola.edu/php/index.php");
+
+
+
+            Map<String,Object> params = new LinkedHashMap<>();
+            params.put("username", user );
+            params.put("password", passw);
+
+            StringBuilder postData = new StringBuilder();
+            for (Map.Entry<String,Object> param : params.entrySet()) {
+                if (postData.length() != 0) postData.append('&');
+                postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                postData.append('=');
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            }
+            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+
+
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
             con.setRequestMethod("POST");
-            con.setRequestProperty("username","hfranceschi");
+            //con.setRequestProperty("username","hfranceschi");
             //con.setRequestProperty("password","pwd");
+            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            con.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
             con.setDoOutput( true );
             con.setDoInput(true);
 
             OutputStream os = con.getOutputStream();
             Log.w("USR", ""+user);
-            Log.w("PSS","hiii"+passw);
+            Log.w("PSS",""+passw);
             Log.w("OS ",os.toString());
-            BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "iso-8859-1"));
-            //writer.write(username);
+           // BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "iso-8859-1"));
+            os.write(postDataBytes);
             //writer.write(pass);
-            writer.flush();
-            writer.close();
+            //writer.flush();
+            //writer.close();
             os.close();
 
             InputStream inputStream = con.getInputStream();
