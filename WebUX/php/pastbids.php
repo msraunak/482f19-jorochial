@@ -35,6 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $resultArray.=']';
      echo $resultArray;
 }
-
+}}
 $mysqli->close();
 ?>
