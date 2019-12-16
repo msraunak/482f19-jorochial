@@ -50,8 +50,8 @@ public class ScrollingActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        Current_Adapter adapter1 = new Current_Adapter(this, items);
-        recyclerView.setAdapter(adapter1);
+//        Current_Adapter adapter1 = new Current_Adapter(this, items);
+//        recyclerView.setAdapter(adapter1);
     }
 
     @Override

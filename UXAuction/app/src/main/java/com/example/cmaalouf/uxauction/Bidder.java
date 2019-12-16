@@ -16,7 +16,7 @@ public class Bidder
     private String emailAddress;
     private String billingInfo;
     private boolean autoBid;
-    protected Map<Item, Double> itemsCurrentlyBidOn; //map of items associated with the amount bid
+    private Map<Item, Double> itemsCurrentlyBidOn; //map of items associated with the amount bid
 
 
     public Bidder(String username, String password, String firstName, String lastName, String emailAddress, String billingInfo)
@@ -66,7 +66,7 @@ public class Bidder
     /**
      * Purpose: Turn auto-bid on/off
      * @param bidToSet the bid to set
-     * @return
+     * @return the bid to set
      */
     public int setAutoBid(int bidToSet)
     {
