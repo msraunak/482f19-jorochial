@@ -11,7 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="140dp"
         android:fitsSystemWindows="true"
         android:background="@color/colorPrimaryDark"
 
@@ -95,10 +95,31 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Herve Franceschi"
+        android:layout_marginTop="135dp"
+        android:textSize="40dp"
+        android:textColor="@color/colorPrimary"/>
 
-    <include
-        layout="@layout/activity_currentbids"
-        />
+    <TextView
+        android:id="@+id/currentbids"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="110dp"
+        android:layout_below="@+id/name"
+        android:text="Current Bids:"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/CurrentrecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
