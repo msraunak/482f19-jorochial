@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-$bid = array($_GET["username"],$_GET["itemId"],$_GET["amount"]);
+$bid = array($_GET["username"],$_GET["amount"],$_GET["itemId"]);
 
 $sql = "SELECT ItemName FROM Item WHERE id = ". $_GET["itemId"];
 
@@ -25,8 +25,7 @@ $itemName = $row["ItemName"];
   $bid[0] = htmlspecialchars(trim($bid[0]));
   $bid[1] = htmlspecialchars(trim($bid[1]));
   $bid[2] = htmlspecialchars(trim($bid[2]));
-  $bid[3] = $itemName;
-  $sql .= '("'.$bid[0].'",'. $bid[1] .','. $bid[2] .',"'. $bid[3] .'")';
+  $sql .= '("'.$bid[0].'",'. $bid[1] .','. $bid[2] .',"'. $itemName .'")';
   $sql .= ";";
   echo $sql;
   if ($mysqli->query($sql) === TRUE) {
