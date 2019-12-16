@@ -36,11 +36,22 @@ $itemName = $row["ItemName"];
 
   }
   $sql = "SELECT max(amount) FROM Bids WHERE itemId = ". $_GET["itemId"];
-  echo $sql;
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   $row = $result->fetch_assoc();
-  echo $row["amount"]."hi";
+
+
+  $sql = "Update Item set currentBid = ".$row["max(amount)"]." WHERE itemId = ". $_GET["itemId"];
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  if ($mysqli->query($sql) === TRUE) {
+      $htmlOutput .= "Success update";
+  }
+  else{
+    $htmlOutput .= "Failed ". $mysqli->error;
+
+  }
+
 
 
   echo $htmlOutput;
