@@ -40,7 +40,7 @@ $itemName = $row["ItemName"];
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   $row = $result->fetch_assoc();
-
+  echo $row["amount"]."hi";
 
 
   echo $htmlOutput;
