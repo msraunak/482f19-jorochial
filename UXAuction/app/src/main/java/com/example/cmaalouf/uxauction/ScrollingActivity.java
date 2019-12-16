@@ -123,13 +123,13 @@ public class ScrollingActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-<<<<<<< HEAD
+
 //        Current_Adapter adapter1 = new Current_Adapter(this, items);
 //        recyclerView.setAdapter(adapter1);
-=======
+
         //Current_Adapter adapter1 = new Current_Adapter(this, items);
         //recyclerView.setAdapter(adapter1);
->>>>>>> b4df436d3e5a753407c62a454ce81fa0ae649159
+
     }
 
 
