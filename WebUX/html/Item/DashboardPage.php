@@ -43,12 +43,12 @@ else {
   }
 }
 
-function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $picture) {
+function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $pictureName, $pictureRef, $pictureData) {
   #TODO: Change hard coded picture to link
   return '<div class="col-sm-6 card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg" class="card-img" alt="...">
+        <img src='data:"$pictureRef";base64," .base64_encode($pictureData)."' width='200' class="card-img">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -75,7 +75,7 @@ function itemGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["itemPic"]);
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
   }
   return $htmlResult;
 }
