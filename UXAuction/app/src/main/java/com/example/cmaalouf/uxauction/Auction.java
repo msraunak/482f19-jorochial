@@ -29,38 +29,19 @@ public class Auction
     private String user = "?user=cmmaalouf&password=1732813";
     private String time = "&serverTimezone=UTC";
 
-    public Auction(int startTime, int endTime, Charity beneficiary)
+    public Auction(int startTime, int endTime, ArrayList<Item> itemsInAuction)
     {
         this.startTime = startTime;
         this.endTime = endTime;
         this.beneficiary = beneficiary;
-        itemsInAuction = new ArrayList<>();
+        this.itemsInAuction = itemsInAuction;
         //this.json = json;
         donorsOfItems = new HashMap<>();
         //makeAuctionItems(json);
 
     }
 
-    protected void makeAuctionItems(String jsonData)
-    {
-        try {
-            JSONArray jsonArray = new JSONArray(jsonData);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                String name = jsonObject.get("itemName").toString();
-                String desc =jsonObject.get("description").toString();
-                String donor = jsonObject.get("donorName").toString();
-                Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
-                Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
-                Item item = new Item(name, desc, startingBid,minInc,donor);
-                itemsInAuction.add(item);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-
-    }
 
 
 

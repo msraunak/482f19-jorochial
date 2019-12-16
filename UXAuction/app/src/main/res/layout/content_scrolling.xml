@@ -104,7 +104,8 @@
 
         android:layout_alignParentBottom="true"
 
-        android:text="View" />
+        android:text="View"
+         android:onClick="searchUpdate"/>
 
 
 

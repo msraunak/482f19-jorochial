@@ -37,6 +37,7 @@ public FetchData(Context context)
 protected void onPreExecute()
 {
     super.onPreExecute();
+    data ="";
 }
 
 
@@ -74,7 +75,8 @@ protected void onPreExecute()
                     //items.add("past buffer");
                     while ((line=bufferedReader.readLine()) != null) {
                         result += line;
-                        //Log.w("echo from php", result);
+                        //json+=line;
+                        Log.w("echo from php", result);
                         data = data +line;
 
                     }
@@ -83,7 +85,12 @@ protected void onPreExecute()
                     for(int i = 0; i<jsonArray.length(); i++) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                         String name = jsonObject.get("itemName").toString();
-                        items.add(name);
+                        String desc =jsonObject.get("description").toString();
+                        String donor = jsonObject.get("donorName").toString();
+                        Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
+                        Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
+                        Item item = new Item(name, desc, startingBid,minInc,donor);
+                        items.add(item);
                     }
 
                     bufferedReader.close();
