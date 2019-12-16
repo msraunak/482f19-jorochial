@@ -19,7 +19,7 @@ if (isset($_GET['username'])) {
   $sql = 'SELECT * FROM Bids WHERE bidderUName = "' . $username . '";';
   $result = $mysqli->query($sql);
   echo $mysqli->error;
-  if ($result->num_rows >= 0) {
+  if ($result->num_rows > 0) {
 
     $resultArray = '[';
     $tempArray= array();
