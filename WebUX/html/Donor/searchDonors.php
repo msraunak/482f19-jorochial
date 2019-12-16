@@ -15,22 +15,10 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-if (isset($_SESSION["donorNotice"])) {
-    if ($_SESSION["donorNotice"] == true) {
-        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["donorMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    } else {#($_SESSION["itemNotice"] == False){
-        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["donorMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["donorNotice"]); ?>">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-    }
+if(isset($_GET["query"])){
+  $query = htmlspecialchars($_GET["query"]);
+}else{
+  $query = htmlspecialchars("Car");
 }
 
 if(!isset($_GET["page"])){
@@ -63,7 +51,7 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
   $startRow = ($pageNum-1)*$tableSize;
   $sql = "SELECT * from Donor where (orgName like '%$query%') order by orgName"; # LIMIT $startRow , 4";
   $result = $mysqli->query($sql);
-  if ($result->num_rows > 0) {
+  if ($result->num_rows <= 0) {
       $sql = "SELECT * from Donor where (repName like '%$query%') LIMIT $startRow , 4";
       $result = $mysqli->query($sql);
   }
@@ -130,9 +118,13 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
         <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
-
+      <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
+        <label for="inputLGEx"></label>
+      </form>
 
       <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
       <br><br>
@@ -149,33 +141,7 @@ function donorTable($pageNum,$tableSize ,$mysqli, $query){
             </tr>
             <?php echo donorTable($pageNumber, 10, $mysqli, $query);?>
 
-            <!-- OLD HARD CODE  <tr>
-            <td>
-              <h5>The Agatha Foundation</h5>
-            </td>
-            <td>The Children's Auction</td>
-            <td>Jane Doe</td>
-            <td>213-123-2312</td>
-            <td>jane@childrenProject.org</td>
-            <td>123 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>Auto Retailers of America</h5></td>
-            <td>Cars for Kids</td>
-            <td>John Doe</td>
-            <td>555-555-5555</td>
-            <td>john@karsForkids.org</td>
-            <td>1234 Main Street<br> Baltimore, MD </td>
-          </tr>
-          <tr>
-            <td><h5>The Royal Family</h5></td>
-            <td>Rendevous Haiti's Auction</td>
-            <td>Jim Doe</td>
-            <td>555-545-5555</td>
-            <td>jim@haiti.org</td>
-            <td>14 Main Street<br> Baltimore, MD </td>
-          </tr>
--->
+
           </table>
         </div>
       </div>

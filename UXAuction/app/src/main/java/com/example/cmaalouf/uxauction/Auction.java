@@ -1,14 +1,19 @@
 package com.example.cmaalouf.uxauction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.sql.*;
 
 public class Auction
 {
-    private List<Item> itemsInAuction;
+    private ArrayList<Item> itemsInAuction;
     /*
     In order to keep track of how much each donor makes at the end of the auction,
     as well as how much total money was raised, the auction needs to keep track of each donor
@@ -19,7 +24,10 @@ public class Auction
     private int startTime;
     private int endTime;
     private Charity beneficiary;
-
+    private String json;
+    private String access ="https:mysql://cs-database.cs.loyola.edu/jorochial";
+    private String user = "?user=cmmaalouf&password=1732813";
+    private String time = "&serverTimezone=UTC";
 
     public Auction(int startTime, int endTime, Charity beneficiary)
     {
@@ -27,10 +35,13 @@ public class Auction
         this.endTime = endTime;
         this.beneficiary = beneficiary;
         itemsInAuction = new ArrayList<>();
+        //this.json = json;
         donorsOfItems = new HashMap<>();
+        //makeAuctionItems(json);
 
     }
 
+//HEAD
 //    /**
 //     * Purpose: Add an item to the auction
 //     * @param itemToAdd the item to add
@@ -73,11 +84,37 @@ public class Auction
 //        itemsInAuction.remove(itemToDelete);
 //    }
 
+    protected void makeAuctionItems(String jsonData)
+    {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonData);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                String name = jsonObject.get("itemName").toString();
+                String desc =jsonObject.get("description").toString();
+                String donor = jsonObject.get("donorName").toString();
+                Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
+                Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
+                Item item = new Item(name, desc, startingBid,minInc,donor);
+                itemsInAuction.add(item);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+// 2aea8722d324716f4e33e7b815a3104b3d5b57be
+
     /**
      * Purpose: Give other classes, namely the system, access to an auctions list of items
      * @return the list of items in the auction
      */
-    public List<Item> getItemsInAuction()
+    public ArrayList<Item> getItemsInAuction()
     {
         return this.itemsInAuction;
     }

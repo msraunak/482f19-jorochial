@@ -25,7 +25,7 @@ public class PastActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("logOut", null).show();
             }
         });
     }
@@ -73,6 +73,13 @@ public class PastActivity extends AppCompatActivity {
 
         Intent myIntent = new Intent( this,
                 ScrollingActivity.class );
+        this.startActivity( myIntent );
+    }
+    protected void logOut(View view)
+    {
+        Intent myIntent = new Intent( this,
+                ScrollingActivity.class );
+        finish();
         this.startActivity( myIntent );
     }
 }

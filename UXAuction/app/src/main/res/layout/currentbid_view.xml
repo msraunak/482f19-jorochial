@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:showIn="@layout/activity_currentbids"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/toolbar"
+    >
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop= "300dp"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="200dp"
+                android:id="@+id/item1"
+                style="@style/ItemPic"
+                android:background="@drawable/bike"
+                />
+            <TextView
+                android:id="@+id/name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/item1"
+                android:text="Bike"
+                android:textSize="20dp"
+                android:layout_marginLeft="16dp"/>
+
+            <Button
+                android:id="@+id/title1"
+                android:layout_toRightOf="@+id/item1"
+                android:layout_below="@id/name1"
+                style="@style/TitlePrice"
+                android:background="@color/brightgreen"
+                android:text="My Bid: $25"
+
+                />
+
+            <Button
+                android:id="@+id/view1"
+                android:layout_toRightOf="@+id/item1"
+                android:layout_below="@id/title1"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:onClick="itemClick"
+                android:layout_marginLeft="16dp"
+                android:textSize="10dp"
+                android:text="View Listing"
+
+                />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

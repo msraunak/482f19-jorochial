@@ -126,12 +126,13 @@ function donorTable($pageNum,$tableSize ,$mysqli){
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
         <a class="nav-item nav-link active" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
 
       <!-- Large input -->
-      <form class="md-form form-lg" method="get" action="searchDonors.php">
-        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" name="query" placeholder="Search for an existing Donor">
+      <form class="form-inline md-form form-lg " method="GET" action="searchDonors.php">
+        <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing Donor" name="query">
+        <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
         <label for="inputLGEx"></label>
       </form>
 

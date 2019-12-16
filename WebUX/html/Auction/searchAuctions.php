@@ -33,7 +33,7 @@ else {
 }
 
 function auctionCard($id, $title, $description, $charity, $start, $end) {
-  #TODO: Change hard coded picture to link
+
   return '<div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">'.$title.'</h5>
@@ -108,7 +108,12 @@ function auctionGrid($pageNum, $mysqli, $query){
       </form>
     </div>
   </nav>
-
+  <!-- Large input -->
+  <form class="form-inline md-form form-lg " method="GET" action="searchAuctions.php">
+    <input type="text" id="inputLGEx" class="col-10 form-control form-control-lg" placeholder="Search for an existing auction" name="query">
+    <input class="col btn btn-lg btn-primary" type="submit" value="Submit">
+    <label for="inputLGEx"></label>
+  </form>
   <h2 class="text-center">Your query of <strong><?= $query ?></strong> returned:</h2>
   <br><br>
   <div class="content">

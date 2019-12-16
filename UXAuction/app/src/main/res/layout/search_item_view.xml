@@ -42,7 +42,7 @@
                         android:layout_alignTop="@+id/itemPicture"
                         android:text="Bike"
                         android:textColor="@color/black"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
 
                     <Button

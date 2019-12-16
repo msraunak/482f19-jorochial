@@ -4,18 +4,18 @@ import java.util.TreeMap;
 
 public class Item
 {
-    private double price;
+
     private String description; //some of these aren't used yet but probably will be
-    private int startingBid;
-    private int minIncrement;
-    private Donor donor;
-    private String name;
+    private double startingBid;
+    private double minIncrement;
+    private String donor;
+    public String name;
     private TreeMap<Double, Bidder> biddersForThisItem;
 
-    public Item(String name, double price, String description, int startingBid, int minIncrement, Donor donor)
+    public Item(String name, String description, double startingBid, double minIncrement, String donor)
     {
         this.name = name;
-        this.price = price;
+
         this.description = description;
         this.startingBid = startingBid;
         this.minIncrement = minIncrement;
@@ -24,12 +24,23 @@ public class Item
 
     }
 
+
+
+
+
     /**
      * Purpose: Give other classes access to an items bidders
      * @return map of bids associated with bidders for this item
      */
     public TreeMap<Double, Bidder> getBiddersForThisItem()
     {
+        String username = "cmaalouf";
+        String password= "1732813";
+        String firstName = "chiara";
+        String lastName = "maalouf";
+        String emailAddress= "cmmaalouf@loyola.edu";
+        String billingInfo = "blah";
+        biddersForThisItem.put(1.0, new Bidder(username,password, firstName,lastName,emailAddress,billingInfo));
         return this.biddersForThisItem;
     }
 
@@ -52,7 +63,7 @@ public class Item
     public String toString()
     {
         String str = "";
-        str += this.name + ": " + this.price;
+        str += this.name + ": " + this.startingBid;
         return str;
     }
 

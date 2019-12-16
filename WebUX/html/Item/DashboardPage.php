@@ -135,7 +135,7 @@ function itemGrid($pageNum, $mysqli){
         <a class="nav-item nav-link" href="../Auction/AuctionDashboard.php">Auctions</a>
         <a class="nav-item nav-link" href="../Donor/DonorsDashboard.php">Donors</a>
         <a class="nav-item nav-link" href="../Charity/CharitiesDashboard.php">Charities</a>
-        <a class="nav-item nav-link" href="#">Results Summary</a>
+        <a class="nav-item nav-link" href="../AuctionReview.php">Results Summary</a>
       </nav>
 
         <!-- Large input -->
