@@ -44,7 +44,7 @@ $itemName = $row["ItemName"];
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   if ($mysqli->query($sql) === TRUE) {
-      $htmlOutput = "Success"
+      $htmlOutput = "Success";
   }
   else{
     $htmlOutput .= "Failed ". $mysqli->error;
