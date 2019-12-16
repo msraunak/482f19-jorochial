@@ -27,14 +27,32 @@ $itemName = $row["ItemName"];
   $bid[2] = htmlspecialchars(trim($bid[2]));
   $sql .= '("'.$bid[0].'",'. $bid[1] .','. $bid[2] .',"'. $itemName .'")';
   $sql .= ";";
-  echo $sql;
   if ($mysqli->query($sql) === TRUE) {
-      $htmlOutput .= "Success";
+      $htmlOutput = "Success";
   }
   else{
     $htmlOutput .= "Failed ". $mysqli->error;
 
   }
+  $sql = "SELECT max(amount) FROM Bids WHERE itemId = ". $_GET["itemId"];
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  $row = $result->fetch_assoc();
+
+
+  $sql = "Update Item set currentBid = ".$row["max(amount)"]." WHERE id = ". $_GET["itemId"];
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  if ($mysqli->query($sql) === TRUE) {
+      $htmlOutput = "Success";
+  }
+  else{
+    $htmlOutput .= "Failed ". $mysqli->error;
+
+  }
+
+
+
   echo $htmlOutput;
 
 ?>

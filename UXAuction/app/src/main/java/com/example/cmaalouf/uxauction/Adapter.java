@@ -27,6 +27,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
     }
 
 
+    /**
+     * Purpose: method for RecycleView.ViewHolder to call when it needs a new ViewHolder to 
+     * represent an item.
+     * @param viewGroup the group to add the new view to
+     * @param viewType  the type of new view
+     * @return the new ViewHolder that holds the new view
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -35,6 +42,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
 
     }
 
+    /**
+     * Purpose: Display data located at a position in the data set
+     * @param holder the ViewHolder to be updated to represent the contents of the item
+     * @param position the position of the item within the data set
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //bind the text view wiht the data recieved
@@ -44,6 +56,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
         //similarly you can set new image for each card and description
     }
 
+    /**
+     * Purpose: give other classes access to the size of this data set
+     * @return the total number of items in the adapter
+     */
     @Override
     public int getItemCount() {
         return data.size();
@@ -60,6 +76,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
         }
 
     }
+    
+    /**
+     * Purpose: give other classes access to the filter 
+     * @return the filter to filter data
+     */
     @Override
     public Filter getFilter(){
         return examplerFilter;
@@ -67,6 +88,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
 
     private Filter examplerFilter = new Filter(){
         @Override
+        /**
+         * Purpose: filter data based on given constraints
+         * @param constraint the constraint to filter by
+         * @return the filtered data
+         */
         protected FilterResults performFiltering(CharSequence constraint){
             List<Item> filteredList = new ArrayList<>();
             if(constraint==null || constraint.length()==0){
@@ -87,6 +113,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
             results.values = filteredList;
             return results;
         }
+        /**
+         * Purpose: publish the filtered data
+         * @param constraint the constraint to filter
+         * @param results the results of the filtering
+         */
         @Override
         protected void publishResults(CharSequence constraint,FilterResults results){
             data.clear();
