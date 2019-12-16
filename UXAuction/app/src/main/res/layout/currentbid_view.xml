@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
+<<<<<<< HEAD
     tools:showIn="@layout/activity_currentbids"
+=======
+    tools:showIn="@layout/activity_scrolling"
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@id/toolbar"
     >
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+<<<<<<< HEAD
         android:layout_marginTop= "300dp"
+=======
+        android:layout_marginBottom = "5dp"
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
 
         >
 
@@ -23,20 +38,35 @@
             android:layout_height="wrap_content">
 
             <ImageView
+<<<<<<< HEAD
+=======
+                android:layout_below="@+id/currentbids"
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
                 android:layout_marginTop="200dp"
                 android:id="@+id/item1"
                 style="@style/ItemPic"
                 android:background="@drawable/bike"
                 />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
             <TextView
                 android:id="@+id/name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+                android:layout_below="@+id/currentbids"
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
                 android:layout_toRightOf="@+id/item1"
                 android:text="Bike"
                 android:textSize="20dp"
                 android:layout_marginLeft="16dp"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
             <Button
                 android:id="@+id/title1"
                 android:layout_toRightOf="@+id/item1"
@@ -46,7 +76,10 @@
                 android:text="My Bid: $25"
 
                 />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
             <Button
                 android:id="@+id/view1"
                 android:layout_toRightOf="@+id/item1"
@@ -61,6 +94,7 @@
 
                 />
 
+<<<<<<< HEAD
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -68,4 +102,9 @@
 
 
 
+=======
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+>>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
 </RelativeLayout>

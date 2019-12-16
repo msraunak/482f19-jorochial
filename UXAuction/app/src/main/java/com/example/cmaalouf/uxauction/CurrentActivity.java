@@ -5,20 +5,30 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+
+
+
 public class CurrentActivity extends AppCompatActivity{
 
+    public static ArrayList<Item> myItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currentscrolling);
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +36,22 @@ public class CurrentActivity extends AppCompatActivity{
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
+
+        myItems= new ArrayList<Item>();
+        Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+
+        CurrentAdapter Cadapter = new CurrentAdapter(this,myItems);
+        RecyclerView CrecyclerView = (RecyclerView) findViewById(R.id.CurrentrecyclerView);
+        // set a LinearLayoutManager with default orientation
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        CrecyclerView.setLayoutManager(linearLayoutManager);
+        CrecyclerView.setAdapter(Cadapter);
     }
 
     @Override
