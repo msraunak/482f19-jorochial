@@ -35,8 +35,8 @@ $itemName = $row["ItemName"];
     $htmlOutput .= "Failed ". $mysqli->error;
 
   }
-  $sql = "SELECT amount FROM Bids WHERE itemId = ". $_GET["itemId"] and time = max(time);
-
+  $sql = "SELECT amount FROM Bids WHERE itemId = ". $_GET["itemId"]."and time = max(time)";
+  echo $sql;
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   $row = $result->fetch_assoc();
