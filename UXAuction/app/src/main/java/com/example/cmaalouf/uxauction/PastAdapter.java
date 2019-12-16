@@ -30,7 +30,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = layoutInflater.inflate(R.layout.currentbid_view,viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.pastbid_view,viewGroup, false);
         return new ViewHolder(view);
 
     }
