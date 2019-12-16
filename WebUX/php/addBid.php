@@ -20,7 +20,7 @@ $row = $result->fetch_assoc();
 
 $itemName = $row["ItemName"];
 
-  $sql .= 'INSERT INTO Bids (bidderUName, amount, itemId) VALUES';
+  $sql = 'INSERT INTO Bids (bidderUName, amount, itemId) VALUES';
 
   $bid[0] = htmlspecialchars(trim($bid[0]));
   $bid[1] = htmlspecialchars(trim($bid[1]));
@@ -28,7 +28,7 @@ $itemName = $row["ItemName"];
   $bid[3] = $itemName;
   $sql .= '("'.$bid[0].'",'. $bid[1] .','. $bid[2] .',"'. $bid[3] .'")';
   $sql .= ";";
-  #echo $sql;
+  echo $sql;
   if ($mysqli->query($sql) === TRUE) {
       $htmlOutput .= "Success";
   }
