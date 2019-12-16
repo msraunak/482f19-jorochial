@@ -17,7 +17,7 @@ if ($mysqli->connect_error) {
     //get information from Database
     //SELECT itemId, Bids.ItemName, imageMime, imageData, max(amount) FROM Bids, Item WHERE BidderUName = 'hfranceschi' and Item.id = Bids.itemId group by itemId
   //$sql = "SELECT itemId, Bids.ItemName, imageMime, imageData, max(amount) FROM Bids, Item WHERE BidderUName = '$username' and Item.id = Bids.itemId group by itemId";
-  $sql = "SELECT itemId, ItemName, max(amount) FROM Bids WHERE BidderUName = '$username' group by itemId";
+  $sql = "SELECT itemId, ItemName, max(amount) as amount FROM Bids WHERE BidderUName = '$username' group by itemId";
 
       $result = $mysqli->query($sql);
     echo $mysqli->error;
