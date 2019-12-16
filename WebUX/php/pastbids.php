@@ -2,7 +2,7 @@
 
 require_once 'config.php';
 
-$htmlOutput = "No Post";
+$htmlOutput = "No Results";
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Check connection
@@ -15,19 +15,16 @@ if ($mysqli->connect_error) {
 $username = $password = "";
 
 if(isset($_SERVER["REQUEST_METHOD"])){
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  echo "inside";
-  $username = htmlspecialchars(trim($_POST['username']));
-  $password = htmlspecialchars(trim($_POST['password']));
-  echo $username;
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $username = htmlspecialchars(trim($_GET['username']));
 
   //get information from Database
-  $sql = 'SELECT * FROM Bidder WHERE username = "' . $username . '";';
+  $sql = 'SELECT * FROM Bids WHERE bidderUName = "' . $username . '";';
   $result = $mysqli->query($sql);
 
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      if ($username == $row["uname"]){
+      if ($username == $row[""]){
         //verify Password
         if (password_verify($password, $row["pwd"])){
           $htmlOutput = "True";
@@ -45,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 echo $htmlOutput;
-
+echo password_hash(htmlspecialchars(trim("pwd")), PASSWORD_DEFAULT);
 $mysqli->close();
 ?>
-
