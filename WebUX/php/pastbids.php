@@ -14,11 +14,11 @@ $username = "";
 
 if (isset($_GET['username'])) {
   $username = htmlspecialchars(trim($_GET['username']));
-  echo "THSHUIHDUIBHDUSGBDJ";
+
   //get information from Database
   $sql = 'SELECT * FROM Bids WHERE bidderUName = "' . $username . '";';
   $result = $mysqli->query($sql);
-
+  echo $mysqli->error;
   if ($result->num_rows > 0) {
 
     $resultArray = '[';
