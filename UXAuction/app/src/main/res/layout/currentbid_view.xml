@@ -1,110 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-=======
-
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-<<<<<<< HEAD
-    tools:showIn="@layout/activity_currentbids"
-=======
-    tools:showIn="@layout/activity_scrolling"
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/toolbar"
-    >
+    android:layout_height="match_parent"
+    tools:context=".CurrentActivity"
+    tools:showIn="@layout/activity_currentscrolling">
 
-<<<<<<< HEAD
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-=======
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-<<<<<<< HEAD
-        android:layout_marginTop= "300dp"
-=======
-        android:layout_marginBottom = "5dp"
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
 
-        >
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:text="Herve Franceschi"
+            android:layout_marginTop="@dimen/app_bar_height"
+            android:textSize="40dp"
+            android:textColor="@color/colorPrimary"/>
 
-            <ImageView
-<<<<<<< HEAD
-=======
-                android:layout_below="@+id/currentbids"
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-                android:layout_marginTop="200dp"
-                android:id="@+id/item1"
-                style="@style/ItemPic"
-                android:background="@drawable/bike"
-                />
-<<<<<<< HEAD
-=======
+        <TextView
+            android:id="@+id/currentbids"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/name"
+            android:text="Current Bids:"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"/>
 
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-            <TextView
-                android:id="@+id/name1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
-                android:layout_below="@+id/currentbids"
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-                android:layout_toRightOf="@+id/item1"
-                android:text="Bike"
-                android:textSize="20dp"
-                android:layout_marginLeft="16dp"/>
-<<<<<<< HEAD
+        <ImageView
+            android:layout_below="@+id/currentbids"
+            android:layout_marginTop="200dp"
+            android:id="@+id/item1"
+            style="@style/ItemPic"
+            android:background="@drawable/bike"
+            />
 
-=======
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-            <Button
-                android:id="@+id/title1"
-                android:layout_toRightOf="@+id/item1"
-                android:layout_below="@id/name1"
-                style="@style/TitlePrice"
-                android:background="@color/brightgreen"
-                android:text="My Bid: $25"
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/currentbids"
+            android:layout_toRightOf="@+id/item1"
+            android:text="Bike"
+            android:textSize="20dp"
+            android:layout_marginLeft="16dp"/>
+        <Button
+            android:id="@+id/title1"
+            android:layout_toRightOf="@+id/item1"
+            android:layout_below="@id/name1"
+            style="@style/TitlePrice"
+            android:background="@color/brightgreen"
+            android:text="My Bid: $25"
 
-                />
-<<<<<<< HEAD
+            />
+        <Button
+            android:id="@+id/view1"
+            android:layout_toRightOf="@+id/item1"
+            android:layout_below="@id/title1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="itemClick"
+            android:layout_marginLeft="16dp"
+            android:textSize="10dp"
+            android:text="View Listing"
 
-=======
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-            <Button
-                android:id="@+id/view1"
-                android:layout_toRightOf="@+id/item1"
-                android:layout_below="@id/title1"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="itemClick"
-                android:layout_marginLeft="16dp"
-                android:textSize="10dp"
-                android:text="View Listing"
+            />
 
-                />
+        <ImageView
+            android:layout_below="@+id/view1"
+            android:layout_marginTop="200dp"
+            android:id="@+id/item2"
+            style="@style/ItemPic"
+            android:background="@drawable/airpods"
+            />
 
-<<<<<<< HEAD
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view1"
+            android:layout_toRightOf="@+id/item2"
+            android:text="Airpods"
+            android:textSize="20dp"
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"/>
+        <Button
+            android:id="@+id/title2"
+            android:layout_toRightOf="@+id/item2"
+            android:layout_below="@id/name2"
+            android:layout_marginTop="10dp"
+            style="@style/TitlePrice"
+            android:background="@color/brightgreen"
+
+            android:text="My Bid: $710"
+
+            />
+
+        <Button
+            android:id="@+id/view2"
+            android:layout_toRightOf="@+id/item2"
+            android:layout_below="@id/title2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:textSize="10dp"
+            android:text="View Listing"
+
+            />
 
 
-
-
-=======
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
->>>>>>> 3680a9b992ef7207b402ec32b85ea70677b76640
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
