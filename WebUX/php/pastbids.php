@@ -11,8 +11,8 @@ if ($mysqli->connect_error) {
 //retrieve user entered information from form
 $username = $password = "";
 
-if(isset($_SERVER["REQUEST_METHOD"])){
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+if (isset($_GET['username'])) {
   $username = htmlspecialchars(trim($_GET['username']));
 
   //get information from Database
@@ -35,6 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $resultArray.=']';
      echo $resultArray;
 }
-}}
+}
 $mysqli->close();
 ?>
