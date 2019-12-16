@@ -27,9 +27,8 @@ $itemName = $row["ItemName"];
   $bid[2] = htmlspecialchars(trim($bid[2]));
   $sql .= '("'.$bid[0].'",'. $bid[1] .','. $bid[2] .',"'. $itemName .'")';
   $sql .= ";";
-  echo $sql;
   if ($mysqli->query($sql) === TRUE) {
-      $htmlOutput .= "Success";
+      $htmlOutput = "Success";
   }
   else{
     $htmlOutput .= "Failed ". $mysqli->error;
@@ -45,7 +44,7 @@ $itemName = $row["ItemName"];
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   if ($mysqli->query($sql) === TRUE) {
-      $htmlOutput .= "Success update";
+      $htmlOutput = "Success"
   }
   else{
     $htmlOutput .= "Failed ". $mysqli->error;
