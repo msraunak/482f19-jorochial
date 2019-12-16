@@ -45,6 +45,7 @@
         android:layout_marginTop="16dp"
         android:layout_below="@+id/user"
         android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
         android:hint="Password"
         android:singleLine="true"
         android:imeOptions="actionDone"

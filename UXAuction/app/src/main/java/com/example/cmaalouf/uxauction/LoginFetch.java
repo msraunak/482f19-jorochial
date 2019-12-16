@@ -23,9 +23,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.example.cmaalouf.uxauction.MainActivity.enter;
 import static com.example.cmaalouf.uxauction.MainActivity.pass;
 import static com.example.cmaalouf.uxauction.MainActivity.username;
-import static com.example.cmaalouf.uxauction.MainActivity.enter;
+import static com.example.cmaalouf.uxauction.MainActivity.verified;
 import static java.lang.String.valueOf;
 
 public class LoginFetch extends AsyncTask<String,String,String> {
@@ -105,11 +106,10 @@ public class LoginFetch extends AsyncTask<String,String,String> {
             //items.add("past buffer");
             while ((line=bufferedReader.readLine()) != null) {
                 result += line;
-                //json+=line;
-                Log.w("echo from php", result);
-
-
+                //json+=line
             }
+            Log.w("PHP", result);
+            enter.add(result.matches("True"));
 
 
 
