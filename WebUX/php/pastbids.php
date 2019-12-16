@@ -9,12 +9,12 @@ if ($mysqli->connect_error) {
 }
 
 //retrieve user entered information from form
-$username = $password = "";
+$username = "";
 
 
 if (isset($_GET['username'])) {
   $username = htmlspecialchars(trim($_GET['username']));
-
+  echo "THSHUIHDUIBHDUSGBDJ";
   //get information from Database
   $sql = 'SELECT * FROM Bids WHERE bidderUName = "' . $username . '";';
   $result = $mysqli->query($sql);
