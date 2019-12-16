@@ -41,7 +41,7 @@ public class Auction
 
     }
 
-<<<<<<< HEAD
+
 //HEAD
 //    /**
 //     * Purpose: Add an item to the auction
@@ -85,26 +85,24 @@ public class Auction
 //        itemsInAuction.remove(itemToDelete);
 //    }
 
-    protected void makeAuctionItems(String jsonData)
-    {
+    protected void makeAuctionItems(String jsonData) {
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 String name = jsonObject.get("itemName").toString();
-                String desc =jsonObject.get("description").toString();
+                String desc = jsonObject.get("description").toString();
                 String donor = jsonObject.get("donorName").toString();
                 Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
                 Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
-                Item item = new Item(name, desc, startingBid,minInc,donor);
+                Item item = new Item(name, desc, startingBid, minInc, donor);
                 itemsInAuction.add(item);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-=======
->>>>>>> b4df436d3e5a753407c62a454ce81fa0ae649159
+    }
 
 
 
