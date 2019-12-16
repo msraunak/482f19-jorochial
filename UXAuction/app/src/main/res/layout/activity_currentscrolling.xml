@@ -130,5 +130,10 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="center|end"
         app:srcCompat="@android:drawable/ic_menu_view" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp" />
 
 </android.support.design.widget.CoordinatorLayout>

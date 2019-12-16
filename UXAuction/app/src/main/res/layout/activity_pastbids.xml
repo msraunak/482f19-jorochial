@@ -152,6 +152,60 @@
 
         />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/Currentbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:layout_toRightOf="@+id/search"
+                android:background="@color/white"
+                android:textColor="@color/colorPrimary"
+                android:onClick="goToCurrent"
+                android:text="Current Bids"
+                android:visibility="visible"
+                />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/Pastbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@color/white"
+                android:textColor="@color/colorPrimary"
+                android:layout_toRightOf="@+id/Currentbutton"
+                android:onClick="goToPast"
+                android:text="Past Bids"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/Loginbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@color/white"
+                android:textColor="@color/colorPrimary"
+                android:text="Log Out"
+                android:onClick="logout"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:layout_toRightOf="@+id/Loginbutton"
+                android:textColor="@color/colorPrimary"
+                android:background="@color/white"
+                android:text="Search Auction"/>
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
