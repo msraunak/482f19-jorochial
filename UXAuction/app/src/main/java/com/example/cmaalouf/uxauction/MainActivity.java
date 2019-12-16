@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -23,7 +24,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static String username;
     public static String pass;
-    protected static boolean enter;
+    public static String verified;
+    public static ArrayList<Boolean> enter;
     ListView listView;
 
     @Override
@@ -31,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // get the reference of RecyclerView
-
+        this.verified ="";
         this.username ="hfranceschi";
         this.pass ="pwd";
-        enter = false;
+        enter = new ArrayList<Boolean>();
+        enter.add(false);
         setContentView(R.layout.activity_login);//activity_list_view);
 
 
@@ -54,13 +57,21 @@ public class MainActivity extends AppCompatActivity {
         pass = passw.getText().toString();
         LoginFetch process = new LoginFetch(this);
         process.execute(username,pass);
-        /*
 
-        Intent myIntent = new Intent( this,
-                ScrollingActivity.class );
-        this.startActivity( myIntent );
-*/
+        verified();
     }
+
+    protected void verified()
+    {
+        Log.w("enter",""+verified);
+
+        if(enter.get(enter.size()-1)) {
+            Intent myIntent = new Intent(this,
+                    ScrollingActivity.class);
+            this.startActivity(myIntent);
+        }
+    }
+
 
 
     protected void forgotPassword(View view)
