@@ -50,13 +50,13 @@
                 />
             <Button
                 android:id="@+id/view1"
-                android:layout_toRightOf="@+id/item1"
-                android:layout_below="@id/title1"
+                android:layout_toRightOf="@+id/title1"
+                android:layout_alignBottom="@id/title1"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:onClick="itemClick"
-                android:layout_marginLeft="16dp"
+               
                 android:textSize="10dp"
                 android:text="View Listing"
 
