@@ -48,7 +48,7 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
   return '<div class="col-sm-6 card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src='data:"$pictureRef";base64," .base64_encode($pictureData)."' width='200' class="card-img">
+        <img src="data:'.$pictureRef.';base64,' .base64_encode($pictureData).'" width="200" class="card-img">
       </div>
       <div class="col-md-8">
         <div class="card-body">
