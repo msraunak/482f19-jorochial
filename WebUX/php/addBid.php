@@ -20,7 +20,7 @@ $row = $result->fetch_assoc();
 
 $itemName = $row["ItemName"];
 
-  $sql .= 'INSERT INTO admin(bidderUName, amount, itemId, ItemName) VALUES';
+  $sql .= 'INSERT INTO Bids(bidderUName, amount, itemId, ItemName) VALUES';
 
   $bid[0] = htmlspecialchars(trim($bid[0]));
   $bid[1] = htmlspecialchars(trim($bid[1]));
