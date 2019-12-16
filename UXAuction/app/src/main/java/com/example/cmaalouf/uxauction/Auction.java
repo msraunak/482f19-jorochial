@@ -29,18 +29,19 @@ public class Auction
     private String user = "?user=cmmaalouf&password=1732813";
     private String time = "&serverTimezone=UTC";
 
-    public Auction(int startTime, int endTime, Charity beneficiary)
+    public Auction(int startTime, int endTime, ArrayList<Item> itemsInAuction)
     {
         this.startTime = startTime;
         this.endTime = endTime;
         this.beneficiary = beneficiary;
-        itemsInAuction = new ArrayList<>();
+        this.itemsInAuction = itemsInAuction;
         //this.json = json;
         donorsOfItems = new HashMap<>();
         //makeAuctionItems(json);
 
     }
 
+<<<<<<< HEAD
 //HEAD
 //    /**
 //     * Purpose: Add an item to the auction
@@ -102,8 +103,9 @@ public class Auction
             e.printStackTrace();
         }
 
+=======
+>>>>>>> b4df436d3e5a753407c62a454ce81fa0ae649159
 
-    }
 
 
 

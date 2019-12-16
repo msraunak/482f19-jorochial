@@ -115,13 +115,15 @@
         app:srcCompat="@android:drawable/ic_menu_view"
         android:visibility="invisible"/>
 
-    <SearchView
+    <android.support.v7.widget.SearchView
         android:id="@+id/ItemSearch"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="119dp"
         android:layout_gravity="top"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+
+       />
 
 </android.support.design.widget.CoordinatorLayout>
 

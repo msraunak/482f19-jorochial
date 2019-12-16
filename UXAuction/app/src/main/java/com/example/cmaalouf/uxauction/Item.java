@@ -5,11 +5,11 @@ import java.util.TreeMap;
 public class Item
 {
 
-    private String description; //some of these aren't used yet but probably will be
+    protected String description; //some of these aren't used yet but probably will be
     private double startingBid;
     private double minIncrement;
     private String donor;
-    public String name;
+    protected String name;
     private TreeMap<Double, Bidder> biddersForThisItem;
 
     public Item(String name, String description, double startingBid, double minIncrement, String donor)

@@ -1,5 +1,6 @@
 package com.example.cmaalouf.uxauction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,9 +39,11 @@ public class ScrollingActivity extends AppCompatActivity {
 
     List<Item> itemList;
     ListView listView;
-    public static ArrayList<String> items = new ArrayList<String>();
+    public static String json ="";
+    public static String query="";
+    public static ArrayList<Item> items = new ArrayList<Item>();
     public static RecyclerView recyclerView;
-
+    private Adapter adapter;
 
 
     @Override
@@ -61,13 +66,54 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
 
-
         FetchData process = new FetchData(this);
+        //FetchData process = new FetchData(this);
         process.execute();
+        //String s = ""+process.getData();
+        Auction auction = new Auction(0,0,null);
+        Log.w("JSON STR",""+json);
+        //auction.makeAuctionItems(json);
+        //items = auction.getItemsInAuction();
+        //adapter = new Adapter(this, items);
         update();
 
 
+        // THIS WORKS ISH
+        final SearchView searchView = (SearchView) findViewById(R.id.ItemSearch);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                //SearchFetchData process = new SearchFetchData(this);
+                //process.execute();
+                //searchUpdate();
+                //update();
+                items.clear();
+                query= searchView.getQuery().toString();
+                searchUpdate();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                items.clear();
+                query= searchView.getQuery().toString();
+                searchUpdate();
+                return false;
+            }
+        });
+
+
     }
+
+
+    private void searchUpdate()
+    {
+        SearchFetchData process = new SearchFetchData(this);
+        process.execute();
+        update();
+    }
+
+
     private void update()
     {
 
@@ -77,8 +123,13 @@ public class ScrollingActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+<<<<<<< HEAD
 //        Current_Adapter adapter1 = new Current_Adapter(this, items);
 //        recyclerView.setAdapter(adapter1);
+=======
+        //Current_Adapter adapter1 = new Current_Adapter(this, items);
+        //recyclerView.setAdapter(adapter1);
+>>>>>>> b4df436d3e5a753407c62a454ce81fa0ae649159
     }
 
 
@@ -91,6 +142,19 @@ public class ScrollingActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        /*SearchView searchView = findViewById(R.id.ItemSearch);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });*/
         return true;
     }
 

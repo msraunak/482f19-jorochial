@@ -20,7 +20,13 @@ public class Current_Adapter extends RecyclerView.Adapter<Current_Adapter.ViewHo
         this.data = data;
     }
 
-
+    /**
+     * Purpose: method for RecycleView.ViewHolder to call when it needs a new ViewHolder to 
+     * represent an item.
+     * @param viewGroup the group to add the new view to
+     * @param viewType  the type of new view
+     * @return the new ViewHolder that holds the new view
+     */
     @NonNull
     @Override
     public Current_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -30,6 +36,11 @@ public class Current_Adapter extends RecyclerView.Adapter<Current_Adapter.ViewHo
 
     }
 
+    /**
+     * Purpose: Display data at a position in the data set
+     * @param holder the ViewHolder to be updated to represent the contents of the item
+     * @param position the position of the item within the data set
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //bind the text view with the data received
@@ -39,7 +50,10 @@ public class Current_Adapter extends RecyclerView.Adapter<Current_Adapter.ViewHo
         //similarly you can set new image for each card and description
     }
 
-
+    /**
+     * Purpose: give other classes access to the size of this data set
+     * @return the total number of items in the adapter
+     */
     @Override
     public int getItemCount() {
         return data.size();
