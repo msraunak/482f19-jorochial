@@ -56,7 +56,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:onClick="itemClick"
-               
+
                 android:textSize="10dp"
                 android:text="View Listing"
 
