@@ -30,46 +30,71 @@
         android:textSize="30dp"
         android:textColor="@color/colorPrimary"/>
 
-    <ImageView
-        android:layout_below="@+id/currentbids"
-        android:layout_marginTop="200dp"
-        android:id="@+id/item1"
-        style="@style/ItemPic"
-        android:background="@drawable/bike"
-        />
 
-    <TextView
-        android:id="@+id/name1"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/currentbids"
-        android:layout_toRightOf="@+id/item1"
-        android:text="Bike"
-        android:textSize="20dp"
-        android:layout_marginLeft="16dp"/>
-    <Button
-        android:id="@+id/title1"
-        android:layout_toRightOf="@+id/item1"
-        android:layout_below="@id/name1"
-        style="@style/TitlePrice"
-        android:background="@color/brightgreen"
-        android:text="My Bid: $25"
 
-        />
-    <Button
-        android:id="@+id/view1"
-        android:layout_toRightOf="@+id/item1"
-        android:layout_below="@id/title1"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:onClick="itemClick"
-        android:layout_marginLeft="16dp"
-        android:textSize="10dp"
-        android:text="View Listing"
+        android:layout_marginTop= "300dp"
 
-        />
+        >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="200dp"
+            android:id="@+id/item1"
+            style="@style/ItemPic"
+            android:background="@drawable/bike"
+            />
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item1"
+            android:text="Bike"
+            android:textSize="20dp"
+            android:layout_marginLeft="16dp"/>
+
+        <Button
+            android:id="@+id/title1"
+            android:layout_toRightOf="@+id/item1"
+            android:layout_below="@id/name1"
+            style="@style/TitlePrice"
+            android:background="@color/brightgreen"
+            android:text="My Bid: $25"
+
+            />
+
+        <Button
+            android:id="@+id/view1"
+            android:layout_toRightOf="@+id/item1"
+            android:layout_below="@id/title1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="itemClick"
+            android:layout_marginLeft="16dp"
+            android:textSize="10dp"
+            android:text="View Listing"
+
+            />
+
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+    <!--
     <ImageView
         android:layout_below="@+id/view1"
         android:layout_marginTop="200dp"
@@ -96,7 +121,6 @@
         android:layout_marginTop="10dp"
         style="@style/TitlePrice"
         android:background="@color/brightgreen"
-
         android:text="My Bid: $710"
 
         />
@@ -113,6 +137,60 @@
         android:text="View Listing"
 
         />
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/Currentbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_toRightOf="@+id/search"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:onClick="goToCurrent"
+            android:text="Current Bids"
+            android:visibility="visible"
+            />
+
+        <Button
+            android:id="@+id/Pastbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@+id/Currentbutton"
+            android:onClick="goToPast"
+            android:text="Past Bids"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/Loginbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:text="Log Out"
+            android:onClick="logout"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_toRightOf="@+id/Loginbutton"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/white"
+            android:text="Search Auction"/>
+    </LinearLayout>
+
+
 
 
 </RelativeLayout>
