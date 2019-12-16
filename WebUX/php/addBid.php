@@ -41,7 +41,7 @@ $itemName = $row["ItemName"];
   $row = $result->fetch_assoc();
 
 
-  $sql = "Update Item set currentBid = ".$row["max(amount)"]." WHERE itemId = ". $_GET["itemId"];
+  $sql = "Update Item set currentBid = ".$row["max(amount)"]." WHERE id = ". $_GET["itemId"];
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   if ($mysqli->query($sql) === TRUE) {
