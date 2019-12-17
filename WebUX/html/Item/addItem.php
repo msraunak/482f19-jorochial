@@ -68,7 +68,7 @@ if ($mysqli->connect_error) {
     <div class="container">
       <h1>Add Item to Auction</h1>
 
-      <form class="needs-validation" action="insertItem.php" method="post" novalidate>
+      <form class="needs-validation" action="insertItem.php" enctype="multipart/form-data" method="post" novalidate>
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
           <label for="ItemAuction">Auction:</label>
@@ -114,9 +114,8 @@ if ($mysqli->connect_error) {
         </div>
         <div class="form-group">
           <label for="file-input">Picture:</label>
-          <!--TODO: add Javascript to change the label txt to the name of the file. see https://getbootstrap.com/docs/4.0/components/forms/#file-browser -->
           <div class="custom-file" id="file-input" required>
-            <input type="file" class="custom-file-input" id="ItemPicture" name="ItemPicture" onchange="changeLabel( this )" required>
+            <input type="file" class="custom-file-input" id="ItemPicture" name="ItemPicture" onchange="changeLabel( this )" accept="image/gif,image/jpeg,image/x-png" required>
             <label class="custom-file-label" for="ItemPicture">Choose file</label>
           </div>
         </div>

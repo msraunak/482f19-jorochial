@@ -21,23 +21,31 @@ if ($mysqli->connect_error) {
 
 #echo "Connected successfully";
 #INSERT INTO `Item`(`auctionNameRef`, `itemName`, `description`, `startingBid`, `minimumBidInc`, `donorName`, `itemPic`)
-$item = array($_POST["ItemAuction"],$_POST["ItemTitle"],$_POST["ItemDescription"],$_POST["ItemStartingBid"],$_POST["ItemMinIncrement"],$_POST["ItemDonor"],$_POST["ItemPicture"]);
+$item = array($_POST["ItemAuction"],$_POST["ItemTitle"],$_POST["ItemDescription"],$_POST["ItemStartingBid"],$_POST["ItemMinIncrement"],$_POST["ItemDonor"]);
 #$item = array("hjfranceschi@loyola.edu","Herve","Franceschi","hjfranceschi","password");
 # user should be from form
 #| hjfranceschi@loyola.edu | Herve | Franceschi | hjfranceschi | password
 if (true){
 
-  $sql .= 'INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc, donorName) VALUES'; #TODO: add itemPic
+  $sql .= 'INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc, donorName, imageName, imageMime, imageData) VALUES'; #TODO: add itemPic
 
   $item[0] = htmlspecialchars($item[0]);
   $item[1] = htmlspecialchars(trim($item[1]));
   $item[2] = htmlspecialchars(trim($item[2]));
   $item[3] = htmlspecialchars(trim($item[3]));
   $item[4] = htmlspecialchars(trim($item[4]));
-  $item[5] = htmlspecialchars($item[5]);
+  $item[5] = htmlspecialchars(trim($item[5]));
 #  $item[6] = htmlspecialchars(trim($item[6]));
-  $sql .= '("'.$item[0].'","'. $item[1] .'","'. $item[2] .'",'. $item[3] .','. $item[4] .',"'. $item[5]. '")';
-  $sql .= ";";
+  //$sql .= '("'.$item[0].'","'. $item[1] .'","'. $item[2] .'",'. $item[3] .','. $item[4] .',"'. $item[5]. '")';
+  $filefullname = $_FILES['ItemPicture']['name'];
+  $filetype = $_FILES['ItemPicture']['type'];
+  $filedata = file_get_contents($_FILES['ItemPicture']['tmp_name']);
+  $filedata = base64_encode($filedata);
+
+  $sql .= "(\"$item[0]\",\"$item[1]\",\"$item[2]\", $item[3] , $item[4] ,\"$item[5]\",\"$filefullname\",\"$filetype\"";
+  $sql .= ", \" $filedata \");";
+  //$sql .= ",\" $filedata\");";
+  //echo sql;
   if ($item[5] == "null"){
     $sql = "INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc) VALUES (\"$item[0]\",\" $item[1] \",\" $item[2] \", $item[3] , $item[4] )";
     $sql .= ";";

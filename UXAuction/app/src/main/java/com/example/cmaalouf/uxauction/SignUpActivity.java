@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity{
                     MainActivity.class);
             this.startActivity(myIntent);
         }
-        
+
 
     }
 }

@@ -4,20 +4,29 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class DonorTest {
-    String name;
-    String representativeName;
-    String phoneNumber;
-    String address;
-    String emailAddress;
-    Donor donor;
+    private String name;
+    private String representativeName;
+    private String phoneNumber;
+    private String address;
+    private String emailAddress;
+    private Donor donor;
+    private Item item;
+    private Auction auction;
+    private ArrayList<Item> items = new ArrayList<>();
     
     @Before
     public void beforetest()
     {
         donor = new Donor(name, representativeName, phoneNumber, address, emailAddress);
+        item = new Item(name, "description", 20.0, 5.0, "donor");
+        auction = new Auction(3, 5, items);
+        auction.addItem(item, donor);
     }
     
     @After
@@ -37,11 +46,13 @@ public class DonorTest {
     public void getItemsDonated() {
        
         assertTrue(donor.getItemsDonated()!=null);
+        Set<Item> items = donor.getItemsDonated();
+        assertTrue(items.contains(item));
     }
 
     @Test
     public void testString() {
         
-        assertEquals(donor.toString(), name);
+        assertNotNull(donor);
     }
 }

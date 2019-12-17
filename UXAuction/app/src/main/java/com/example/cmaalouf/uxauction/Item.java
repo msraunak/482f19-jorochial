@@ -1,21 +1,25 @@
 package com.example.cmaalouf.uxauction;
 
+import android.graphics.Bitmap;
+
 import java.util.TreeMap;
 
 public class Item
 {
 
-    protected String description; //some of these aren't used yet but probably will be
+    protected String description;
     private double startingBid;
     private double minIncrement;
     private String donor;
     protected String name;
+    public int id;
+    protected Bitmap image;
     private TreeMap<Double, Bidder> biddersForThisItem;
 
-    public Item(String name, String description, double startingBid, double minIncrement, String donor)
+    public Item(int id, String name, String description, double startingBid, double minIncrement, String donor)
     {
         this.name = name;
-
+        this.id = id;
         this.description = description;
         this.startingBid = startingBid;
         this.minIncrement = minIncrement;
@@ -24,7 +28,9 @@ public class Item
 
     }
 
-
+    public void setImage(Bitmap bitmap){
+        this.image = bitmap;
+    }
 
 
 
@@ -53,6 +59,16 @@ public class Item
     public double getCurrentHighestBid()
     {
         return biddersForThisItem.lastKey();
+    }
+
+    public String getItemDescription()
+    {
+        return this.description;
+    }
+
+    public double getStartingBid()
+    {
+        return this.startingBid;
     }
 
     /**
