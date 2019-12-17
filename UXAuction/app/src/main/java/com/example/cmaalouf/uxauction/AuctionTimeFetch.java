@@ -12,37 +12,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
-import static com.example.cmaalouf.uxauction.PastActivity.myItems;
-import static com.example.cmaalouf.uxauction.PastActivity.query;
-
-import static java.lang.String.valueOf;
-
-public class PastFetchData extends AsyncTask<String,String,String> {
+public class AuctionTimeFetch extends AsyncTask<String,String,String> {
 
     String data;
     String data_parse;
     String single_parse;
-    //String query;
     private Context ctx;
-    public PastFetchData(Context context, String query)
-    {
-        this.ctx=context;
-        //this.query=query;
 
+    public AuctionTimeFetch(Context context) {
+        this.ctx = context;
     }
 
 
     @Override
-    protected void onPreExecute()
-    {
+    protected void onPreExecute() {
         super.onPreExecute();
-        data ="";
+        data = "";
     }
 
 
@@ -50,18 +40,27 @@ public class PastFetchData extends AsyncTask<String,String,String> {
     protected String doInBackground(String... voids) {
         try {
             //items.add("before url");
-            //String query = voids[0];
-            //query = "hfranceschi";
-            URL url = new URL("http://jorochial.cs.loyola.edu/php/pastbids.php?username="+query);
+            URL url = new URL("http://jorochial.cs.loyola.edu/php/auctionTime.php");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
             con.setRequestMethod("GET");
-
-            con.setDoOutput( true );
+            //con.setReadTimeout(150000);
+            //con.setConnectTimeout(100000);
+            con.setDoOutput(true);
             con.setDoInput(true);
-            ;
+
+            //con.connect();
+            //items.add("before input");
+            //int r = con.getResponseCode();
+
+            //Log.w("response code",valueOf(r));
+
+            //items.add(valueOf(con.getResponseCode()));
+            //InputStream inputStream = con.getInputStream();
+            //if(con.getInputStream()==null)
+            //items.add("NULLLLL");
             InputStream inputStream = con.getInputStream();
-            Log.w("fetchdata ",inputStream.toString());
+            Log.w("fetchdata ", inputStream.toString());
             //items.add("after input stream");
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
@@ -69,25 +68,21 @@ public class PastFetchData extends AsyncTask<String,String,String> {
             String result = "";
             data = "";
             //items.add("past buffer");
-            while ((line=bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 result += line;
                 //json+=line;
                 Log.w("echo from php", result);
-                data = data +line;
+                data = data + line;
 
             }
             data = result;
             JSONArray jsonArray = new JSONArray(result);
-            for(int i = 0; i<jsonArray.length(); i++) {
+/// GET TIME INSTANCE SIMPLE DATEFORMAT
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                int id = Integer.parseInt(jsonObject.get("itemId").toString());
-                String name = jsonObject.get("ItemName").toString();
-                String desc =" ";
-                String donor = " ";
-                Double startingBid = Double.valueOf(jsonObject.get("amount").toString());
-                Double minInc = 0.00;
-                Item item = new Item(id,name, desc, startingBid,minInc,donor);
-                myItems.add(item);
+                String startTime = jsonObject.get("startTime").toString();
+                String endTime = jsonObject.get("startTime").toString();
+
             }
 
             bufferedReader.close();
@@ -104,24 +99,13 @@ public class PastFetchData extends AsyncTask<String,String,String> {
 
         return data;
     }
+
     @Override
-    protected  void onPostExecute(String aVoid)
-    {
-
+    protected void onPostExecute(String aVoid) {
+        //ScrollingActivity.json = data;
         super.onPostExecute(aVoid);
+        //Log.w("Data dib",""+data);
 
+        //items = items;
     }
-
-    public String getData(){
-
-        return data;
-    }
-
-
 }
-
-
-
-
-
-

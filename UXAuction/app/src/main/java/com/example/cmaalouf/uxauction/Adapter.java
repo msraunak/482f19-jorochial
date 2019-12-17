@@ -3,11 +3,13 @@ package com.example.cmaalouf.uxauction;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -23,6 +25,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
     Adapter(Context context, ArrayList<Item> data){
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
+        Log.w("adapter items size",""+data.size());
         fullList = new ArrayList<>(data);
     }
 
@@ -51,7 +54,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //bind the text view wiht the data recieved
         Item item = data.get(position);
+        Log.w("items bitmap in adapter", item.image+"");
         holder.textTitle.setText(item.name);
+        //holder.itemImage.setImageDrawable(this.getResources().getDrawable(R.drawable.bike));
+        holder.itemImage.setImageBitmap(item.image);
+        //holder.itemImage.setBackground();
 
         //similarly you can set new image for each card and description
     }
@@ -67,11 +74,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textTitle, testDescription;
-
+        ImageView itemImage;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
             textTitle = itemView.findViewById(R.id.itemTitle);
+            itemImage = itemView.findViewById(R.id.itemPicture);
             //testDescription = itemView.findViewById(R.id.textDesc);
         }
 

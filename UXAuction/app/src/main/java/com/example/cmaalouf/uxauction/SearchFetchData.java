@@ -76,12 +76,13 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i<jsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                int id = Integer.parseInt(jsonObject.get("id").toString());
                 String name = jsonObject.get("itemName").toString();
                 String desc =jsonObject.get("description").toString();
                 String donor = jsonObject.get("donorName").toString();
                 Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
                 Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
-                Item item = new Item(name, desc, startingBid,minInc,donor);
+                Item item = new Item(id, name, desc, startingBid,minInc,donor);
                 items.add(item);
             }
 

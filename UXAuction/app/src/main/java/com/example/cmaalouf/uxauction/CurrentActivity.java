@@ -21,7 +21,7 @@ public class CurrentActivity extends AppCompatActivity{
 
 
     public static ArrayList<Item> myItems;
-
+    //private static final long START_TIME_IN_MILIS;
     public static String query;
 
     /**
@@ -48,7 +48,7 @@ public class CurrentActivity extends AppCompatActivity{
         });
 
         myItems= new ArrayList<Item>();
-        Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+
         /*myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
@@ -60,6 +60,11 @@ public class CurrentActivity extends AppCompatActivity{
         CurrentFetchData process = new CurrentFetchData(this,"hfranceschi");
         process.execute();
         update();
+
+
+
+
+        //long mTimeLeftInMillis = START_TIME_IN_MILIS; // MAKE CALL
     }
 
 

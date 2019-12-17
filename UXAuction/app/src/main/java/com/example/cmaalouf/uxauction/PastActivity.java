@@ -42,13 +42,7 @@ public class PastActivity extends AppCompatActivity {
         process.execute();
 
         update();
-        Item add_this = new Item("ho","hi",10.00,100.00,"donor");
-        /*myItems.add(add_this);
-        myItems.add(add_this);
-        myItems.add(add_this);
-        myItems.add(add_this);
-        myItems.add(add_this);
-        */
+
 
 
     }

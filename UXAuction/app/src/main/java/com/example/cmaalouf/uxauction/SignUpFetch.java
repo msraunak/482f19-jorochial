@@ -61,10 +61,10 @@ public class SignUpFetch extends AsyncTask<String,String,String> {
 
             Map<String,Object> params = new LinkedHashMap<>();
             params.put("username", user );
-            params.put("pwd", passw);
-            params.put("fname",fname);
-            params.put("lname",lname);
-            params.put("email",email);
+            params.put("pwd", ""+passw);
+            params.put("fname",""+fname);
+            params.put("lname",""+lname);
+            params.put("email",""+email);
 
             Log.w("email",""+user);
             StringBuilder postData = new StringBuilder();

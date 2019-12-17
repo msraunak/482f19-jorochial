@@ -2,6 +2,7 @@ package com.example.cmaalouf.uxauction;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -35,6 +36,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     List<Item> itemList;
@@ -42,6 +45,7 @@ public class ScrollingActivity extends AppCompatActivity {
     public static String json ="";
     public static String query="";
     public static ArrayList<Item> items = new ArrayList<Item>();
+    public static ArrayList<Bitmap> images = new ArrayList<Bitmap>();
     public static RecyclerView recyclerView;
     private Adapter adapter;
 
@@ -65,17 +69,18 @@ public class ScrollingActivity extends AppCompatActivity {
         });
 
 
-
+        items.clear();
         FetchData process = new FetchData(this);
         //FetchData process = new FetchData(this);
         process.execute();
+        getImages();
         //String s = ""+process.getData();
         Auction auction = new Auction(0,0,null);
-        Log.w("JSON STR",""+json);
+        Log.w("images size",""+images.size());
         //auction.makeAuctionItems(json);
         //items = auction.getItemsInAuction();
         //adapter = new Adapter(this, items);
-        update();
+
 
 
         // THIS WORKS ISH
@@ -102,8 +107,25 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
+        
 
     }
+
+    private void getImages()
+    {
+        Log.w("items size",""+items.size());
+        for(Item thisItem : items){
+            ImageFetch fetch = new ImageFetch(this);
+            fetch.execute();//""+thisItem.id);
+            if(images.size()>0) {
+                thisItem.setImage(images.get(images.size() - 1));
+            }
+            Log.w("items image", valueOf(thisItem.image));
+        }
+        Log.w("now images size",""+images.size());
+        update();
+    }
+
 
 
     private void searchUpdate()
@@ -116,7 +138,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private void update()
     {
-
+        Log.w("UPDATE items size",""+items.size());
         Adapter adapter = new Adapter(this,items);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a LinearLayoutManager with default orientation
