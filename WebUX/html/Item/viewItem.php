@@ -47,7 +47,7 @@ else{
 
 
 
-function itemRow($bidder,$amount, $time) {
+function itemRow($bidder,$amount) {
   #TODO: Change hard coded picture to link
   return '<tr>
       <td>'.$bidder.'</td>
@@ -58,11 +58,12 @@ function itemRow($bidder,$amount, $time) {
 
 function itemTable($mysqli, $itemId){
   $htmlResult = "";
-  $sql = "SELECT *  FROM Bids WHERE itemId = $itemId";
+  $sql = "SELECT * FROM Bids WHERE itemId = $itemId;";
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= itemRow($row["bidderUName"],$row["amount"],$row["time"]);
+
+     $htmlResult .= itemRow($row["bidderUName"],$row["amount"]);
   }
   return $htmlResult;
 }
