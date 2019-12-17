@@ -7,6 +7,10 @@ import android.view.View;
 
 public class ItemActivity extends AppCompatActivity {
 
+    /**
+     * Purpose: create the view from the xml layout
+     * @param savedInstanceState saved state of application used when this method is called
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,7 +18,10 @@ public class ItemActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Purpose: method for when back button is hit
+     * @param view for android onClick convention
+     */
     protected void backToSearch(View view)
     {
         this.finish();
