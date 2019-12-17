@@ -26,7 +26,13 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
         fullList = new ArrayList<>(data);
     }
 
-
+    /**
+     * Purpose: method for RecycleView.ViewHolder to call when it needs a new ViewHolder to 
+     * represent an item.
+     * @param viewGroup the group to add the new view to
+     * @param viewType  the type of new view
+     * @return the new ViewHolder that holds the new view
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -35,6 +41,11 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
 
     }
 
+    /**
+     * Purpose: Display data located at a position in the data set
+     * @param holder the ViewHolder to be updated to represent the contents of the item
+     * @param i the position of the item within the data set
+     */
     @Override
     public void onBindViewHolder(@NonNull PastAdapter.ViewHolder viewHolder, int i) {
         Item item = data.get(i);
@@ -43,7 +54,10 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
     }
 
 
-
+    /**
+     * Purpose: give other classes access to the size of this data set
+     * @return the total number of items in the adapter
+     */
     @Override
     public int getItemCount() {
         return data.size();
