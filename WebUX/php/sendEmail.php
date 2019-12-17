@@ -14,7 +14,7 @@ if ($mysqli->connect_error) {
  $to_email = $_GET['emailAddress'];
 
 
-$sql = "SELECT * FROM Bidders WHERE email = $to_email";
+$sql = "SELECT * FROM Bidders WHERE email = '$to_email'";
 $result = $mysqli->query($sql);
 if ($result->num_rows > 0) {
   $subject = $_GET['emailSubject'];
