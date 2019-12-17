@@ -19,7 +19,7 @@ public class AuctionSystem
      */
     public void reviewResults(Auction auction)
     {
-        HashMap<Donor, Set<Item>> donorsInAuction = auction.getDonorsOfItems();
+        HashMap<Integer, Item> donorsInAuction = auction.getmapOfItems();
         double totalMoneyRaised = 0;
 
         if(donorsInAuction != null)

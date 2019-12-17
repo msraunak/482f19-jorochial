@@ -45,6 +45,12 @@
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
+                    <TextView
+                        android:id="@+id/itemid"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:visibility="invisible"/>
+
 
                     <Button
 

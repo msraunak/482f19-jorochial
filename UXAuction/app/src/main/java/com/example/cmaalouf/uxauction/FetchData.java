@@ -1,6 +1,8 @@
 package com.example.cmaalouf.uxauction;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -44,7 +46,7 @@ public FetchData(Context context)
 
     /**
      * Purpose: fetch the data for items for the auction
-     * @param String...voids the data types to perform the tasks on
+     * @param //String...voids the data types to perform the tasks on
      * @return the results of the task
      */
     @Override
@@ -91,12 +93,34 @@ public FetchData(Context context)
                     for(int i = 0; i<jsonArray.length(); i++) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                         int id = Integer.parseInt(jsonObject.get("id").toString());
+
+
+
                         String name = jsonObject.get("itemName").toString();
                         String desc =jsonObject.get("description").toString();
                         String donor = jsonObject.get("donorName").toString();
                         Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
                         Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
                         Item item = new Item(id,name, desc, startingBid,minInc,donor);
+
+                        URL imgaeUrl = new URL("http://jorochial.cs.loyola.edu/php/idImagePuller.php?id=2");//+id);
+                        HttpURLConnection imageCon = (HttpURLConnection) url.openConnection();
+                        //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
+                        imageCon.setRequestMethod("GET");
+                        //con.setReadTimeout(150000);
+                        //con.setConnectTimeout(100000);
+                        imageCon.setDoOutput( true );
+                        imageCon.setDoInput(true);
+                        InputStream imageInputStream = imageCon.getInputStream();
+                        Log.w("IMfetchdata ",inputStream.toString());
+                        //items.add("after input stream");
+                        Bitmap bitmap = BitmapFactory.decodeStream(imageInputStream);
+                        Log.w("IMbitmap ",bitmap+"");
+                        item.setImage(bitmap);
+                        imageInputStream.close();
+                        imageCon.disconnect();
+
+
                         items.add(item);
                     }
 

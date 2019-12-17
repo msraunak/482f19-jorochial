@@ -9,7 +9,7 @@ public class Item
 
     protected String description; //some of these aren't used yet but probably will be
     private double startingBid;
-    private double minIncrement;
+    protected double minIncrement;
     private String donor;
     protected String name;
     public int id;

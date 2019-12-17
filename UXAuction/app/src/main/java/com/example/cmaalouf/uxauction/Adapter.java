@@ -56,6 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
         Item item = data.get(position);
         Log.w("items bitmap in adapter", item.image+"");
         holder.textTitle.setText(item.name);
+        holder.textId.setText(""+item.id);
         //holder.itemImage.setImageDrawable(this.getResources().getDrawable(R.drawable.bike));
         holder.itemImage.setImageBitmap(item.image);
         //holder.itemImage.setBackground();
@@ -73,14 +74,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  implement
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textTitle, testDescription;
+        TextView textTitle, textId;
         ImageView itemImage;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
             textTitle = itemView.findViewById(R.id.itemTitle);
             itemImage = itemView.findViewById(R.id.itemPicture);
-            //testDescription = itemView.findViewById(R.id.textDesc);
+            textId = itemView.findViewById(R.id.itemid);
         }
 
     }
