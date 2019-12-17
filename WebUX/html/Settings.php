@@ -23,6 +23,24 @@ if (isset($_SESSION["adminAdd"])){
     </div>';
   }
 }
+if (isset($_SESSION["resetPassword"])) {
+    if ($_SESSION["resetPassword"] == true) {
+        $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        '.$_SESSION["itemMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  } else {#($_SESSION["resetPassword"] == False){
+        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       '.$_SESSION["itemMessage"].'
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+    }
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -103,17 +121,17 @@ if (isset($_SESSION["adminAdd"])){
 
 
 
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" action="Admin/resetPwd.php" method="POST" novalidate>
             <!--TODO: Add functionality to this form -->
             <div class="form-group text-dark">
               <div class="form-row">
                 <label for="username" class="col-md-4 text-md-right pr-4">Admin Username:</label>
-                <input class="form-control" style="max-width:33%;" type="text" name="username">
+                <input class="form-control" style="max-width:33%;" type="text" name="resetUsername">
               </div>
               <div class="form-row mt-2">
                 <label class="col-md-4 text-md-right pr-4" for="currentPassword">Current Password:</label>
                 <div class="col-md-8 p-0">
-                <input class="form-control" style="max-width:50%;" type="password" name="currentPassword" required>
+                <input class="form-control" style="max-width:50%;" type="password" name="currentPwd" required>
                 <div class="invalid-feedback">
                   Please enter your current password.
                 </div>
@@ -122,12 +140,12 @@ if (isset($_SESSION["adminAdd"])){
 
               <div class="form-row mt-2">
                 <label class="col-md-4 text-md-right pr-4" for="newPassword">New Password:</label>
-                <input class="form-control" style="max-width:33%;" type="password" name="newPassword" required>
+                <input class="form-control" style="max-width:33%;" type="password" name="newPwd1" required>
               </div>
               <div class="form-row mt-2">
                 <label class="col-md-4 text-md-right pr-4" for="newPassword2">New Password again:</label>
                 <div class="col-md-8 p-0">
-                <input class="form-control" style="max-width:50%;" type="password" name="newPassword2" required>
+                <input class="form-control" style="max-width:50%;" type="password" name="newPwd2" required>
                 <div class="invalid-feedback">
                   Your new password must match.
                 </div>
