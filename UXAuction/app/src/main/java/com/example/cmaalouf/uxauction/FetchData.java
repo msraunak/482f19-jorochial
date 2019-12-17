@@ -32,15 +32,21 @@ public FetchData(Context context)
     this.ctx=context;
 }
 
+    /**
+     * Purpose: execute before doInBackground, initialize data to an empty string
+     */
+    @Override
+    protected void onPreExecute()
+    {
+        super.onPreExecute();
+        data ="";
+    }
 
-@Override
-protected void onPreExecute()
-{
-    super.onPreExecute();
-    data ="";
-}
-
-
+    /**
+     * Purpose: fetch the data for items for the auction
+     * @param String...voids the data types to perform the tasks on
+     * @return the results of the task
+     */
     @Override
             protected String doInBackground(String... voids) {
                 try {
@@ -107,6 +113,11 @@ protected void onPreExecute()
 
                 return data;
     }
+    
+        /**
+         * Purpose: Run in the UI thread after doInBackground
+         * @param aVoid the String result from doInBackground
+         */
         @Override
         protected  void onPostExecute(String aVoid)
         {
@@ -116,7 +127,11 @@ protected void onPreExecute()
 
             //items = items;
         }
-
+        
+        /**
+         * Purpose: give other classes access to data
+         * @return the data computed from doInBackground
+         */
         public String getData(){
 
                 return data;
