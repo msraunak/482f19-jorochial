@@ -30,7 +30,8 @@ if(isset($_GET["id"])){
   $item_minimum_inc = $row["minimumBidInc"];
   $item_donor = $row["donorName"];
   #TODO: use pic from DB also Picture file ... url for now
-  $item_picture = $row["imageData"];
+  $item_picture_ref = $row['imageRef'];
+  $item_picture_data = $row["imageData"];
 }
 else{
   $item_title = "Chessboard";
@@ -88,7 +89,7 @@ else{
     <div class="container">
       <div class="row">
         <div class="col">
-          <img <?php echo "src=\"data:".$item_picture."\";base64,$item_picture"?> class="img-fluid" width=200>
+          <img src="data:<?php echo $item_picture_ref ?>;base64, <?php echo $item_picture_data ?>" class="img-fluid" width=200>
           <!-- img src="data:'.$pictureRef.';base64,' . $pictureData .'" width="200" class="card-img" -->
         </div>
 
