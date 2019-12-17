@@ -11,9 +11,9 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-$bid = $_GET["bidId"];
+$bid = $_GET["itemId"];
 
-$sql = "SELECT currentBid, minimumBidInc FROM Bids WHERE bidId = ". $_GET["bidId"];
+$sql = "SELECT currentBid, minimumBidInc FROM Item WHERE bidId = ". $_GET["itemId"];
 
 $result = $mysqli->query($sql);
 
