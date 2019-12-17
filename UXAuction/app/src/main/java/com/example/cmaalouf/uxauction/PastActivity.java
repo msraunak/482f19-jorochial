@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class PastActivity extends AppCompatActivity {
 
     public static ArrayList<Item> myItems = new ArrayList<Item>();
+    public static String query;
     public static RecyclerView pastRecyclerView;
 
     @Override
@@ -36,19 +37,31 @@ public class PastActivity extends AppCompatActivity {
             }
         });
 
+        query="hfranceschi";
+        PastFetchData process = new PastFetchData(this,query);
+        process.execute();
 
+        update();
         Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+        /*myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
-        myItems.add(add_this);
+        */
+
+
+    }
+
+    public void update(){
+
         PastAdapter pastAdapter = new PastAdapter(this, myItems);
-         RecyclerView pastRecyclerView = findViewById(R.id.PastrecyclerView);
+        RecyclerView pastRecyclerView = findViewById(R.id.PastrecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         pastRecyclerView.setLayoutManager(linearLayoutManager);
         pastRecyclerView.setAdapter(pastAdapter);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
