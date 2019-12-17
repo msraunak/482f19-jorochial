@@ -20,7 +20,7 @@ public class Auction
     and what items they donated. To do this, the auction holds a map of donors associated
     with the items they donated.
      */
-    private HashMap<Donor, Set<Item>> donorsOfItems;
+    private HashMap<Integer, Item> mapOfItems;
     private int startTime;
     private int endTime;
     private Charity beneficiary;
@@ -35,8 +35,12 @@ public class Auction
         this.endTime = endTime;
         this.beneficiary = beneficiary;
         this.itemsInAuction = itemsInAuction;
-        //this.json = json;
-        donorsOfItems = new HashMap<>();
+        mapOfItems = new HashMap<>();
+        for(Item newItem : itemsInAuction)
+        {
+         mapOfItems.put(newItem.id,newItem);
+        }
+
         //makeAuctionItems(json);
 
     }
@@ -119,12 +123,12 @@ public class Auction
     }
 
     /**
-     * Purpose: Give other classes access to the map of donors associated with their items
+     * Purpose: Give other classes access to the map of item Ids associated with their items
      * @return the map of donors associated with their items
      */
-    public HashMap<Donor, Set<Item>> getDonorsOfItems()
+    public HashMap<Integer, Item> getmapOfItems()
     {
-        return this.donorsOfItems;
+        return this.mapOfItems;
     }
 
     //TO DO, not sure what this would like
