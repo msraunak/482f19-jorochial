@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Random;
+
 public class PasswordRecoveryActivity extends AppCompatActivity {
     String code;
     EditText codeEditText;
@@ -28,8 +34,8 @@ Button confirmButton ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fpassword);
 
-        Random rand = new Random();
-        int num_code = new Random(999999);
+
+        int num_code = new Random(999999).nextInt();
         code = String.format("%06d", num_code);
 
 
@@ -39,41 +45,21 @@ Button confirmButton ;
      * Purpose: Update the screen when the send button is pressed
      * @param v convention for onClick methods
      */
-    public void send(View v)
-    {
+    public void send(View v) {
 
         EditText emailField = findViewById(R.id.usernameField);
-        String email = emailField.getText();
+        String email = emailField.getText().toString();
         String emailSubject = "Forgot Password from Jorochial";
-        String emailMessage = "This message is from AuctionForHaiti. \n\n Your secret code is "+ code +". \n Sincerely, \n Jorochial";
-
-
-        try {
-
-            URL url = new URL("http://jorochial.cs.loyola.edu/php/sendEmail.php?emailAddress="+email+"&emailSubject="+emailSubject+"&emailMessage="+emailMessage);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
-            con.setRequestMethod("GET");
-
-            con.setDoOutput( true );
-            con.setDoInput(true);
-
-            con.disconnect();
-
-
-
-          codeEditText = findViewById(R.id.codeField);
-          codeTextView = findViewById(R.id.sixcodeText);
-          submitButton = findViewById(R.id.submitB);
-          codeEditText.setVisibility(View.VISIBLE);
-          codeTextView.setVisibility(View.VISIBLE);
-          submitButton.setVisibility(View.VISIBLE);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-      }
+        String emailMessage = "This message is from AuctionForHaiti.  Your secret code is " + code + ".  Sincerely,  Jorochial";
+        EmailFetch eprocess = new EmailFetch(this);
+        eprocess.execute(email,emailMessage);
+        codeEditText = findViewById(R.id.codeField);
+        codeTextView = findViewById(R.id.sixcodeText);
+        submitButton = findViewById(R.id.submitB);
+        codeEditText.setVisibility(View.VISIBLE);
+        codeTextView.setVisibility(View.VISIBLE);
+        submitButton.setVisibility(View.VISIBLE);
+    }
     /**
      * Purpose: Update the screen when the submit button is pressed
      * @param v convention for onClick methods
@@ -88,7 +74,7 @@ Button confirmButton ;
 
       confirmButton = findViewById(R.id.confirm);
 
-      if code.equals(codeEditText.getText()){
+      if(code.equals(codeEditText.getText())){
         pwEditText.setVisibility(View.VISIBLE);
         confirmEditText.setVisibility(View.VISIBLE);
         pwTextView.setVisibility(View.VISIBLE);
