@@ -63,7 +63,9 @@ public class CurrentActivity extends AppCompatActivity{
     }
 
 
-
+    /**
+     * Purpose: Update the view
+     */
     public void update(){
 
         CurrentAdapter Cadapter = new CurrentAdapter(this,myItems);
