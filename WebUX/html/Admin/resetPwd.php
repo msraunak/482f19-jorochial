@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
           echo '<script language="javascript">';
           echo 'alert("Password successfully changed")';
           echo '</script>';
-          header("Refresh:5");
+          header("Refresh:5; url=Settings.php");
           exit;
         }
 
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
         echo '<script language="javascript">';
         echo 'alert("Sorry your password does not match")';
         echo '</script>';
-        header("Refresh:5");
+        header("Refresh:5; url=Settings.php");
         exit;
       }
 
@@ -72,14 +72,14 @@ a:
   echo '<script language="javascript">';
   echo 'alert("Sorry those passwords do not match")';
   echo '</script>';
-  header("Refresh:5");
+  header("Refresh:5 ; url=Settings.php");
   exit;
 
 b:
   echo '<script language="javascript">';
   echo 'alert("Please enter the correct credentials")';
   echo '</script>';
-  header("Refresh:5");
+  header("Refresh:5; url=Settings.php");
   exit;
 
 
