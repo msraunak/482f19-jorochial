@@ -68,7 +68,7 @@ if ($mysqli->connect_error) {
     <div class="container">
       <h1>Add Item to Auction</h1>
 
-      <form class="needs-validation" action="insertItem.php" method="post" enctype="multipart/form-data" novalidate>
+      <form class="needs-validation" action="insertItem.php" enctype="multipart/form-data" method="post" novalidate>
         <!--TODO: Add functionality to this form -->
         <div class="form-group">
           <label for="ItemAuction">Auction:</label>

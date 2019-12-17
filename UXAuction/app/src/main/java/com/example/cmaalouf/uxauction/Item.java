@@ -7,7 +7,7 @@ import java.util.TreeMap;
 public class Item
 {
 
-    protected String description; //some of these aren't used yet but probably will be
+    protected String description;
     private double startingBid;
     protected double minIncrement;
     private String donor;
@@ -59,6 +59,16 @@ public class Item
     public double getCurrentHighestBid()
     {
         return biddersForThisItem.lastKey();
+    }
+
+    public String getItemDescription()
+    {
+        return this.description;
+    }
+
+    public double getStartingBid()
+    {
+        return this.startingBid;
     }
 
     /**
