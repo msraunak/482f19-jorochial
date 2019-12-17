@@ -23,6 +23,7 @@ public class AuctionTimeFetch extends AsyncTask<String,String,String> {
     String data_parse;
     String single_parse;
     private Context ctx;
+    private long millis;
 
     public AuctionTimeFetch(Context context) {
         this.ctx = context;
@@ -82,6 +83,12 @@ public class AuctionTimeFetch extends AsyncTask<String,String,String> {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 String startTime = jsonObject.get("startTime").toString();
                 String endTime = jsonObject.get("startTime").toString();
+                startTime = startTime.substring(startTime.length() - 8);
+                endTime = endTime.substring(endTime.length() - 8);
+                String[] startTimes = startTime.split(":");
+                String[] endTimes = endTime.split(":");
+                int hoursLeft = Integer.parseInt(endTimes[0]);
+                millis = hoursLeft * 60 * 60 * 1000;
 
             }
 
@@ -107,5 +114,10 @@ public class AuctionTimeFetch extends AsyncTask<String,String,String> {
         //Log.w("Data dib",""+data);
 
         //items = items;
+    }
+
+    public long getMillis()
+    {
+        return millis;
     }
 }
