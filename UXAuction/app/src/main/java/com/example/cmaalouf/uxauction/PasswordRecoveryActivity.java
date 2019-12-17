@@ -74,7 +74,7 @@ Button confirmButton ;
 
       confirmButton = findViewById(R.id.confirm);
 
-      if(code.equals(codeEditText.getText())){
+      if(code.equals(codeEditText.getText().toString())){
         pwEditText.setVisibility(View.VISIBLE);
         confirmEditText.setVisibility(View.VISIBLE);
         pwTextView.setVisibility(View.VISIBLE);
