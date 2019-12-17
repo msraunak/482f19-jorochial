@@ -62,7 +62,7 @@ function itemTable($mysqli, $itemId){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-
+    echo $row['bidderUName']. $row['amount'];
      $htmlResult .= itemRow($row["bidderUName"],$row["amount"]);
   }
   return $htmlResult;
