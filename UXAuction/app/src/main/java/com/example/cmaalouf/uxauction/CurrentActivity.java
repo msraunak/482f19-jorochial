@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 
 public class CurrentActivity extends AppCompatActivity{
 
-    public static ArrayList<Item> myItems;
+    public static ArrayList<Item> myItems = new ArrayList<>();
+    public static String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +40,24 @@ public class CurrentActivity extends AppCompatActivity{
             }
         });
 
-        myItems= new ArrayList<Item>();
+        //myItems= new ArrayList<Item>();
         Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+        /*myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
         myItems.add(add_this);
-        myItems.add(add_this);
+    */
+        query="hfranceschi";
+        Log.w("CurrentFetch ", query);
+        CurrentFetchData process = new CurrentFetchData(this,"hfranceschi");
+        process.execute();
+        update();
+    }
+
+
+
+    public void update(){
 
         CurrentAdapter Cadapter = new CurrentAdapter(this,myItems);
         RecyclerView CrecyclerView = (RecyclerView) findViewById(R.id.CurrentrecyclerView);
