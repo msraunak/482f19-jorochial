@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Boolean> enter;
     ListView listView;
 
+    /**
+     * Purpose: intialize activity data and the view from the layout xml
+     * @param savedInstanceState saved state information for this method to use when called
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
         enter.add(false);
         setContentView(R.layout.activity_login);//activity_list_view);
 
-
-
-/*
-
-
-        */
-
     }
-
+    
+    /**
+     * Purpose: log the user in to the app if they enter their correct information
+     * @param view convention for android onClick methods
+     */
     protected void login(View view)
     {
         EditText user = (EditText)findViewById(R.id.user);
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         verified();
     }
 
+    /**
+     * Purpose: verify the user's log in information
+     */
     protected void verified()
     {
         Log.w("enter",""+verified);
@@ -73,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Purpose: take the user to the forgot password screen
+     * @param view convention for android onClick methods
+     */
     protected void forgotPassword(View view)
     {
         Intent myIntent = new Intent( this,
@@ -84,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Purpose: take the user to the sign up screen
+     * @param view convention for onClick methods
+     */
     protected void signUp(View view)
     {
         Intent myIntent = new Intent( this,

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity{
     public static ArrayList<Boolean> success = new ArrayList<>();
+    
+    /**
+     * Purpose: Initialize activity data and the layout from the xml
+     * @param savedInstanceState saved state information used in creation
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +23,11 @@ public class SignUpActivity extends AppCompatActivity{
         setContentView(R.layout.activity_signup);
 
     }
+    
+    /**
+     * Purpose: handle the clicking of the submit button
+     * @param view convention for android onClicks
+     */
     protected void submit(View view)
     {
         EditText user = (EditText)findViewById(R.id.usernameField);
