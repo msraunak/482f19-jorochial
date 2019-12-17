@@ -6,17 +6,17 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-$sql = "SELECT * FROM Item order by itemName;";
+$sql = "SELECT id,itemName, description, startingBid, minimumBidInc, currentBid, donorName FROM Item order by itemName;";
 $result = $mysqli->query($sql);
 
 $resultArray = '[';
 $tempArray= array();
-
+echo $resultArray;
 while($row=$result->fetch_assoc())
 {
 $tempArray = $row;
-$resultArray.=json_encode($tempArray).',';// $tempArray);
-echo $resultsArray;
+$resultArray=json_encode($tempArray).',';// $tempArray);
+echo $resultArray;
 }
 
 $resultArray = substr($resultArray, 0, -1);
