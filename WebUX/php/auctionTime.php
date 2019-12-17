@@ -10,13 +10,17 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-
-
+//Select auction currently running from server
 $sql = "SELECT * FROM Auction WHERE startTime < now()  and endTime > now()";
 
 $result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
 
-  echo json_encode("[".$row."]");
+$resultArray = '[';
+$tempArray= array();
 
+$row=$result->fetch_assoc();
+$tempArray = $row;
+$resultArray.=json_encode($tempArray);// $tempArray);
+$resultArray.=']';
+ echo $resultArray;
 ?>
