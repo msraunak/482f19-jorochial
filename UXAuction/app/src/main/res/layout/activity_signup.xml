@@ -21,7 +21,8 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/usernameText"
         android:layout_centerHorizontal="true"
-        android:hint="  Email Address"
+        android:singleLine="true"
+        android:hint="  Username"
 
 
         />
@@ -48,6 +49,7 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/usernameText"
         android:layout_centerHorizontal="true"
+        android:singleLine="true"
         android:hint="  Password"
 
 
@@ -67,14 +69,45 @@
 
 
     <EditText
-        android:id="@+id/fnameField"
+        android:id="@+id/emailField"
         android:layout_below="@+id/passwrdField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/passwrdField"
         android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/emailText"
+        android:layout_centerHorizontal="true"
+        android:hint="   Email       "
+        android:singleLine="true"
+
+
+        />
+    <TextView
+        android:id="@+id/emailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/psswrdText"
+        android:layout_alignLeft="@+id/psswrdText"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/emailField"
+        android:text="Email:"
+        />
+
+
+
+
+    <EditText
+        android:id="@+id/fnameField"
+        android:layout_below="@+id/emailField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/emailField"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/fnameText"
         android:layout_centerHorizontal="true"
+        android:singleLine="true"
         android:hint="   First Name"
 
 
@@ -83,13 +116,14 @@
         android:id="@+id/fnameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/psswrdText"
+        android:layout_below="@+id/emailText"
         android:layout_alignRight="@+id/psswrdText"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:gravity="center"
         android:layout_alignBottom="@+id/fnameField"
         android:text="First Name:"/>
+
     <EditText
         android:id="@+id/lnameField"
         android:layout_marginTop="20dp"
@@ -99,6 +133,7 @@
         android:layout_alignLeft="@+id/fnameField"
         android:layout_toRightOf="@+id/lnameText"
         android:layout_centerHorizontal="true"
+        android:singleLine="true"
         android:hint="  Last Name"
 
 
@@ -118,10 +153,8 @@
 
 
 
-
-
-
     <Button
+        android:id="@+id/snbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -129,6 +162,19 @@
         android:layout_below="@+id/lnameText"
         android:layout_centerHorizontal="true"
         android:onClick="submit"/>
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/snbutton"
+        android:textSize="15dp"
+        android:layout_marginLeft="60dp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorPrimary"
+        android:text="Invalid Username, Password, or Email:"
+        android:visibility="invisible"/>
 
 
 
