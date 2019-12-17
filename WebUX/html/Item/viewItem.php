@@ -142,7 +142,7 @@ function itemTable($mysqli, $itemId){
         </div>
       </div>
     </div>
-    <div class="content row justify-content-center">
+    <div class="content row justify-content-right mt-3">
       <div class="col-auto">
         <table class="table table-responsive">
           <tr>
