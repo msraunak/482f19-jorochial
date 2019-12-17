@@ -79,13 +79,14 @@ function itemTable($mysqli, $orgName){
 }
 
 function sumAmounts($mysqli, $donor_title){
-  $output =  "Total raised: ";
+  $output =  "Total raised: $";
   $sql = 'SELECT sum(currentBid) FROM Item WHERE donorName LIKE "'.$donor_title.'";';
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
      $output .= $row["sum(currentBid)"];
   }
+  return $output;
 }
 ?>
 
