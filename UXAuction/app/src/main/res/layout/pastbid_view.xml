@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:showIn="@layout/activity_pastscrolling"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/toolbar"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom = "5dp"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item1name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/currentbids"
+                android:layout_toRightOf="@+id/item1"
+                android:layout_alignTop="@+id/item1"
+                android:text="Jacoozi"
+                android:textSize="20dp"
+                android:layout_marginLeft="16dp"/>
+
+
+            <ImageView
+                android:layout_below="@+id/currentbids"
+                android:layout_marginTop="200dp"
+                android:id="@+id/item1"
+                style="@style/ItemPic"
+                android:background="@drawable/jacoozi"
+                />
+            <Button
+                android:id="@+id/title1"
+                android:layout_toRightOf="@+id/item1"
+                android:layout_below="@id/item1name"
+                style="@style/TitlePrice"
+                android:background="@color/colorPrimary"
+                android:layout_width="200dp"
+                android:textColor="@color/white"
+                android:text="My Bid:    2500"
+
+                />
+
+
+
+            <Button
+                android:id="@+id/title1a"
+                android:layout_toRightOf="@+id/item1"
+                android:layout_below="@id/title1"
+                style="@style/TitlePrice"
+                android:layout_width="200dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                android:text="Current Bid:    5500"
+                android:gravity="center"
+                />
+
+
+
+            <Button
+                android:id="@+id/view1"
+
+                android:layout_below="@id/item1"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_marginLeft="16dp"
+                android:textSize="10dp"
+                android:onClick="itemClick"
+                android:text="View Listing"
+
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
