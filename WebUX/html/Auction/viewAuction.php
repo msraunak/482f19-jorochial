@@ -91,7 +91,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
 }
 
 function sumAmounts($mysqli, $auction_title){
-  $output =  "Total raised: ";
+  $output =  "Total raised: $";
   $sql = 'SELECT sum(currentBid) FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'";';
   $result = $mysqli->query($sql);
   echo $mysqli->error;

@@ -77,16 +77,16 @@ function itemTable($mysqli, $orgName){
   }
   return $htmlResult;
 }
-/*
-function sumAmounts($mysqli, $auction_id){
+
+function sumAmounts($mysqli, $donor_title){
   $output =  "Total raised: ";
-  $sql = 'SELECT sum(currentBid) FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'";';
+  $sql = 'SELECT sum(currentBid) FROM Item WHERE donorName LIKE "'.$donor_title.'";';
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
      $output .= $row["sum(currentBid)"];
   }
-}*/
+}
 ?>
 
 <html>
@@ -138,6 +138,7 @@ function sumAmounts($mysqli, $auction_id){
         <div class="col pl-0">
             <h3>Contact Information</h3>
             <h5><?php echo $donor_repName;?><br><?php echo $donor_phoneNum;?><br><?php echo $donor_email;?><br><?php echo $donor_address;?></h5>
+            <h4><?php echo sumAmounts($mysqli, $auction_title)?></h4>
         </div>
         <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
 
