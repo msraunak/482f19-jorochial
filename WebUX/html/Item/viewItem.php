@@ -52,7 +52,7 @@ function itemRow($bidder,$amount, $time) {
   return '<tr>
       <td>'.$bidder.'</td>
       <td> $'.$amount.'</td>
-      <td> $'.$time.'</td>
+      <td> '.date("F j, Y, g:i a", strtotime($time)).'</td>
     </tr>';
 }
 
