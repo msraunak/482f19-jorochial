@@ -50,14 +50,14 @@ if (isset($_SESSION["auctionNotice"])) {
     if ($_SESSION["auctionNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
         '.$_SESSION["auctionMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["auctionNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["auctionMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["auctionNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
@@ -88,6 +88,17 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
      $htmlResult .= itemRow($row["id"],$row["itemName"],$row["donorName"],$row["currentBid"],$row["startingBid"],$row["minimumBidInc"]);
   }
   return $htmlResult;
+}
+
+function sumAmounts($mysqli, $auction_title){
+  $output =  "Total raised: $";
+  $sql = 'SELECT sum(currentBid) FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'";';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $output .= $row["sum(currentBid)"];
+  }
+  return $output;
 }
 
 ?>
@@ -137,6 +148,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
         <p class="text-primary">Start Date and Time: <?= $auction_start_date;?></p>
         <p class="text-primary">End Date and Time: <?php echo $auction_end_date;?></p>
         <h6>Beneficiary: <?php echo $auction_charity;?></h6>
+        <h5><?php echo sumAmounts($mysqli, $auction_title)?></h5>
       <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
     </div>
     <div class="container mt-3">

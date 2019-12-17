@@ -78,6 +78,16 @@ function itemTable($mysqli, $orgName){
   return $htmlResult;
 }
 
+function sumAmounts($mysqli, $donor_title){
+  $output =  "Total raised: $";
+  $sql = 'SELECT sum(currentBid) FROM Item WHERE donorName LIKE "'.$donor_title.'";';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $output .= $row["sum(currentBid)"];
+  }
+  return $output;
+}
 ?>
 
 <html>
@@ -101,7 +111,7 @@ function itemTable($mysqli, $orgName){
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
@@ -129,6 +139,7 @@ function itemTable($mysqli, $orgName){
         <div class="col pl-0">
             <h3>Contact Information</h3>
             <h5><?php echo $donor_repName;?><br><?php echo $donor_phoneNum;?><br><?php echo $donor_email;?><br><?php echo $donor_address;?></h5>
+            <h4 class="text-primary"><?php echo sumAmounts($mysqli, $donor_title)?></h4>
         </div>
         <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
 

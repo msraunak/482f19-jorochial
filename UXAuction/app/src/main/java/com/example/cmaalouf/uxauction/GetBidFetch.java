@@ -12,23 +12,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
-import static com.example.cmaalouf.uxauction.ScrollingActivity.items;
-import static com.example.cmaalouf.uxauction.ScrollingActivity.query;
-import static java.lang.String.valueOf;
+import static com.example.cmaalouf.uxauction.ItemActivity.items;
 
-public class SearchFetchData extends AsyncTask<String,String,String> {
+
+public class GetBidFetch extends AsyncTask<String,String,String> {
 
     String data;
     String data_parse;
     String single_parse;
     private Context ctx;
-    public SearchFetchData(Context context)
+    public GetBidFetch(Context context)
     {
         this.ctx=context;
 
@@ -43,7 +40,6 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
         super.onPreExecute();
         data ="";
     }
-
     /**
      * Purpose: fetch the data for searching
      * @param ///String...voids the data types to perform the tasks on
@@ -52,16 +48,17 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
     @Override
     protected String doInBackground(String... voids) {
         try {
-            //items.add("before url");
+
+            String query = voids[0];
             Log.w("QUERY", ""+query);
-            URL url = new URL("http://jorochial.cs.loyola.edu/php/search.php?query="+query);
+            URL url = new URL("http://jorochial.cs.loyola.edu/php/getBid.php?bidID="+query);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
             con.setRequestMethod("GET");
 
             con.setDoOutput( true );
             con.setDoInput(true);
-
+            ;
             InputStream inputStream = con.getInputStream();
             Log.w("fetchdata ",inputStream.toString());
             //items.add("after input stream");
@@ -82,14 +79,9 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i<jsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                int id = Integer.parseInt(jsonObject.get("id").toString());
-                String name = jsonObject.get("itemName").toString();
-                String desc =jsonObject.get("description").toString();
-                String donor = jsonObject.get("donorName").toString();
-                Double startingBid = Double.valueOf(jsonObject.get("startingBid").toString());
-                Double minInc = Double.valueOf(jsonObject.get("minimumBidInc").toString());
-                Item item = new Item(id, name, desc, startingBid,minInc,donor);
-                items.add(item);
+                Double amount = Double.valueOf(jsonObject.get("amount").toString());
+                items.add(amount);
+
             }
 
             bufferedReader.close();
@@ -118,14 +110,4 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
         super.onPostExecute(aVoid);
 
     }
-    /**
-     * Purpose: give other classes access to data
-     * @return the data computed from doInBackground
-     */
-    public String getData(){
-
-        return data;
-    }
-
-
 }

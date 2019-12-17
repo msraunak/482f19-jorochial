@@ -19,14 +19,14 @@ if (isset($_SESSION["itemNotice"])) {
     if ($_SESSION["itemNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
         '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
@@ -45,10 +45,14 @@ else {
 
 function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $donor, $auction, $pictureName, $pictureRef, $pictureData) {
   #TODO: Change hard coded picture to link
+  //Possible solutions
+  //<embed src='data:".$row['mime'].";base64," .base64_encode($row['data'])."' width='200'/>
+  //Original: all original images  <img src="data:'.$pictureRef.';base64,' .base64_encode($pictureData).'" width="200" class="card-img">
+  //New: breaks all but new images <img src="data:'.$pictureRef.';base64,' . $pictureData .'" width="200" class="card-img">
   return '<div class="col-sm-6 card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="data:'.$pictureRef.';base64,' .base64_encode($pictureData).'" width="200" class="card-img">
+        <img src="data:'.$pictureRef.';base64,' . $pictureData .'" width="200" class="card-img">
       </div>
       <div class="col-md-8">
         <div class="card-body">

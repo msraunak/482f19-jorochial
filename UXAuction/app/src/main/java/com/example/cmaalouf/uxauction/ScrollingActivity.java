@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +27,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -36,8 +36,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import static java.lang.String.valueOf;
 
@@ -50,9 +50,8 @@ public class ScrollingActivity extends AppCompatActivity {
     public static ArrayList<Item> items = new ArrayList<Item>();
     public static ArrayList<Bitmap> images = new ArrayList<Bitmap>();
     public static RecyclerView recyclerView;
+    protected Auction auction;
     private Adapter adapter;
-    private TextView tvCountDown;
-
 
     /**
      * Purpose: intialize activity data and the layout from the xml
@@ -62,6 +61,7 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.Mytoolbar);
         setSupportActionBar(toolbar);
@@ -80,9 +80,10 @@ public class ScrollingActivity extends AppCompatActivity {
         FetchData process = new FetchData(this);
         //FetchData process = new FetchData(this);
         process.execute();
-        getImages();
+        update();
+        //getImages();
         //String s = ""+process.getData();
-        Auction auction = new Auction(0,0,null);
+        auction = new Auction(0,0,items);
         Log.w("images size",""+images.size());
         //auction.makeAuctionItems(json);
         //items = auction.getItemsInAuction();
@@ -111,7 +112,7 @@ public class ScrollingActivity extends AppCompatActivity {
             }
             /**
              * Purpose: update search results when query changes
-             * @param newText the query to search
+             * @param //s the query to search
              * @return false
              */
             @Override
@@ -184,6 +185,19 @@ public class ScrollingActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        /*SearchView searchView = findViewById(R.id.ItemSearch);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });*/
         return true;
     }
 
@@ -212,8 +226,18 @@ public class ScrollingActivity extends AppCompatActivity {
      */
     protected void itemClick(View view)
     {
+        TextView tId = (TextView) findViewById(R.id.itemid);
+        String idString = tId.getText().toString();
         Intent myIntent = new Intent( this,
                 ItemActivity.class );
+        Log.w("string ID",idString);
+        myIntent.putExtra("id",Integer.valueOf(idString));
+        HashMap <Integer, Item> map = auction.getmapOfItems();
+        Item thisItem = map.get(Integer.valueOf(idString));
+
+        myIntent.putExtra("desc",thisItem.description);
+        myIntent.putExtra("minInc",thisItem.minIncrement);
+        myIntent.putExtra("name",thisItem.name);
         this.startActivity( myIntent );
     }
 
@@ -221,7 +245,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Current Bids
      * @param view convention for onClick methods
      */
-    public void goToCurrent(View view)
+    protected void goToCurrent(View view)
     {
         Intent myIntent = new Intent( this,
                 CurrentActivity.class );
@@ -232,7 +256,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Past Bids
      * @param view convention for onClick methods
      */
-    public void goToPast(View view)
+    protected void goToPast(View view)
     {
         Intent myIntent = new Intent( this,
                 PastActivity.class );
@@ -243,7 +267,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Search Auction
      * @param view convention for onClick methods
      */
-    public void goToSearch(View view)
+    protected void goToSearch(View view)
     {
 
         Intent myIntent = new Intent( this,
@@ -262,5 +286,4 @@ public class ScrollingActivity extends AppCompatActivity {
                 MainActivity.class );
         this.startActivity( myIntent );
     }
-
 }
