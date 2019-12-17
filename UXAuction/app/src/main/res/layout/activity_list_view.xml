@@ -30,6 +30,17 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/Mytoolbar">
 
+            <TextView
+                android:id="@+id/countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_marginLeft="300dp"
+                android:textSize="30sp"
+                android:layout_marginTop="100dp"
+                />
+
+
 
 
             <android.support.v7.widget.Toolbar
@@ -92,7 +103,15 @@
                         android:textColor="@color/colorPrimary"
                         android:background="@color/white"
                         android:text="Search Auction"/>
+
+
+
+
                 </LinearLayout>
+
+
+
+
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
 
