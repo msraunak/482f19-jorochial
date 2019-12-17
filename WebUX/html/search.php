@@ -50,7 +50,7 @@ function itemCard($id, $title, $description, $c_bid, $min_inc, $start_bid, $dono
           </div>
           <p class="card-text"><small class="text-muted">Donated by: '.$donor.'</small></p>
           <p class="card-text"><small class="text-muted">Auction: '.$auction.'</small></p>
-          <a href="viewItem.php?id='.$id.'" class="btn btn-secondary stretched-link">View Details</a>
+          <a href="Item/viewItem.php?id='.$id.'" class="btn btn-secondary stretched-link">View Details</a>
         </div>
       </div>
     </div>
