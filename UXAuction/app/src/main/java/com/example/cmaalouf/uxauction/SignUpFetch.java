@@ -35,7 +35,9 @@ public class SignUpFetch extends AsyncTask<String,String,String> {
 
     }
 
-
+    /**
+     * Purpose: execute on AI thread  before doInBackground
+     */
     @Override
     protected void onPreExecute()
     {
@@ -43,7 +45,11 @@ public class SignUpFetch extends AsyncTask<String,String,String> {
     }
 
 
-
+    /**
+     * Purpose: fetch the data for signing in
+     * @param String...strings the data types to perform the tasks on
+     * @return the results of the task
+     */
     @Override
     protected String doInBackground(String... strings) {
         try {
@@ -129,6 +135,11 @@ public class SignUpFetch extends AsyncTask<String,String,String> {
 
         return "";
     }
+    
+    /**
+     * Purpose: Run in the UI thread after doInBackground
+     * @param aVoid the String result from doInBackground
+     */
     @Override
     protected  void onPostExecute(String aVoid)
     {

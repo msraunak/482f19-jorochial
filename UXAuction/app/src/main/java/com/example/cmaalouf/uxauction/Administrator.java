@@ -20,7 +20,8 @@ public class Administrator
         this.lastName = lastName;
         this.emailAddress = emailAddress;
     }
-
+    
+    /*
     public boolean signIn(List<Administrator> listOfSignedInAdministrators, List<Administrator> listOfAllAdmins, Administrator administrator)
     {
         if(this.equals(administrator) && listOfAllAdmins.contains(administrator))
@@ -37,7 +38,7 @@ public class Administrator
         this.password = newPassword;
         return password;
     }
-
+*/
     @Override
     public boolean equals(Object o)
     {
