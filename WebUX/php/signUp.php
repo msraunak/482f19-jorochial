@@ -17,7 +17,7 @@ $bidder[0] = htmlspecialchars(trim($bid[0]));
 $bidder[1] = htmlspecialchars(trim($bid[1]));
 $bidder[2] = htmlspecialchars(trim($bid[2]));
 $bidder[3] = htmlspecialchars(trim($bid[3]));
-$bidder[4] = htmlspecialchars(trim($bid[4]));
+$bidder[4]= password_hash(htmlspecialchars(trim($bidder[4])), PASSWORD_DEFAULT);
 $sql .= '("'.$bidder[0].'","'. $bidder[1] .'","'. $bidder[2] .'","'. $bidder[3] .'","'.$bidder[4].'")';
   $sql .= ";";
  if ($mysqli->query($sql) === TRUE) {
