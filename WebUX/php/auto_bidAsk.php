@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 #echo "Connected successfully";
 $bid = $_GET["itemId"];
 
-$sql = "SELECT currentBid, minimumBidInc FROM Item WHERE id = ". $_GET["itemId"];
+$sql = "SELECT currentBid, minimumBidInc as minInc FROM Item WHERE id = ". $_GET["itemId"];
 
 $result = $mysqli->query($sql);
 
