@@ -152,7 +152,7 @@ if (isset($_SESSION["adminAdd"])){
                 </div>
               </div>
               </div>
-              <div class="form-group">
+              <div class="form-group text-center">
                 <br>
                 <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
             </form>
@@ -209,7 +209,7 @@ if (isset($_SESSION["adminAdd"])){
                 </div>
               </div>
               </div>
-              <div class="form-group">
+              <div class="form-group text-center">
                 <br>
                 <button class="btn btn-primary mt-3" type="submit" name="update">Update</button>
             </form>
