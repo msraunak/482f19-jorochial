@@ -44,6 +44,31 @@ else{
   #also Picture file ... url for now
   $item_picture = "https://assets.dmagstatic.com/wp-content/uploads/2018/12/dallas-construction-1024x683.jpg";
 }
+
+
+
+function itemRow($bidder,$amount, $time) {
+  #TODO: Change hard coded picture to link
+  return '<tr>
+      <td>'.$bidder.'</td>
+      <td> $'.$amount.'</td>
+      <td> $'.$time.'</td>
+    </tr>';
+}
+
+function itemTable($mysqli, $itemId){
+  $htmlResult = "";
+  $sql = "SELECT *  FROM Bids WHERE itemId = $itemId";
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $htmlResult .= itemRow($row["bidderUName"],$row["amount"],$row["time"]);
+  }
+  return $htmlResult;
+}
+
+
+
  ?>
 
 <html>
@@ -68,9 +93,9 @@ else{
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="../StartHere.php">Host an Event</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../StartHere.php">Host an Event</a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="../Settings.php">Settings</a>
           </li>
@@ -96,7 +121,7 @@ else{
         <div class="col">
           <h1><?php echo $item_title;?></h1>
           <div class="row">
-            <h5>Auction:  <?php echo $item_auction;?> </h5>
+            <h5>Auction: <?php echo $item_auction;?> </h5>
           </div>
           <div class="row">
             <p><?php echo $item_description;?></p>
@@ -113,8 +138,20 @@ else{
           <div class="row">
             <h5>Donor: <?php echo $item_donor;?></h5>
           </div>
-          <a class="btn btn-primary" href="<?php echo $item_edit_link?>" > Edit Item</a>
+          <a class="btn btn-primary" href="<?php echo $item_edit_link?>"> Edit Item</a>
         </div>
+      </div>
+    </div>
+    <div class="content row justify-content-center">
+      <div class="col-auto">
+        <table class="table table-responsive">
+          <tr>
+            <th>Bidder's Username</th>
+            <th>Amount</th>
+            <th>Time</th>
+          </tr>
+          <?php echo bidsTable($mysqli, $_GET["id"]);?>
+        </table>
       </div>
     </div>
     <div class="footer fixed-bottom footer-dark">
