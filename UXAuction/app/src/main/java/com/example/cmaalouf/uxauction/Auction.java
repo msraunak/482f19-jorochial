@@ -84,7 +84,11 @@ public class Auction
 //        //update the list of items in the auction
 //        itemsInAuction.remove(itemToDelete);
 //    }
-
+    
+    /**
+     * Make items based off data from the server
+     * @param jsonData the data to read in to make the items
+     */
     protected void makeAuctionItems(String jsonData) {
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
