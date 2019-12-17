@@ -7,7 +7,7 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
 }
 if (isset($_SESSION["adminAdd"])){
   if($_SESSION["adminAdd"] == TRUE){
-    $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+      $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
        New Admin added.'.$_SESSION["adminMessage"].'
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -23,23 +23,24 @@ if (isset($_SESSION["adminAdd"])){
     </div>';
   }
 }
-if (isset($_SESSION["resetPassword"])) {
-    if ($_SESSION["resetPassword"] == true) {
+/*if (isset($_SESSION["resetPassword"])) {
+    if ($_SESSION["resetPassword"] == True) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-        '.$_SESSION["itemMessage"].'
+        Password changed.'.$_SESSION["passwordMessage"].'
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-  } else {#($_SESSION["resetPassword"] == False){
-        $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-       '.$_SESSION["itemMessage"].'
+  }
+  else{#($_SESSION["resetPassword"] == False){
+    $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+       New password not added.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-    }
-}
+  }
+} */
 
  ?>
 

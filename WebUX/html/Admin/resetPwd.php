@@ -7,66 +7,80 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   exit();
 }
 require_once '../config.php';
-$_SESSION["resetPassword"] = False;
-$htmlOutput = "";
 
-
-// Check connection
+//User entered values to validate
+$username = $_POST['resetUsername'];
+$userCurrentPassword = $_POST['currentPwd'];
+$newPassword1 = $_POST['newPwd1'];
+$newPassword2 = $_POST['newPwd2'];
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
 if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-//Determines if uname exists
-$sqlTest = 'SELECT uname, pwd from admin where uname = "'.$_POST['resetUsername'].'"';
-$resultUname = $mysqli->query($sqlTest);
-if ($resultUname->num_rows = 1) {
-    $result = $mysqli->query($sql);
-}
-else{
-    $htmlOutput = "That was the wrong username";
-    $_SESSION["resetPassword"] = $htmlOutput;
-    header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
-    exit;
-}
+//Selects password of that user
+$sqlValidateCredentials = "SELECT * from admin where uname = '$username'";
+$result = $mysqli->query($sqlValidateCredentials);
 
-//Populates row with user profile; username and password
-$row = $resultUname->fetch_assoc( );
-$hashedPassword = $row['password'];
+//Does that user exist
+if ($result->num_rows > 0) {
+    // Gets password in database taht matches that username
+    while($row = $result->fetch_assoc()) {
+        $trueCurrentPassword = $row['pwd'];
+    }
 
-//If passwords match
-if ($_POST["newPwd1"] == $_POST["newPwd2"]){
+    //Determines if passwords match of user
+    if ($newPassword1 !== $newPassword2) {
+      goto a;
+    }
+    else { //User passwords match
 
-      //Verifies username password
-      if(password_verify($_POST['currentPwd'], $hashedPassword )){
+      //Check if password matches official PASSWORD_DEFAULT
+      if (password_verify($newPassword1, $trueCurrentPassword)) {
 
-        $newHashedPassword = password_hash($_POST['newPwd1'], PASSWORD_DEFAULT);
-        $sqlUpdate = "UPDATE admin set pwd = '$newHashedPassword'";
-        //$resultPassword = $mysqli->query($sqlUpdate);
+        $hashedPassword = password_hash($newPassword1, PASSWORD_DEFAULT);
+        $sqlUpdatePassword = "UPDATE admin set pwd = '$hashedPassword' where uname = '$username'";
 
-        #echo $sql;
-        if ($mysqli->query($sqlUpdate) === TRUE) {
-            $htmlOutput .= "Users added successfully";
-        }
-        else{
-          $htmlOutput .= "Insertion Failed: ". $mysqli->error;
+        //Determines if password user entered matches databases
+        if($mysqli->query($sqlUpdatePassword)){
+          echo '<script language="javascript">';
+          echo 'alert("Password successfully changed")';
+          echo '</script>';
+          header("Refresh:1; url=http://jorochial.cs.loyola.edu/html/Settings.php");
         }
 
-        #echo $htmlOutput;
-        $_SESSION["resetPassword"] = True;
-
+      }
+      else {
+        echo '<script language="javascript">';
+        echo 'alert("Sorry your password does not match database")';
+        echo '</script>';
+        header("Refresh:1; url=http://jorochial.cs.loyola.edu/html/Settings.php");
       }
 
     }
-else {
-  #echo "vaildation fail";
-  $_SESSION["resetPassword"] = False;
+}
+else{
+  echo '<script language="javascript">';
+  echo 'alert("That username does not exist! Please try again")';
+  echo '</script>';
 }
 
+goto end;
 
+a:
+  echo '<script language="javascript">';
+  echo 'alert("Sorry those passwords do not match")';
+  echo '</script>';
+  header("Refresh:1 ; url=http://jorochial.cs.loyola.edu/html/Settings.php");
 
+b:
+  echo '<script language="javascript">';
+  echo 'alert("Please enter the correct credentials")';
+  echo '</script>';
+  header("Refresh:1; url=http://jorochial.cs.loyola.edu/html/Settings.php");
 
-$_SESSION["adminMessage"] = $htmlOutput;
-header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
-exit;
+end:
+  header("Refresh:0; url=http://jorochial.cs.loyola.edu/html/Settings.php");
+
 ?>

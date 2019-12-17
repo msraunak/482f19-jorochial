@@ -23,24 +23,19 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.example.cmaalouf.uxauction.MainActivity.enter;
-import static com.example.cmaalouf.uxauction.MainActivity.pass;
-import static com.example.cmaalouf.uxauction.MainActivity.username;
-import static com.example.cmaalouf.uxauction.MainActivity.verified;
-import static java.lang.String.valueOf;
+import static com.example.cmaalouf.uxauction.SignUpActivity.success;
 
-public class LoginFetch extends AsyncTask<String,String,String> {
+
+public class SignUpFetch extends AsyncTask<String,String,String> {
 
     private Context ctx;
-    public LoginFetch(Context context)
+    public SignUpFetch(Context context)
     {
         this.ctx=context;
 
     }
 
-    /**
-     * Purpose: execute on AI thread  before doInBackground
-     */
+
     @Override
     protected void onPreExecute()
     {
@@ -48,27 +43,30 @@ public class LoginFetch extends AsyncTask<String,String,String> {
     }
 
 
-    /**
-     * Purpose: fetch the data for logging in
-     * @param String...strings the data types to perform the tasks on
-     * @return the results of the task
-     */
+
     @Override
     protected String doInBackground(String... strings) {
         try {
             //items.add("before url");
             String user = strings[0];
             String passw = strings[1];
+            String email = strings[2];
+            String fname = strings[3];
+            String lname = strings[4];
             //String user = "hfranceschi";// strings[0];
             //String passw = "pwd";//strings[1];
-            URL url = new URL("http://jorochial.cs.loyola.edu/php/index.php");
+            URL url = new URL("http://jorochial.cs.loyola.edu/php/signUp.php");
 
 
 
             Map<String,Object> params = new LinkedHashMap<>();
             params.put("username", user );
-            params.put("password", passw);
+            params.put("pwd", passw);
+            params.put("fname",fname);
+            params.put("lname",lname);
+            params.put("email",email);
 
+            Log.w("email",""+user);
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String,Object> param : params.entrySet()) {
                 if (postData.length() != 0) postData.append('&');
@@ -91,10 +89,10 @@ public class LoginFetch extends AsyncTask<String,String,String> {
             con.setDoInput(true);
 
             OutputStream os = con.getOutputStream();
-            Log.w("USR", ""+user);
+            Log.w("USR", ""+email);
             Log.w("PSS",""+passw);
             Log.w("OS ",os.toString());
-           // BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "iso-8859-1"));
+            // BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "iso-8859-1"));
             os.write(postDataBytes);
             //writer.write(pass);
             //writer.flush();
@@ -115,7 +113,7 @@ public class LoginFetch extends AsyncTask<String,String,String> {
                 //json+=line
             }
             Log.w("PHP", result);
-            enter.add(result.matches("True"));
+            success.add(result.matches("Success"));
 
 
 
@@ -131,11 +129,6 @@ public class LoginFetch extends AsyncTask<String,String,String> {
 
         return "";
     }
-    
-    /**
-     * Purpose: Run in the UI thread after doInBackground
-     * @param aVoid the String result from doInBackground
-     */
     @Override
     protected  void onPostExecute(String aVoid)
     {
