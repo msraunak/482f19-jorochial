@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class PastActivity extends AppCompatActivity {
 
+    public static ArrayList<Item> myItems = new ArrayList<Item>();
+    public static RecyclerView pastRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +26,28 @@ public class PastActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("logOut", null).show();
+
             }
         });
+
+
+        Item add_this = new Item("ho","hi",10.00,100.00,"donor");
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        myItems.add(add_this);
+        PastAdapter pastAdapter = new PastAdapter(this, myItems);
+         RecyclerView pastRecyclerView = findViewById(R.id.PastrecyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        pastRecyclerView.setLayoutManager(linearLayoutManager);
+        pastRecyclerView.setAdapter(pastAdapter);
     }
 
     @Override
