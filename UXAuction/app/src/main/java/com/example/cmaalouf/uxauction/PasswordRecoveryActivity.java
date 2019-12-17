@@ -105,10 +105,46 @@ Button confirmButton ;
     public void confirm(View v)
     {
 
-        
+
+      /*  if pwEditText.getText().equals(confirmEditText.getText()){
+          try {
+              //items.add("before url");
+
+              String passw = pwEditText.getText()
+              //String passw = "pwd";//strings[1];
+              URL url = new URL("http://jorochial.cs.loyola.edu/php/resetPwd.php");
 
 
 
+              Map<String,Object> params = new LinkedHashMap<>();
+              params.put("username", user );
+              params.put("pwd", ""+passw);
+              params.put("email",""+email);
+
+              StringBuilder postData = new StringBuilder();
+              for (Map.Entry<String,Object> param : params.entrySet()) {
+                  if (postData.length() != 0) postData.append('&');
+                  postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                  postData.append('=');
+                  postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+              }
+              byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+
+
+              HttpURLConnection con = (HttpURLConnection) url.openConnection();
+              //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
+              con.setRequestMethod("POST");
+              //con.setRequestProperty("username","hfranceschi");
+              //con.setRequestProperty("password","pwd");
+              con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+              con.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+              con.setDoOutput( true );
+              con.setDoInput(true);
+
+        }
+
+*/
 
 
         Intent intent = new Intent(PasswordRecoveryActivity.this, MainActivity.class );
