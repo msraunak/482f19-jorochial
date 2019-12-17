@@ -21,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
   $imageDataString = $row['imageData'];
 }
 
-return $imageDataString;
+echo $imageDataString;
 
 $mysqli->close();
  ?>
