@@ -45,7 +45,10 @@ public class ScrollingActivity extends AppCompatActivity {
     public static RecyclerView recyclerView;
     private Adapter adapter;
 
-
+    /**
+     * Purpose: intialize activity data and the layout from the xml
+     * @param savedInstanceState the saved state information to initialize the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,11 @@ public class ScrollingActivity extends AppCompatActivity {
         // THIS WORKS ISH
         final SearchView searchView = (SearchView) findViewById(R.id.ItemSearch);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             * Purpose: search for a query
+             * @param s the query to search
+             * @return false
+             */
             @Override
             public boolean onQueryTextSubmit(String s) {
                 //SearchFetchData process = new SearchFetchData(this);
@@ -92,7 +100,11 @@ public class ScrollingActivity extends AppCompatActivity {
                 searchUpdate();
                 return false;
             }
-
+            /**
+             * Purpose: update search results when query changes
+             * @param s the query to search
+             * @return false
+             */
             @Override
             public boolean onQueryTextChange(String newText) {
                 items.clear();
@@ -105,7 +117,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Purpose: update the search view 
+     */
     private void searchUpdate()
     {
         SearchFetchData process = new SearchFetchData(this);
@@ -113,7 +127,9 @@ public class ScrollingActivity extends AppCompatActivity {
         update();
     }
 
-
+    /**
+     * Purpose: update the view 
+     */
     private void update()
     {
 
@@ -133,11 +149,11 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
+    /**
+     * Purpose: initialize the contents of the menu
+     * @param menu the menu to place items
+     * @return true so the menu is displayed
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -158,6 +174,11 @@ public class ScrollingActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Purpose: tell the program what to do when an item is selected
+     * @param item the item that was selected
+     * @return true if the item was settings, false otherwise to allow normal menu handling
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -172,6 +193,10 @@ public class ScrollingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Purpose: Handle the bidder clicking on an item
+     * @param view convention for onClick methods
+     */
     protected void itemClick(View view)
     {
         Intent myIntent = new Intent( this,
@@ -179,12 +204,21 @@ public class ScrollingActivity extends AppCompatActivity {
         this.startActivity( myIntent );
     }
 
+    /**
+     * Purpose: Handle the bidder pressing Current Bids
+     * @param view convention for onClick methods
+     */
     protected void goToCurrent(View view)
     {
         Intent myIntent = new Intent( this,
                 CurrentActivity.class );
         this.startActivity( myIntent );
     }
+    
+    /**
+     * Purpose: Handle the bidder pressing Past Bids
+     * @param view convention for onClick methods
+     */
     protected void goToPast(View view)
     {
         Intent myIntent = new Intent( this,
@@ -192,6 +226,10 @@ public class ScrollingActivity extends AppCompatActivity {
         this.startActivity( myIntent );
     }
 
+    /**
+     * Purpose: Handle the bidder pressing Search Auction
+     * @param view convention for onClick methods
+     */
     protected void goToSearch(View view)
     {
 
@@ -199,7 +237,11 @@ public class ScrollingActivity extends AppCompatActivity {
                 ScrollingActivity.class );
         this.startActivity( myIntent );
     }
-
+    
+    /**
+     * Purpose: Handle the bidder pressing log out
+     * @param view convention for onClick methods
+     */
     protected void logout(View view)
     {
 
