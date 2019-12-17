@@ -19,14 +19,14 @@ if (isset($_SESSION["itemNotice"])) {
     if ($_SESSION["itemNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
         '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION[\'itemNotice\']);?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION[\'itemNotice\']); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
