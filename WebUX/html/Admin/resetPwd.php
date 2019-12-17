@@ -7,8 +7,95 @@ if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   exit();
 }
 require_once '../config.php';
+
+//User entered values to validate
+$username = $_POST['resetUsername'];
+$userCurrentPassword = $_POST['currentPwd'];
+$newPassword1 = $_POST['newPwd1'];
+$newPassword2 = $_POST['newPwd2'];
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($mysqli->connect_error) {
+    die("Connection failed: " .  $mysqli->connect_error);
+}
+
+//Selects passwor dof that user
+$sqlValidateCredentials = "SELECT * from admin where uname = $username";
+$result = $mysqli->query($sqlValidateCredentials);
+
+//Does that user exist
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $trueCurrentPassword = $row['pwd'];
+    }
+
+    if ($newPassword1 !== $newPassword2) {
+      goto a;
+    }
+    else { //User passwords match
+
+      //Check if password matches official PASSWORD_DEFAULT
+      if (password_verify($newPassword1, $trueCurrentPassword)) {
+
+        $hashedPassword = password_hash($newPassword1, PASSWORD_DEFAULT);
+        $sqlUpdatePassword = "UPDATE admin set pwd = '$hashedPassword' where uname = '$username'";
+
+        //Determines if password user entered matches databases
+        if($mysqli->query($sqlUpdatePassword)){
+          echo '<script language="javascript">';
+          echo 'alert("Password successfully changed")';
+          echo '</script>';
+          header("Refresh:5");
+          exit;
+        }
+
+      }
+      else {
+        echo '<script language="javascript">';
+        echo 'alert("Sorry your password does not match")';
+        echo '</script>';
+        header("Refresh:5");
+        exit;
+      }
+
+    }
+}
+else{
+  echo '<script language="javascript">';
+  echo 'alert("Sorry that user does not exist")';
+  echo '</script>';
+}
+
+goto end;
+
+a:
+  echo '<script language="javascript">';
+  echo 'alert("Sorry those passwords do not match")';
+  echo '</script>';
+  header("Refresh:5");
+  exit;
+
+b:
+  echo '<script language="javascript">';
+  echo 'alert("Please enter the correct credentials")';
+  echo '</script>';
+  header("Refresh:5");
+  exit;
+
+
+
+
+
+  end:
+  echo '<script language="javascript">';
+  echo 'window.location.reload()';
+  echo '</script>';
+
+/*
 $_SESSION["resetPassword"] = False;
 $htmlOutput = "";
+
+$unameFromSettings = $_POST['resetUsername'];
 
 
 // Check connection
@@ -18,16 +105,16 @@ if ($mysqli->connect_error) {
 }
 
 //Determines if uname exists
-$sqlTest = 'SELECT uname, pwd from admin where uname = "'.$_POST['resetUsername'].'"';
+$sqlTest = 'SELECT pwd from admin where uname = "'.$_POST['resetUsername'].'"';
 $resultUname = $mysqli->query($sqlTest);
 if ($resultUname->num_rows = 1) {
-    $result = $mysqli->query($sql);
+    $htmlOutput .= "That's the right username";
 }
 else{
-    $htmlOutput = "That was the wrong username";
+    $htmlOutput .= "That was the wrong username";
     $_SESSION["resetPassword"] = $htmlOutput;
-    header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
-    exit;
+    //header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
+    //exit;
 }
 
 //Populates row with user profile; username and password
@@ -41,7 +128,7 @@ if ($_POST["newPwd1"] == $_POST["newPwd2"]){
       if(password_verify($_POST['currentPwd'], $hashedPassword )){
 
         $newHashedPassword = password_hash($_POST['newPwd1'], PASSWORD_DEFAULT);
-        $sqlUpdate = "UPDATE admin set pwd = '$newHashedPassword'";
+        $sqlUpdate = "UPDATE admin set pwd = '$newHashedPassword' where uname = '$unameFromSettings'";
         //$resultPassword = $mysqli->query($sqlUpdate);
 
         #echo $sql;
@@ -56,6 +143,10 @@ if ($_POST["newPwd1"] == $_POST["newPwd2"]){
         $_SESSION["resetPassword"] = True;
 
       }
+      else{
+        $htmlOUtput .= "Passwords do not match";
+        $_SESSION["resetPassword"] = False;
+      }
 
     }
 else {
@@ -64,9 +155,11 @@ else {
 }
 
 
-
-
-$_SESSION["adminMessage"] = $htmlOutput;
+$htmlOUtput = "Password is " .$newHashedPassword;
+$_SESSION["passwordMessage"] = $htmlOutput;
 header("Location: http://jorochial.cs.loyola.edu/html/Settings.php");
 exit;
+*/
+
+
 ?>
