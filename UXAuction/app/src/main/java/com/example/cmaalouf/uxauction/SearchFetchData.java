@@ -34,7 +34,9 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
 
     }
 
-
+    /**
+     * Purpose: execute before doInBackground, initialize data to an empty string
+     */
     @Override
     protected void onPreExecute()
     {
@@ -42,7 +44,11 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
         data ="";
     }
 
-
+    /**
+     * Purpose: fetch the data for searching
+     * @param String...voids the data types to perform the tasks on
+     * @return the results of the task
+     */
     @Override
     protected String doInBackground(String... voids) {
         try {
@@ -100,6 +106,11 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
 
         return data;
     }
+    
+    /**
+     * Purpose: Run in the UI thread after doInBackground
+     * @param aVoid the String result from doInBackground
+     */
     @Override
     protected  void onPostExecute(String aVoid)
     {
@@ -107,7 +118,10 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
         super.onPostExecute(aVoid);
 
     }
-
+    /**
+     * Purpose: give other classes access to data
+     * @return the data computed from doInBackground
+     */
     public String getData(){
 
         return data;

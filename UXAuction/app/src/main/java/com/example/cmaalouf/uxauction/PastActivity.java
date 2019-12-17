@@ -20,6 +20,10 @@ public class PastActivity extends AppCompatActivity {
     public static String query;
     public static RecyclerView pastRecyclerView;
 
+    /**
+     * Purpose: intialize activity data and the layout from the xml
+     * @param savedInstanceState the saved state information to initialize the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,9 @@ public class PastActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Purpose: Update the view
+     */
     public void update(){
 
         PastAdapter pastAdapter = new PastAdapter(this, myItems);
@@ -56,7 +63,11 @@ public class PastActivity extends AppCompatActivity {
         pastRecyclerView.setAdapter(pastAdapter);
     }
 
-
+    /**
+     * Purpose: initialize the contents of the menu
+     * @param menu the menu to place items
+     * @return true so the menu is displayed
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -64,6 +75,11 @@ public class PastActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Purpose: tell the program what to do when an item is selected
+     * @param item the item that was selected
+     * @return true if the item was settings, false otherwise to allow normal menu handling
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -77,24 +93,41 @@ public class PastActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    
+    /**
+     * Purpose: Handle the bidder clicking on an item
+     * @param view convention for onClick methods
+     */
     protected void itemClick(View view) {
         Intent myIntent = new Intent(this,
                 ItemActivity.class);
         this.startActivity(myIntent);
     }
 
+    /**
+     * Purpose: Handle the bidder pressing Current Bids
+     * @param view convention for onClick methods
+     */
     protected void goToCurrent(View view) {
         Intent myIntent = new Intent(this,
                 CurrentActivity.class);
         this.startActivity(myIntent);
     }
 
+    /**
+     * Purpose: Handle the bidder pressing Past Bids
+     * @param view convention for onClick methods
+     */
     protected void goToPast(View view) {
         Intent myIntent = new Intent(this,
                 PastActivity.class);
         this.startActivity(myIntent);
     }
+    
+    /**
+     * Purpose: Handle the bidder pressing Search Auction
+     * @param view convention for onClick methods
+     */
     protected void goToSearch(View view)
     {
 
@@ -102,6 +135,11 @@ public class PastActivity extends AppCompatActivity {
                 ScrollingActivity.class );
         this.startActivity( myIntent );
     }
+    
+    /**
+     * Purpose: Handle the bidder pressing log out
+     * @param view convention for onClick methods
+     */
     protected void logOut(View view)
     {
         Intent myIntent = new Intent( this,
