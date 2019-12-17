@@ -59,11 +59,11 @@ public class Auction
         if(itemsDonatedByThisDonor == null)
         {
             itemsDonatedByThisDonor = new HashSet<>();
-            donorsOfItems.put(donor, itemsDonatedByThisDonor);
+            //mapOfItems.put(donor, itemsDonatedByThisDonor);
         }
 
         itemsDonatedByThisDonor.add(itemToAdd);
-        donorsOfItems.put(donor, itemsDonatedByThisDonor);
+        //mapOfItems.put(donor, itemsDonatedByThisDonor);
 
         //add to the list of items in the auction
         itemsInAuction.add(itemToAdd);
@@ -75,19 +75,19 @@ public class Auction
      * @param itemToDelete the item to delete
      * @param donor the donor of the deleted item
      */
-    public void deleteItem(Item itemToDelete, Donor donor)
+    /*public void deleteItem(Item itemToDelete, Donor donor)
     {
         //update the map of donors associated with items
         Set<Item> itemsDonatedByThisDonor = donor.getItemsDonated();
 
         if(itemsDonatedByThisDonor != null)
         {
-            donorsOfItems.remove(donor, itemsDonatedByThisDonor);
+            mapOfItems.remove(donor, itemsDonatedByThisDonor);
         }
 
         //update the list of items in the auction
         itemsInAuction.remove(itemToDelete);
-    }
+    }*/
     
     /**
      * Make items based off data from the server
