@@ -16,7 +16,7 @@ if(isset($_GET["query"])){
 
 
   $htmlResult = "[";
-  $sql = "SELECT * from Item where (itemName like '%$query%') order by itemName";
+  $sql = "SELECT id,itemName, description, startingBid, minimumBidInc, currentBid, donorName  from Item where (itemName like '%$query%') order by itemName";
   $result = $mysqli->query($sql);
   if ($result->num_rows <= 0) {
       $sql = "SELECT * from Item where (description like '%$query%')";
