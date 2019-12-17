@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-$bid = $_GET["bidId"];
+
 
 $sql = "SELECT currentBid FROM Item WHERE itemId = ". $_GET["itemId"];
 
