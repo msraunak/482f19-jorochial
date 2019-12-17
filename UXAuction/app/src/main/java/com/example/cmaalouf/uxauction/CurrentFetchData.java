@@ -48,7 +48,7 @@ public class CurrentFetchData extends AsyncTask<String,String,String> {
     }
 
     /**
-     * Purpose: fetch the data for curremt bids
+     * Purpose: fetch the data for current bids
      * @param String...voids the data types to perform the tasks on
      * @return the results of the task
      */
