@@ -7,12 +7,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DonorTest {
-    String name;
-    String representativeName;
-    String phoneNumber;
-    String address;
-    String emailAddress;
-    Donor donor;
+    private String name;
+    private String representativeName;
+    private String phoneNumber;
+    private String address;
+    private String emailAddress;
+    private Donor donor;
     
     @Before
     public void beforetest()
