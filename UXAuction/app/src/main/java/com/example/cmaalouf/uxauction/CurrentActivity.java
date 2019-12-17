@@ -22,14 +22,12 @@ public class CurrentActivity extends AppCompatActivity{
 
     public static ArrayList<Item> myItems;
 
+    public static String query;
+
     /**
      * Purpose: Load the layout of this activity when it is accessed
      * @param savedInstanceState the saved state information to initialize the activity
      */
-
-
-    public static String query;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
