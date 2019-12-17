@@ -6,7 +6,7 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-$sql = "SELECT auctionName FROM Auction WHERE startTime < now()  and endTime > now() LIMIT 0, 1";
+$sql = "SELECT auctionName FROM Auction WHERE startTime < now() and endTime > now() LIMIT 0, 1";
 
 $result1 = $mysqli->query($sql);
 
