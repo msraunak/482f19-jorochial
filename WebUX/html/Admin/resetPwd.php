@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
 }
 else{
   echo '<script language="javascript">';
-  echo 'alert("Sorry that user does not exist")';
+  echo 'alert("hmmmm")';
   echo '</script>';
 }
 
@@ -90,6 +90,8 @@ b:
   echo '<script language="javascript">';
   echo 'window.location.reload()';
   echo '</script>';
+  header("Refresh:5; url=Settings.php");
+  exit;
 
 /*
 $_SESSION["resetPassword"] = False;
