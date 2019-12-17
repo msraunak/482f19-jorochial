@@ -20,12 +20,12 @@ $result = $mysqli->query($sql);
 $resultArray = '[';
 $tempArray= array();
 
-while($row=$result->fetch_assoc())
-{
+$row=$result->fetch_assoc()
+
 $tempArray = $row;
 $resultArray.=json_encode($tempArray).',';// $tempArray);
-echo $resultsArray;
-}
+
+
 
 $resultArray = substr($resultArray, 0, -1);
 $resultArray.=']';
