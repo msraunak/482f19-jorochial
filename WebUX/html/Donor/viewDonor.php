@@ -139,7 +139,7 @@ function sumAmounts($mysqli, $donor_title){
         <div class="col pl-0">
             <h3>Contact Information</h3>
             <h5><?php echo $donor_repName;?><br><?php echo $donor_phoneNum;?><br><?php echo $donor_email;?><br><?php echo $donor_address;?></h5>
-            <h4><?php echo sumAmounts($mysqli, $auction_title)?></h4>
+            <h4 class="text-primary"><?php echo sumAmounts($mysqli, $auction_title)?></h4>
         </div>
         <a class="btn btn-primary" href="<?php echo $donor_edit_link?>">Edit Donor's Details</a>
 
