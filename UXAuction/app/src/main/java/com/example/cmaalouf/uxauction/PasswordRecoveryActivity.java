@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class PasswordRecoveryActivity extends AppCompatActivity {
-
+    
+    /**
+    * Purpose: initialize activity data and view from xml layout
+    * @param savedInstanceState saved state information this method can use when called
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +23,10 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Purpose: Update the screen when the send button is pressed
+     * @param v convention for onClick methods
+     */
     public void send(View v)
     {
         EditText codeEditText = findViewById(R.id.codeField);
@@ -31,6 +39,10 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
         submitButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Purpose: Update the screen when the submit button is pressed
+     * @param v convention for onClick methods
+     */
     public void submit(View v)
     {
         EditText pwEditText = findViewById(R.id.np1Field);
@@ -48,6 +60,10 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
         confirmButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Purpose: Update the screen when the confirm button is pressed
+     * @param v convention for onClick methods
+     */
     public void confirm(View v)
     {
         Intent intent = new Intent(PasswordRecoveryActivity.this, MainActivity.class );
