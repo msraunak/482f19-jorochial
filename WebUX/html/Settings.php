@@ -221,7 +221,7 @@ if (isset($_SESSION["adminAdd"])){
         <!-- Third update other info -->
         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 
-          Enhanced features coming soon...
+          <p>Enhanced features coming soon...</p>
 
 
         </div>
