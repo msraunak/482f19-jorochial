@@ -90,6 +90,16 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
   return $htmlResult;
 }
 
+function sumAmounts($mysqli, $auction_title){
+  $output =  "Total raised: ";
+  $sql = 'SELECT sum(currentBid) FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'";';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $output .= $row["sum(currentBid)"];
+  }
+}
+
 ?>
 <html>
   <head>
@@ -137,6 +147,7 @@ function itemTable( $mysqli, $auction_title, $pageNum, $tableSize){
         <p class="text-primary">Start Date and Time: <?= $auction_start_date;?></p>
         <p class="text-primary">End Date and Time: <?php echo $auction_end_date;?></p>
         <h6>Beneficiary: <?php echo $auction_charity;?></h6>
+        <h5><?php echo sumAmounts($mysqli, $auction_title)?></h5>
       <a class="btn btn-primary" href="editAuction.php">Edit Auction Details</a>
     </div>
     <div class="container mt-3">

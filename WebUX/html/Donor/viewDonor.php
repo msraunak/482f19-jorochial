@@ -77,7 +77,16 @@ function itemTable($mysqli, $orgName){
   }
   return $htmlResult;
 }
-
+/*
+function sumAmounts($mysqli, $auction_id){
+  $output =  "Total raised: ";
+  $sql = 'SELECT sum(currentBid) FROM Item WHERE auctionNameRef LIKE "'.$auction_title.'";';
+  $result = $mysqli->query($sql);
+  echo $mysqli->error;
+  while( $row = $result->fetch_assoc( ) ){
+     $output .= $row["sum(currentBid)"];
+  }
+}*/
 ?>
 
 <html>
@@ -101,7 +110,7 @@ function itemTable($mysqli, $orgName){
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
