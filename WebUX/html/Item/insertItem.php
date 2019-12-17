@@ -37,13 +37,13 @@ if (true){
   $item[5] = htmlspecialchars($item[5]);
 #  $item[6] = htmlspecialchars(trim($item[6]));
   //$sql .= '("'.$item[0].'","'. $item[1] .'","'. $item[2] .'",'. $item[3] .','. $item[4] .',"'. $item[5]. '")';
-  $filefullname = $_FILES['myfile']['name'];
-  $filetype = $_FILES['myfile']['type'];
-  $filedata = file_get_contents($_FILES['myfile']['tmp_name']);
+  $filefullname = $_FILES['ItemPicture']['name'];
+  $filetype = $_FILES['ItemPicture']['type'];
+  $filedata = file_get_contents($_FILES['ItemPicture']['tmp_name']);
 
-  $sql .= "\"(\" $item[0] \",\" $item[1] \",\" $item[2] \", $item[3] , $item[4] ,\" $item[5] \",\" $filefullname \",\" $filetype \"";
+  $sql .= "(\" $item[0] \",\" $item[1] \",\" $item[2] \", $item[3] , $item[4] ,\" $item[5] \",\" $filefullname \",\" $filetype \"";
   $sql .= ",\" $filedata\");";
-  echo sql; 
+  echo sql;
   if ($item[5] == "null"){
     $sql = "INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc) VALUES (\"$item[0]\",\" $item[1] \",\" $item[2] \", $item[3] , $item[4] )";
     $sql .= ";";
