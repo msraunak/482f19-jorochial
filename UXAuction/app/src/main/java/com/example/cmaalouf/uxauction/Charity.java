@@ -17,5 +17,5 @@ public class Charity
         this.emailAddress = emailAddress;
     }
 
-    
+
 }
