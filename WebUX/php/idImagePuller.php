@@ -11,19 +11,17 @@ if ($mysqli->connect_error) {
 }
 
 //User input for id
-$userIdRequest = $_POST['id'];
+$userIdRequest = $_GET['id'];
 
 //Queries database
 $sqlIdStatement = "select imageData from Item where id = '$userIdRequest' LIMIT 1";
 $result = $mysqli->query($sqlIdStatement);
 
 while ($row = $result->fetch_assoc()) {
-
   $imageDataString = $row['imageData'];
-
 }
 
 return $imageDataString;
 
-$mysqli->close(); 
+$mysqli->close();
  ?>
