@@ -16,9 +16,10 @@ $bid = array($_GET["username"],$_GET["amount"],$_GET["itemId"]);
 $sql = "SELECT ItemName FROM Item WHERE id = ". $_GET["itemId"];
 
 $result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
+while( $row = $result->fetch_assoc( ) ){
+   $itemName = $row["ItemName"];
+}
 
-$itemName = $row["ItemName"];
 
   $sql = 'INSERT INTO Bids (bidderUName, amount, itemId, ItemName) VALUES';
 
