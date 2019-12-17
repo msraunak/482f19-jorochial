@@ -30,7 +30,7 @@ if(isset($_GET["id"])){
   $item_minimum_inc = $row["minimumBidInc"];
   $item_donor = $row["donorName"];
   #TODO: use pic from DB also Picture file ... url for now
-  $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+  $item_picture = $row["imageData"];
 }
 else{
   $item_title = "Chessboard";
@@ -41,7 +41,7 @@ else{
   $item_minimum_inc = 100.02;
   $item_donor = "The Royal Family";
   #also Picture file ... url for now
-  $item_picture = "https://i.etsystatic.com/10797882/r/il/00ee9c/1373183800/il_794xN.1373183800_3udm.jpg";
+  $item_picture = "https://assets.dmagstatic.com/wp-content/uploads/2018/12/dallas-construction-1024x683.jpg";
 }
  ?>
 
@@ -66,7 +66,7 @@ else{
           <li class="nav-item ">
             <a class="nav-link" href="../Item/DashboardPage.php">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-          
+
             <li class="nav-item">
               <a class="nav-link" href="../StartHere.php">Host an Event</a>
             </li>
@@ -88,7 +88,8 @@ else{
     <div class="container">
       <div class="row">
         <div class="col">
-          <img <?php echo "src=\"".$item_picture."\""?> class="img-fluid" alt="...">
+          <img <?php echo "src=\"data:".$item_picture."\";base64,$item_picture"?> class="img-fluid" width=200>
+          <!-- img src="data:'.$pictureRef.';base64,' . $pictureData .'" width="200" class="card-img" -->
         </div>
 
         <div class="col">
