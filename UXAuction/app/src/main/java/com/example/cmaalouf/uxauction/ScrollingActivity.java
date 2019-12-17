@@ -245,7 +245,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Current Bids
      * @param view convention for onClick methods
      */
-    protected void goToCurrent(View view)
+    public void goToCurrent(View view)
     {
         Intent myIntent = new Intent( this,
                 CurrentActivity.class );
@@ -256,7 +256,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Past Bids
      * @param view convention for onClick methods
      */
-    protected void goToPast(View view)
+    public void goToPast(View view)
     {
         Intent myIntent = new Intent( this,
                 PastActivity.class );
@@ -267,7 +267,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing Search Auction
      * @param view convention for onClick methods
      */
-    protected void goToSearch(View view)
+    public void goToSearch(View view)
     {
 
         Intent myIntent = new Intent( this,
@@ -279,7 +279,7 @@ public class ScrollingActivity extends AppCompatActivity {
      * Purpose: Handle the bidder pressing log out
      * @param view convention for onClick methods
      */
-    protected void logout(View view)
+    public void logout(View view)
     {
 
         Intent myIntent = new Intent( this,
