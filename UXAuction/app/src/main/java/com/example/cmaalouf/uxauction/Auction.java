@@ -103,7 +103,7 @@ public class Auction
         }
     }
 
-    
+
 
     /**
      * Purpose: Give other classes, namely the system, access to an auctions list of items

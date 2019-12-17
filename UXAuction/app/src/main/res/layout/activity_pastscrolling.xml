@@ -109,7 +109,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="110dp"
         android:layout_below="@+id/name"
-        android:text="Current Bids:"
+        android:text="Past Bids:"
         android:textSize="30dp"
         android:textColor="@color/colorPrimary"/>
 
