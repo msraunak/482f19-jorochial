@@ -6,7 +6,14 @@ if ($mysqli->connect_error) {
     die("Connection failed: " .  $mysqli->connect_error);
 }
 
-$sql = "SELECT id,itemName, description, startingBid, minimumBidInc, currentBid, donorName FROM Item order by itemName;";
+$sql = "SELECT auctionName FROM Auction WHERE startTime < now() and endTime > now() LIMIT 0, 1";
+
+$result1 = $mysqli->query($sql);
+
+$row1=$result1->fetch_assoc();
+
+
+$sql = "SELECT id,itemName, description, startingBid, minimumBidInc, currentBid, donorName, auctionNameRef FROM Item where auctionNameRef = \"".$row1['auctionName']."\" order by itemName;";
 $result = $mysqli->query($sql);
 
 $resultArray = '[';

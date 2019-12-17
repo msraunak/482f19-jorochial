@@ -89,7 +89,7 @@ public class Auction
      * Make items based off data from the server
      * @param jsonData the data to read in to make the items
      */
-    protected void makeAuctionItems(String jsonData) {
+   /* protected void makeAuctionItems(String jsonData) {
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -105,7 +105,7 @@ public class Auction
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 

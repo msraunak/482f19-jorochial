@@ -1,12 +1,9 @@
 <?php
 
-
-#$bid = $_GET["bidId"];
-
- $to_email = 'arschilke@loyola.edu';
- $subject = 'Testing PHP Mail';
- $message = 'This mail is sent using the PHP mail function';
- $headers = 'From: noreply @ company . com';
+ $to_email = $_GET['emailAddress'];
+ $subject = $_GET['emailSubject'];
+ $message = $_GET['emailMessage'];
+ $headers = 'From: noreply@jorochial.cs.loyola.edu';
  mail($to_email,$subject,$message,$headers);
 
 ?>

@@ -86,12 +86,13 @@ public class PastFetchData extends AsyncTask<String,String,String> {
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i<jsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                int id = Integer.parseInt(jsonObject.get("itemId").toString());
                 String name = jsonObject.get("ItemName").toString();
                 String desc =" ";
                 String donor = " ";
                 Double startingBid = Double.valueOf(jsonObject.get("amount").toString());
                 Double minInc = 0.00;
-                Item item = new Item(name, desc, startingBid,minInc,donor);
+                Item item = new Item(id,name, desc, startingBid,minInc,donor);
                 myItems.add(item);
             }
 
