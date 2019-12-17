@@ -61,7 +61,7 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
 
             con.setDoOutput( true );
             con.setDoInput(true);
-        ;
+
             InputStream inputStream = con.getInputStream();
             Log.w("fetchdata ",inputStream.toString());
             //items.add("after input stream");
@@ -105,7 +105,7 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
 
         return data;
     }
-    
+
     /**
      * Purpose: Run in the UI thread after doInBackground
      * @param aVoid the String result from doInBackground
@@ -128,8 +128,3 @@ public class SearchFetchData extends AsyncTask<String,String,String> {
 
 
 }
-
-
-
-
-

@@ -10,7 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class PasswordRecoveryActivity extends AppCompatActivity {
-    
+    String code;
+    EditText codeEditText;
+    TextView codeTextView;
+    Button submitButton;
+    EditText pwEditText ;
+EditText confirmEditText ;
+TextView pwTextView;
+TextView confirmTextView ;
+Button confirmButton ;
     /**
     * Purpose: initialize activity data and view from xml layout
     * @param savedInstanceState saved state information this method can use when called
@@ -19,6 +27,10 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fpassword);
+
+        Random rand = new Random();
+        int num_code = new Random(999999);
+        code = String.format("%06d", num_code);
 
 
     }
@@ -29,35 +41,61 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
      */
     public void send(View v)
     {
-        EditText codeEditText = findViewById(R.id.codeField);
-        codeEditText.setVisibility(View.VISIBLE);
 
-        TextView codeTextView = findViewById(R.id.sixcodeText);
-        codeTextView.setVisibility(View.VISIBLE);
+        EditText emailField = findViewById(R.id.usernameField);
+        String email = emailField.getText();
+        String emailSubject = "Forgot Password from Jorochial";
+        String emailMessage = "This message is from AuctionForHaiti. \n\n Your secret code is "+ code +". \n Sincerely, \n Jorochial";
 
-        Button submitButton = findViewById(R.id.submitB);
-        submitButton.setVisibility(View.VISIBLE);
-    }
 
+        try {
+
+            URL url = new URL("http://jorochial.cs.loyola.edu/php/sendEmail.php?emailAddress="+email+"&emailSubject="+emailSubject+"&emailMessage="+emailMessage);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            //Log.w("HHTP STAT", valueOf(con.getResponseCode()));
+            con.setRequestMethod("GET");
+
+            con.setDoOutput( true );
+            con.setDoInput(true);
+
+            con.disconnect();
+
+
+
+          codeEditText = findViewById(R.id.codeField);
+          codeTextView = findViewById(R.id.sixcodeText);
+          submitButton = findViewById(R.id.submitB);
+          codeEditText.setVisibility(View.VISIBLE);
+          codeTextView.setVisibility(View.VISIBLE);
+          submitButton.setVisibility(View.VISIBLE);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+      }
     /**
      * Purpose: Update the screen when the submit button is pressed
      * @param v convention for onClick methods
      */
     public void submit(View v)
     {
-        EditText pwEditText = findViewById(R.id.np1Field);
-        EditText confirmEditText = findViewById(R.id.np2Field);
+      pwEditText = findViewById(R.id.np1Field);
+      confirmEditText = findViewById(R.id.np2Field);
 
-        TextView pwTextView = findViewById(R.id.np1Text);
-        TextView confirmTextView = findViewById(R.id.np2Text);
+      pwTextView = findViewById(R.id.np1Text);
+      confirmTextView = findViewById(R.id.np2Text);
 
-        Button confirmButton = findViewById(R.id.confirm);
+      confirmButton = findViewById(R.id.confirm);
 
+      if code.equals(codeEditText.getText()){
         pwEditText.setVisibility(View.VISIBLE);
         confirmEditText.setVisibility(View.VISIBLE);
         pwTextView.setVisibility(View.VISIBLE);
         confirmTextView.setVisibility(View.VISIBLE);
         confirmButton.setVisibility(View.VISIBLE);
+        }
+
     }
 
     /**
@@ -66,6 +104,13 @@ public class PasswordRecoveryActivity extends AppCompatActivity {
      */
     public void confirm(View v)
     {
+
+        
+
+
+
+
+
         Intent intent = new Intent(PasswordRecoveryActivity.this, MainActivity.class );
         PasswordRecoveryActivity.this.startActivity(intent);
     }
