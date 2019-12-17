@@ -16,7 +16,7 @@ if (isset($_GET['username'])) {
   $username = htmlspecialchars(trim($_GET['username']));
 
   //get information from Database
-  $sql = "SELECT * FROM Bids WHERE bidderUName = ' $username ' and id not in (SELECT itemId as amount FROM Bids WHERE BidderUName = '$username' group by itemId);";
+  $sql = "SELECT * FROM Bids WHERE bidderUName = ' $username ' and id not in (SELECT itemId as id FROM Bids WHERE BidderUName = '$username' group by itemId);";
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   //$sql = "SELECT itemId, ItemName, max(amount) as amount FROM Bids WHERE BidderUName = '$username' group by itemId";
