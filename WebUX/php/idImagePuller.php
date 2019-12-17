@@ -18,10 +18,10 @@ $sqlIdStatement = "select imageData from Item where id = '$userIdRequest' LIMIT 
 $result = $mysqli->query($sqlIdStatement);
 
 while ($row = $result->fetch_assoc()) {
-  $imageDataString = $row['imageData'];
-}
 
-return $imageDataString;
+    echo $row['imageData'];
+
+}
 
 $mysqli->close();
  ?>
