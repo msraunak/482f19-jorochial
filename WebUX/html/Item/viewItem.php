@@ -114,7 +114,7 @@ function itemTable($mysqli, $itemId){
     <div class="container">
       <div class="row">
         <div class="col">
-          <img src="data:<?php echo $item_picture_ref ?>;base64, <?php echo $item_picture_data ?>" class="img-fluid" width=200>
+          <img class="card-img" src="data:<?php echo $item_picture_ref ?>;base64, <?php echo $item_picture_data ?>" class="img-fluid" width=200>
           <!-- img src="data:'.$pictureRef.';base64,' . $pictureData .'" width="200" class="card-img" -->
         </div>
 
