@@ -45,10 +45,21 @@ public class MainActivity extends AppCompatActivity {
         this.username ="hfranceschi";
         this.pass ="pwd";
         enter = new ArrayList<Boolean>();
+
         enter.add(false);
         setContentView(R.layout.activity_login);//activity_list_view);
 
+        update();
+
+
     }
+
+
+    public void update()
+    {
+        
+    }
+
 
     /**
      * Purpose: log the user in to the app if they enter their correct information
