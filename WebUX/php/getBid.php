@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-$sql = "SELECT max(amount) FROM Bids WHERE itemId = ". $_GET["itemId"];
+$sql = "SELECT max(amount) as amount FROM Bids WHERE itemId = ". $_GET["itemId"];
 $result = $mysqli->query($sql);
 echo $mysqli->error;
 $row = $result->fetch_assoc();
