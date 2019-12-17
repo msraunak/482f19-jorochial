@@ -50,14 +50,14 @@ if (isset($_SESSION["auctionNotice"])) {
     if ($_SESSION["auctionNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
         '.$_SESSION["auctionMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["auctionNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["auctionMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<?php unset($_SESSION["auctionNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
