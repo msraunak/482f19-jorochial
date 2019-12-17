@@ -98,6 +98,7 @@ function sumAmounts($mysqli, $auction_title){
   while( $row = $result->fetch_assoc( ) ){
      $output .= $row["sum(currentBid)"];
   }
+  return $output;
 }
 
 ?>
