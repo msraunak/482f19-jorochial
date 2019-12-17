@@ -40,7 +40,7 @@ public class CurrentActivity extends AppCompatActivity{
             }
         });
 
-        //myItems= new ArrayList<Item>();
+        myItems= new ArrayList<Item>();
         Item add_this = new Item("ho","hi",10.00,100.00,"donor");
         /*myItems.add(add_this);
         myItems.add(add_this);
