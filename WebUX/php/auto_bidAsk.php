@@ -20,7 +20,7 @@ $result = $mysqli->query($sql);
 $resultArray = '[';
 $tempArray= array();
 
-$row=$result->fetch_assoc()
+$row=$result->fetch_assoc();
 
 $tempArray = $row;
 $resultArray.=json_encode($tempArray).',';// $tempArray);
