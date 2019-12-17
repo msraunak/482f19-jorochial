@@ -11,21 +11,16 @@ if ($mysqli->connect_error) {
 }
 
 #echo "Connected successfully";
-
-
-$sql = "SELECT currentBid FROM Item WHERE itemId = ". $_GET["itemId"];
-
+$sql = "SELECT max(amount) FROM Bids WHERE itemId = ". $_GET["itemId"];
 $result = $mysqli->query($sql);
+echo $mysqli->error;
+$row = $result->fetch_assoc();
 
 $resultArray = '[';
 $tempArray= array();
 
-while($row=$result->fetch_assoc())
-{
 $tempArray = $row;
 $resultArray.=json_encode($tempArray).',';// $tempArray);
-echo $resultsArray;
-}
 
 $resultArray = substr($resultArray, 0, -1);
 $resultArray.=']';
