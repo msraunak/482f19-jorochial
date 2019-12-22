@@ -103,7 +103,7 @@ if ($mysqli->connect_error) {
           <label for="ItemDonor">Donor:</label>
           <!-- NOTE: Use dropdown from list of registerd Donors? or just text field?-->
           <select class="form-control" id="ItemDonor" name="ItemDonor" required>
-            <option value="null">Anonymous</option>
+            <option value="NULL">Anonymous</option>
             <?php
             $sql = $mysqli->query("SELECT orgName FROM Donor");
             while ($row = $sql->fetch_assoc()){
