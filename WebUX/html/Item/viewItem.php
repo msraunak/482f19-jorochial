@@ -28,7 +28,7 @@ if(isset($_GET["id"])){
   $item_current_bid= $row["currentBid"];
   $item_starting_bid= $row["startingBid"];
   $item_minimum_inc = $row["minimumBidInc"];
-  $item_donor = isnull($row["donorName"]) ? "Anonymous" : $row["donorName"]) ;
+  $item_donor = (is_null($row["donorName"]) ? "Anonymous" : $row["donorName"]) ;
 
   #TODO: use pic from DB also Picture file ... url for now
   $item_picture_ref = $row['imageRef'];

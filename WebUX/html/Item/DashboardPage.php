@@ -79,7 +79,7 @@ function itemGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-    if(isnull($row["donorName"])){
+    if(is_null($row["donorName"])){
      $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],"Anonymous",$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
    }else{
      $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donorName"],$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
