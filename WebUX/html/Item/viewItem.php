@@ -154,7 +154,7 @@ function bidsTable($mysqli, $itemId){
         </table>
       </div>
     </div>
-    <div class="footer fixed-bottom footer-dark">
+    <div class="footer footer-dark">
       <h3> Contact Us </h3>
       <div class="row">
         <div class="col">Main Campus<br>

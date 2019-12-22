@@ -46,9 +46,10 @@ if (true){
   $sql .= ", \" $filedata \");";
   //$sql .= ",\" $filedata\");";
   //echo sql;
-  if ($item[5] == "null"){
-    $sql = "INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc) VALUES (\"$item[0]\",\" $item[1] \",\" $item[2] \", $item[3] , $item[4] )";
-    $sql .= ";";
+  if ($item[5] == "NULL"){
+    $sql = "INSERT INTO Item (auctionNameRef, itemName, description, startingBid, minimumBidInc, imageName, imageMime, imageData) VALUES";
+    $sql .= "(\"$item[0]\",\"$item[1]\",\"$item[2]\", $item[3] , $item[4] ,\"$filefullname\",\"$filetype\"";
+    $sql .= ", \" $filedata \");";
   }
   #echo $sql;
   if ($mysqli->query($sql) === TRUE) {
