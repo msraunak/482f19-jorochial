@@ -19,14 +19,14 @@ if (isset($_SESSION["itemNotice"])) {
     if ($_SESSION["itemNotice"] == true) {
         $alert =  '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
         '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION[\'itemNotice\']);?>">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
     } else {#($_SESSION["itemNotice"] == False){
         $alert =  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
        '.$_SESSION["itemMessage"].'
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION[\'itemNotice\']); ?>">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  onclick="<?php unset($_SESSION["itemNotice"]); ?>">
       <span aria-hidden="true">&times;</span>
       </button>
     </div>';
@@ -79,8 +79,12 @@ function itemGrid($pageNum, $mysqli){
   $result = $mysqli->query($sql);
   echo $mysqli->error;
   while( $row = $result->fetch_assoc( ) ){
-     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donor"],$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
-  }
+    if(isnull($row["donorName"])){
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],"Anonymous",$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
+   }else{
+     $htmlResult .= itemCard($row["id"],$row["itemName"],$row["description"], $row['currentBid'],$row["minimumBidInc"],$row["startingBid"],$row["donorName"],$row["auctionNameRef"], $row["imageName"], $row["imageRef"], $row["imageData"]);
+   }
+ }
   return $htmlResult;
 }
 
