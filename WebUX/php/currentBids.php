@@ -1,5 +1,7 @@
 <?php
 
+// YOU NEED TO ADD COMMENTS TO THESE FILES TOO!!!
+
 require_once 'config.php';
 
 $htmlOutput = "";
@@ -14,8 +16,8 @@ if ($mysqli->connect_error) {
   if (isset($_GET['username'])) {
     $username = htmlspecialchars(trim($_GET['username']));
 
-    //get information from Database
-    //SELECT itemId, Bids.ItemName, imageMime, imageData, max(amount) FROM Bids, Item WHERE BidderUName = 'hfranceschi' and Item.id = Bids.itemId group by itemId
+  //get information from Database
+  //SELECT itemId, Bids.ItemName, imageMime, imageData, max(amount) FROM Bids, Item WHERE BidderUName = 'hfranceschi' and Item.id = Bids.itemId group by itemId
   //$sql = "SELECT itemId, Bids.ItemName, imageMime, imageData, max(amount) FROM Bids, Item WHERE BidderUName = '$username' and Item.id = Bids.itemId group by itemId";
   $sql = "SELECT itemId, ItemName, max(amount) as amount FROM Bids WHERE BidderUName = '$username' group by itemId";
 
