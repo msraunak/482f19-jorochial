@@ -1,8 +1,11 @@
 package com.example.cmaalouf.uxauction;
-
+/**
+ * NO JAVADOC COMMENTS ????
+ * ????????????????????????
+ */
 public class Bid {
 
-    protected int bidId;
+    protected int bidId;  // Why protected?
     protected String bidderUName;
     protected double amount;
     protected int itemId;
