@@ -1,4 +1,7 @@
 <?php
+
+// NEED TO ADD COMMENTS TO THE PHP FILES
+
 session_start();
 if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
   //if not login in
