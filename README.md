@@ -1,5 +1,4 @@
-# Project Key Point
-## Overview of the Project 
+# Overview of the Project 
 The goal of this project is to develop a cross platform auction and bid application across web browsers and android devices. Auction admins can list, set, alter, modify, view items and more on any web browser, optimized for desktop. Auction participants (aka bidders) will utilize the android application to search, view, bid, alter/increase bids, and more on Android devices with all data being maintained via MySQL database interaction. 
 
 # Team Members:
