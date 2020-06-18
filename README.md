@@ -20,15 +20,26 @@ The goal of this project is to develop a cross platform auction and bid applicat
 [Final Report Document](https://docs.google.com/document/d/1FqCSX0mkYGmzBUIB0VnIK-IrNWB5HTUl3e_dMB7CK28/edit?usp=sharing)
 
 ## Implemented Features
--
--
--
--
--
--
--
--
--
+Web Application
+- Ability to create auctions
+- Add items to a specific auction
+- Delete items from a auction
+- Time a auction to start and end at a spefic time/date
+- Admin can create sub/child-admins 
+- Credential/profile based logins
+- Change password
+- Hashed passwords for proper security/encrpytion 
+- SQL sanitization against SQL injection
+- Responsive CSS across devices/window sizes
+Android Application
+- Create profile
+- Change password
+- Bid on item
+- Autobid to a certain vlaue on item
+- Email confirmation of bids
+- Search for items
+- See countdown of time left on a bidding
+- See countdown of time left on a auction
 
 ## Not Yet Implemented Features
 -
