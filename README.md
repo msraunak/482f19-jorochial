@@ -30,7 +30,7 @@ Web Application
 - Change password
 - Hashed passwords for proper security/encrpytion 
 - SQL sanitization against SQL injection
-- Responsive CSS across devices/window sizes
+- Responsive CSS across devices/window sizes  
 Android Application
 - Create profile
 - Change password
