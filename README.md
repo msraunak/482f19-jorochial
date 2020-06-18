@@ -31,6 +31,7 @@ Web Application
 - Hashed passwords for proper security/encrpytion 
 - SQL sanitization against SQL injection
 - Responsive CSS across devices/window sizes  
+
 Android Application
 - Create profile
 - Change password
