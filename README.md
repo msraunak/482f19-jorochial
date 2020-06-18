@@ -7,7 +7,8 @@ The goal of this project is to develop a cross platform auction and bid applicat
 3. Chiara Maalouf (chi) {Team Lead} 
 4. Alyssa Schilke (al)
 
-# View the live development version of the site here: [jorochial.cs.loyola.edu](http://jorochial.cs.loyola.edu/html/index.php)
+# View the live development version of the site here: 
+[jorochial.cs.loyola.edu](http://jorochial.cs.loyola.edu/html/index.php)
 
 
 # Documentation
