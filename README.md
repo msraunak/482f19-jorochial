@@ -1,6 +1,3 @@
-# 482f19-JOROCHIAL
-This is the repository for team jorochial to develop their Auction application in Fall 2019 Software Engineering course. 
-
 # Project Key Point
 ## Overview of the Project 
 The goal of this project is to develop a cross platform auction and bid application across web browsers and android devices. Auction admins can list, set, alter, modify, view items and more on any web browser, optimized for desktop. Auction participants (aka bidders) will utilize the android application to search, view, bid, alter/increase bids, and more on Android devices with all data being maintained via MySQL database interaction. 
@@ -66,3 +63,6 @@ The goal of this project is to develop a cross platform auction and bid applicat
 - All other files can be run in the web browser
 
 This project contains all code created by the development team, as well as the Bootstrap 4 source files for compling the project SCSS file.
+
+# 482f19-JOROCHIAL
+This is the repository for team jorochial to develop their Auction application in Fall 2019 Software Engineering course. 
