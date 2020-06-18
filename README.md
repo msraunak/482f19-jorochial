@@ -24,6 +24,8 @@ Web Application
 - Ability to create auctions
 - Add items to a specific auction
 - Delete items from a auction
+- View inidividual item
+- Edit items
 - Time a auction to start and end at a spefic time/date
 - Admin can create sub/child-admins 
 - Credential/profile based logins
@@ -36,6 +38,7 @@ Android Application
 - Create profile
 - Change password
 - Bid on item
+- View item
 - Autobid to a certain vlaue on item
 - Email confirmation of bids
 - Search for items
